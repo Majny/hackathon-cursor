@@ -13,13 +13,13 @@ export const NAV_ITEMS: NavItem[] = [
   { href: routes.stories(), label: "Stories", aliases: ["/family/book"] },
   { href: routes.people(), label: "People" },
   { href: routes.conversations(), label: "Calls", aliases: ["/family/sessions"] },
+  { href: routes.tree(), label: "Family tree" },
 ];
 
 /** Less-used pages, tucked into a small "More" menu. */
 export const MORE_ITEMS: NavItem[] = [
   { href: routes.timeline(), label: "Timeline" },
   { href: routes.places(), label: "Places" },
-  { href: routes.tree(), label: "Family tree" },
   { href: routes.gedcom(), label: "Download for MyHeritage (GEDCOM)", download: true },
 ];
 
