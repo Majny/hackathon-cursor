@@ -10,9 +10,21 @@ export async function POST(req: Request) {
   if (!body.snapshot || !ALLOWED.includes(body.snapshot)) {
     return NextResponse.json({ error: `snapshot must be one of ${ALLOWED.join(", ")}` }, { status: 400 });
   }
+  const t0 = Date.now();
   try {
-    await loadSnapshot(body.snapshot);
-    return NextResponse.json({ ok: true });
+    const db = await loadSnapshot(body.snapshot);
+    return NextResponse.json({
+      ok: true,
+      snapshot: body.snapshot,
+      ms: Date.now() - t0,
+      counts: {
+        sessions: db.sessions.length,
+        turns: db.turns.length,
+        chapters: db.chapters.length,
+        persons: db.persons.length,
+        matches: db.matches.length,
+      },
+    });
   } catch (e) {
     return NextResponse.json({ ok: false, error: (e as Error).message }, { status: 500 });
   }

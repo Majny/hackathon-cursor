@@ -1,18 +1,19 @@
-// PLACEHOLDER by WP0 – owned and replaced by WP1 (senior "Povídat" page).
+// Senior "Povídat" page (WP1). ?warm=1 connects immediately (pre-warm for the pitch).
 import Link from "next/link";
-import { Card } from "@/components/ui/Card";
+import { Talk } from "@/components/talk/Talk";
 
-export default function Home() {
+export const dynamic = "force-dynamic";
+
+export default async function Home({ searchParams }: { searchParams: Promise<Record<string, string | string[] | undefined>> }) {
+  const sp = await searchParams;
+  const warm = sp.warm === "1";
   return (
-    <main className="mx-auto flex min-h-screen max-w-3xl flex-col items-center justify-center gap-8 p-8">
-      <h1 className="text-4xl font-semibold">Ahoj, dědo Jardo</h1>
-      <Card className="text-center">
-        <p className="text-ink-soft">Tady bude velké tlačítko „Povídat“ (WP1).</p>
-        <div className="mt-4 flex justify-center gap-4 text-brick underline">
-          <Link href="/rodina">Pro rodinu</Link>
-          <Link href="/demo">Demo</Link>
-        </div>
-      </Card>
-    </main>
+    <>
+      <Talk warm={warm} />
+      <nav className="mx-auto flex max-w-3xl justify-center gap-6 px-5 pb-8 text-base text-ink-soft">
+        <Link href="/rodina" className="underline underline-offset-4 hover:text-brick">Pro rodinu</Link>
+        <Link href="/demo" className="underline underline-offset-4 hover:text-brick">Demo</Link>
+      </nav>
+    </>
   );
 }

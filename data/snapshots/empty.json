@@ -20,14 +20,302 @@
   "events": [],
   "tree": {
     "name": "Rodokmen Novákových – ukázkový import z MyHeritage",
-    "source": "placeholder (WP3 nahradí data/fake-tree.json)",
+    "source": "Ukázkový import z MyHeritage (smyšlená data pro demo)",
     "persons": [
-      { "id": "I1", "givenName": "Jaroslav", "surname": "Novák", "birthSurname": null, "nickname": "Jarda", "sex": "M", "birthYear": 1946, "birthPlace": "Kladno", "deathYear": null, "occupation": "hutník", "generation": 1 },
-      { "id": "I3", "givenName": "František", "surname": "Novák", "birthSurname": null, "nickname": null, "sex": "M", "birthYear": 1919, "birthPlace": "Kladno", "deathYear": 1988, "occupation": "hutník", "generation": 0 },
-      { "id": "I4", "givenName": "Anna", "surname": "Nováková", "birthSurname": "Horáková", "nickname": null, "sex": "F", "birthYear": 1922, "birthPlace": "Rakovník", "deathYear": 2001, "occupation": null, "generation": 0 }
+      {
+        "id": "I1",
+        "givenName": "Jaroslav",
+        "surname": "Novák",
+        "birthSurname": null,
+        "nickname": "Jarda",
+        "sex": "M",
+        "birthYear": 1946,
+        "birthPlace": "Kladno",
+        "deathYear": null,
+        "occupation": "hutník",
+        "generation": 1
+      },
+      {
+        "id": "I2",
+        "givenName": "Marie",
+        "surname": "Nováková",
+        "birthSurname": "Svobodová",
+        "nickname": null,
+        "sex": "F",
+        "birthYear": 1949,
+        "birthPlace": "Slaný",
+        "deathYear": null,
+        "occupation": null,
+        "generation": 1
+      },
+      {
+        "id": "I3",
+        "givenName": "František",
+        "surname": "Novák",
+        "birthSurname": null,
+        "nickname": null,
+        "sex": "M",
+        "birthYear": 1919,
+        "birthPlace": "Kladno",
+        "deathYear": 1988,
+        "occupation": null,
+        "generation": 0
+      },
+      {
+        "id": "I4",
+        "givenName": "Anna",
+        "surname": "Nováková",
+        "birthSurname": "Horáková",
+        "nickname": null,
+        "sex": "F",
+        "birthYear": 1922,
+        "birthPlace": "Rakovník",
+        "deathYear": 2001,
+        "occupation": null,
+        "generation": 0
+      },
+      {
+        "id": "I5",
+        "givenName": "Věra",
+        "surname": "Dvořáková",
+        "birthSurname": "Nováková",
+        "nickname": null,
+        "sex": "F",
+        "birthYear": 1950,
+        "birthPlace": "Kladno",
+        "deathYear": null,
+        "occupation": null,
+        "generation": 1
+      },
+      {
+        "id": "I6",
+        "givenName": "Josef",
+        "surname": "Dvořák",
+        "birthSurname": null,
+        "nickname": null,
+        "sex": "M",
+        "birthYear": 1948,
+        "birthPlace": "Kladno",
+        "deathYear": null,
+        "occupation": "zámečník",
+        "generation": 1
+      },
+      {
+        "id": "I7",
+        "givenName": "Petr",
+        "surname": "Dvořák",
+        "birthSurname": null,
+        "nickname": null,
+        "sex": "M",
+        "birthYear": 1974,
+        "birthPlace": "Kladno",
+        "deathYear": null,
+        "occupation": null,
+        "generation": 2
+      },
+      {
+        "id": "I8",
+        "givenName": "Jan",
+        "surname": "Novák",
+        "birthSurname": null,
+        "nickname": null,
+        "sex": "M",
+        "birthYear": 1972,
+        "birthPlace": "Kladno",
+        "deathYear": null,
+        "occupation": null,
+        "generation": 2
+      },
+      {
+        "id": "I9",
+        "givenName": "Eva",
+        "surname": "Černá",
+        "birthSurname": "Nováková",
+        "nickname": null,
+        "sex": "F",
+        "birthYear": 1975,
+        "birthPlace": "Praha",
+        "deathYear": null,
+        "occupation": null,
+        "generation": 2
+      },
+      {
+        "id": "I10",
+        "givenName": "Tomáš",
+        "surname": "Novák",
+        "birthSurname": null,
+        "nickname": null,
+        "sex": "M",
+        "birthYear": 2001,
+        "birthPlace": "Praha",
+        "deathYear": null,
+        "occupation": null,
+        "generation": 3
+      },
+      {
+        "id": "I11",
+        "givenName": "Kateřina",
+        "surname": "Černá",
+        "birthSurname": null,
+        "nickname": null,
+        "sex": "F",
+        "birthYear": 2004,
+        "birthPlace": "Praha",
+        "deathYear": null,
+        "occupation": null,
+        "generation": 3
+      },
+      {
+        "id": "I12",
+        "givenName": "Josef",
+        "surname": "Novák",
+        "birthSurname": null,
+        "nickname": null,
+        "sex": "M",
+        "birthYear": 1924,
+        "birthPlace": "Kladno",
+        "deathYear": 1990,
+        "occupation": null,
+        "generation": 0
+      },
+      {
+        "id": "I13",
+        "givenName": "Josef",
+        "surname": "Horák",
+        "birthSurname": null,
+        "nickname": null,
+        "sex": "M",
+        "birthYear": 1946,
+        "birthPlace": "Rakovník",
+        "deathYear": null,
+        "occupation": null,
+        "generation": 1
+      },
+      {
+        "id": "I14",
+        "givenName": "Martin",
+        "surname": "Černý",
+        "birthSurname": null,
+        "nickname": null,
+        "sex": "M",
+        "birthYear": 1973,
+        "birthPlace": "Praha",
+        "deathYear": null,
+        "occupation": null,
+        "generation": 2
+      },
+      {
+        "id": "I15",
+        "givenName": "Lucie",
+        "surname": "Nováková",
+        "birthSurname": "Králová",
+        "nickname": null,
+        "sex": "F",
+        "birthYear": 1974,
+        "birthPlace": "Praha",
+        "deathYear": null,
+        "occupation": null,
+        "generation": 2
+      },
+      {
+        "id": "I16",
+        "givenName": "Karel",
+        "surname": "Horák",
+        "birthSurname": null,
+        "nickname": null,
+        "sex": "M",
+        "birthYear": 1920,
+        "birthPlace": "Rakovník",
+        "deathYear": null,
+        "occupation": null,
+        "generation": 0
+      }
     ],
     "families": [
-      { "id": "F1", "husbandId": "I3", "wifeId": "I4", "childIds": ["I1"], "marriageYear": 1945, "marriagePlace": "Kladno" }
+      {
+        "id": "F1",
+        "husbandId": "I3",
+        "wifeId": "I4",
+        "childIds": [
+          "I1",
+          "I5"
+        ],
+        "marriageYear": 1945,
+        "marriagePlace": "Kladno"
+      },
+      {
+        "id": "F2",
+        "husbandId": "I1",
+        "wifeId": "I2",
+        "childIds": [
+          "I8",
+          "I9"
+        ],
+        "marriageYear": 1970,
+        "marriagePlace": "Kladno"
+      },
+      {
+        "id": "F3",
+        "husbandId": "I6",
+        "wifeId": "I5",
+        "childIds": [
+          "I7"
+        ],
+        "marriageYear": 1972,
+        "marriagePlace": "Kladno"
+      },
+      {
+        "id": "F4",
+        "husbandId": "I8",
+        "wifeId": "I15",
+        "childIds": [
+          "I10"
+        ],
+        "marriageYear": null,
+        "marriagePlace": null
+      },
+      {
+        "id": "F5",
+        "husbandId": "I14",
+        "wifeId": "I9",
+        "childIds": [
+          "I11"
+        ],
+        "marriageYear": null,
+        "marriagePlace": null
+      },
+      {
+        "id": "F6",
+        "husbandId": null,
+        "wifeId": null,
+        "childIds": [
+          "I3",
+          "I12"
+        ],
+        "marriageYear": null,
+        "marriagePlace": null
+      },
+      {
+        "id": "F7",
+        "husbandId": "I16",
+        "wifeId": null,
+        "childIds": [
+          "I13"
+        ],
+        "marriageYear": null,
+        "marriagePlace": null
+      },
+      {
+        "id": "F8",
+        "husbandId": null,
+        "wifeId": null,
+        "childIds": [
+          "I4",
+          "I16"
+        ],
+        "marriageYear": null,
+        "marriagePlace": null
+      }
     ]
   },
   "matches": []

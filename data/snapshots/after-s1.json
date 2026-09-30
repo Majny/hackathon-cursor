@@ -1,0 +1,712 @@
+{
+  "version": 1,
+  "grandparent": {
+    "id": "jaroslav",
+    "displayName": "děda Jarda",
+    "fullName": "Jaroslav Novák",
+    "birthYear": 1946,
+    "birthPlace": "Kladno",
+    "sex": "M",
+    "treePersonId": "I1",
+    "grandchildName": "Tomáš"
+  },
+  "sessions": [
+    {
+      "id": "s1",
+      "grandparentId": "jaroslav",
+      "index": 1,
+      "startedAt": "2026-09-29T16:00:00.000Z",
+      "endedAt": "2026-09-29T16:08:05.000Z",
+      "mode": "voice",
+      "status": "done",
+      "elConversationId": null,
+      "firstMessage": "Ahoj dědo, to jsem já, Tomáš. Moc rád bych si s tebou povídal o tom, jak jsi byl malý. Kde jsi vyrůstal?",
+      "continuedThreadId": null
+    }
+  ],
+  "turns": [
+    {
+      "id": "s1-t01",
+      "sessionId": "s1",
+      "idx": 1,
+      "clientSeq": 1,
+      "role": "ai",
+      "text": "Ahoj dědo, to jsem já, Tomáš. Moc rád bych si s tebou povídal o tom, jak jsi byl malý. Kde jsi vyrůstal?",
+      "at": "2026-09-29T16:00:00.000Z"
+    },
+    {
+      "id": "s1-t02",
+      "sessionId": "s1",
+      "idx": 2,
+      "clientSeq": 2,
+      "role": "grandparent",
+      "text": "No to ti povím, Tomáši. Narodil jsem se v roce 1946 tady na Kladně. Z okna jsme koukali rovnou na komíny Poldovky, to byla huť, víš. Ty komíny kouřily ve dne v noci a prádlo na šňůře bylo vždycky trochu šedivý.",
+      "at": "2026-09-29T16:00:25.000Z"
+    },
+    {
+      "id": "s1-t03",
+      "sessionId": "s1",
+      "idx": 3,
+      "clientSeq": 3,
+      "role": "ai",
+      "text": "To musel být pohled! A kdo s tebou tenkrát bydlel doma?",
+      "at": "2026-09-29T16:00:50.000Z"
+    },
+    {
+      "id": "s1-t04",
+      "sessionId": "s1",
+      "idx": 4,
+      "clientSeq": 4,
+      "role": "grandparent",
+      "text": "Maminka Anna, táta František a moje mladší sestra Věrka. Ta byla o čtyři roky mladší, pořád se mi věšela na kalhoty. A maminka, ta pekla nejlepší buchty na celým Kladně, s mákem a s povidlama.",
+      "at": "2026-09-29T16:01:15.000Z"
+    },
+    {
+      "id": "s1-t05",
+      "sessionId": "s1",
+      "idx": 5,
+      "clientSeq": 5,
+      "role": "ai",
+      "text": "Buchty s mákem, to zní dobře. Kdy je maminka pekla?",
+      "at": "2026-09-29T16:01:40.000Z"
+    },
+    {
+      "id": "s1-t06",
+      "sessionId": "s1",
+      "idx": 6,
+      "clientSeq": 6,
+      "role": "grandparent",
+      "text": "Každou sobotu. Celej barák voněl. A my s Věrkou jsme vždycky čekali u trouby, kdo dostane tu první, ještě horkou. Maminka nás plácla vařečkou přes prsty, ale nakonec nám dala obě.",
+      "at": "2026-09-29T16:02:05.000Z"
+    },
+    {
+      "id": "s1-t07",
+      "sessionId": "s1",
+      "idx": 7,
+      "clientSeq": 7,
+      "role": "ai",
+      "text": "A co táta? Čím byl?",
+      "at": "2026-09-29T16:02:30.000Z"
+    },
+    {
+      "id": "s1-t08",
+      "sessionId": "s1",
+      "idx": 8,
+      "clientSeq": 8,
+      "role": "grandparent",
+      "text": "Táta František dělal v Poldovce u pece, hutník to byl. Chodil na šichty, i na noční. Když přišel domů, byl celej černej od sazí a maminka mu ohřívala vodu v neckách. Moc nemluvil, ale když mluvil, tak jsme poslouchali.",
+      "at": "2026-09-29T16:02:55.000Z"
+    },
+    {
+      "id": "s1-t09",
+      "sessionId": "s1",
+      "idx": 9,
+      "clientSeq": 9,
+      "role": "ai",
+      "text": "To zní jako přísný, ale hodný táta. Byl jsi na něj pyšný?",
+      "at": "2026-09-29T16:03:20.000Z"
+    },
+    {
+      "id": "s1-t10",
+      "sessionId": "s1",
+      "idx": 10,
+      "clientSeq": 10,
+      "role": "grandparent",
+      "text": "No to víš, že jo. Říkal jsem klukům, že můj táta dělá ocel na celou republiku. A pak jsem tam taky skončil, ale to je jiná kapitola.",
+      "at": "2026-09-29T16:03:45.000Z"
+    },
+    {
+      "id": "s1-t11",
+      "sessionId": "s1",
+      "idx": 11,
+      "clientSeq": 11,
+      "role": "ai",
+      "text": "Tak to si nechám na jindy. A s kým jsi jako kluk nejvíc lítal venku?",
+      "at": "2026-09-29T16:04:10.000Z"
+    },
+    {
+      "id": "s1-t12",
+      "sessionId": "s1",
+      "idx": 12,
+      "clientSeq": 12,
+      "role": "grandparent",
+      "text": "S Pepou Dvořákem. Pepa Dvořák, ten bydlel o dům vedle, byl o dva roky mladší než já. Ale šikovnej kluk, to zase jo.",
+      "at": "2026-09-29T16:04:35.000Z"
+    },
+    {
+      "id": "s1-t13",
+      "sessionId": "s1",
+      "idx": 13,
+      "clientSeq": 13,
+      "role": "ai",
+      "text": "Co jste spolu s Pepou nejradši dělali?",
+      "at": "2026-09-29T16:05:00.000Z"
+    },
+    {
+      "id": "s1-t14",
+      "sessionId": "s1",
+      "idx": 14,
+      "clientSeq": 14,
+      "role": "grandparent",
+      "text": "Fotbal! Na plácku za barákem, branky jsme měli ze dvou kamenů a z kabátů. Hráli jsme do tmy, dokud maminka nezavolala z okna. Pepa chytal, já kopal. Jednou jsem mu napálil míč do nosu, tekla mu krev a stejně chytal dál.",
+      "at": "2026-09-29T16:05:25.000Z"
+    },
+    {
+      "id": "s1-t15",
+      "sessionId": "s1",
+      "idx": 15,
+      "clientSeq": 15,
+      "role": "ai",
+      "text": "Tvrdej brankář! A dělali jste spolu i nějaké lumpárny?",
+      "at": "2026-09-29T16:05:50.000Z"
+    },
+    {
+      "id": "s1-t16",
+      "sessionId": "s1",
+      "idx": 16,
+      "clientSeq": 16,
+      "role": "grandparent",
+      "text": "Jéje, lumpáren bylo. Lezli jsme přes plot k sousedům na třešně, to bylo normální. Ale největší průšvih… to bylo, jak jsme s Pepou v padesátým osmým utekli na pouť do Prahy.",
+      "at": "2026-09-29T16:06:15.000Z"
+    },
+    {
+      "id": "s1-t17",
+      "sessionId": "s1",
+      "idx": 17,
+      "clientSeq": 17,
+      "role": "ai",
+      "text": "Na pouť do Prahy? Sami? Jak jste se tam dostali?",
+      "at": "2026-09-29T16:06:40.000Z"
+    },
+    {
+      "id": "s1-t18",
+      "sessionId": "s1",
+      "idx": 18,
+      "clientSeq": 18,
+      "role": "grandparent",
+      "text": "No to je dlouhý povídání… Sebrali jsme se bez ptaní, nikomu jsme nic neřekli. Ale víš co, Tomáši, už mě z toho povídání bolí v krku. No, to ti řeknu příště.",
+      "at": "2026-09-29T16:07:05.000Z"
+    },
+    {
+      "id": "s1-t19",
+      "sessionId": "s1",
+      "idx": 19,
+      "clientSeq": 19,
+      "role": "ai",
+      "text": "Dobře, dědo, nechám si to na příště a budu se moc těšit. Děkuju ti za dnešek.",
+      "at": "2026-09-29T16:07:30.000Z"
+    },
+    {
+      "id": "s1-t20",
+      "sessionId": "s1",
+      "idx": 20,
+      "clientSeq": 20,
+      "role": "grandparent",
+      "text": "Já taky děkuju. Pozdravuj doma a přijď zas.",
+      "at": "2026-09-29T16:07:55.000Z"
+    }
+  ],
+  "summaries": [
+    {
+      "sessionId": "s1",
+      "summary": "Děda vyprávěl o dětství na Kladně pod komíny Poldovky: maminka Anna a její sobotní buchty, táta František hutník v Poldovce, mladší sestra Věrka a kamarád Pepa Dvořák od vedle, se kterým hrál fotbal na plácku. Začal příběh o útěku s Pepou na pouť do Prahy v roce 1958, ale nedořekl ho.",
+      "topicsCovered": [
+        "detstvi"
+      ],
+      "newOpenThreads": [
+        {
+          "title": "Útěk s Pepou na pouť do Prahy",
+          "whyUnfinished": "Děda začal vyprávět, jak s Pepou v roce 1958 utekli na pouť do Prahy, ale nedořekl, jak se tam dostali a jak to doma dopadlo.",
+          "turnIds": [
+            "s1-t16",
+            "s1-t18"
+          ]
+        }
+      ],
+      "resolvedThreadIds": [],
+      "nextTopic": "Útěk s Pepou na pouť do Prahy (1958) – jak to doma dopadlo",
+      "nextSessionOpener": "Ahoj dědo! Minule jsi mi začal vyprávět, jak jste s Pepou v padesátém osmém utekli na pouť do Prahy – tak jak to doma dopadlo?",
+      "keyFacts": [
+        "Narodil se v roce 1946 na Kladně, z okna viděl komíny Poldovky",
+        "Maminka Anna pekla každou sobotu buchty s mákem a s povidly",
+        "Táta František byl hutník v Poldovce",
+        "Mladší sestra Věrka (o čtyři roky mladší)",
+        "Kamarád Pepa Dvořák bydlel o dům vedle, byl o dva roky mladší"
+      ]
+    }
+  ],
+  "threads": [
+    {
+      "id": "th-pout",
+      "title": "Útěk s Pepou na pouť do Prahy",
+      "whyUnfinished": "Děda začal vyprávět, jak s Pepou v roce 1958 utekli na pouť do Prahy, ale nedořekl, jak se tam dostali a jak to doma dopadlo.",
+      "turnIds": [
+        "s1-t16",
+        "s1-t18"
+      ],
+      "createdInSession": "s1",
+      "resolvedInSession": null,
+      "source": "summary"
+    }
+  ],
+  "chapters": [],
+  "persons": [
+    {
+      "id": "p-pepa",
+      "mentionName": "Pepa Dvořák",
+      "givenName": "Pepa",
+      "surname": "Dvořák",
+      "sex": "M",
+      "birthYear": 1948,
+      "birthYearApprox": true,
+      "place": "Kladno",
+      "relationToGrandparent": "kamarád z dětství, soused",
+      "notes": "Bydlel o dům vedle, o dva roky mladší. Na plácku chytal v bráně.",
+      "turnIds": [
+        "s1-t12",
+        "s1-t14",
+        "s1-t16"
+      ]
+    },
+    {
+      "id": "p-anna",
+      "mentionName": "maminka Anna",
+      "givenName": "Anna",
+      "surname": null,
+      "sex": "F",
+      "birthYear": null,
+      "birthYearApprox": false,
+      "place": "Kladno",
+      "relationToGrandparent": "maminka",
+      "notes": "Každou sobotu pekla buchty s mákem a s povidly.",
+      "turnIds": [
+        "s1-t04",
+        "s1-t06"
+      ]
+    },
+    {
+      "id": "p-frantisek",
+      "mentionName": "táta František",
+      "givenName": "František",
+      "surname": null,
+      "sex": "M",
+      "birthYear": null,
+      "birthYearApprox": false,
+      "place": "Kladno",
+      "relationToGrandparent": "táta",
+      "notes": "Hutník v Poldovce u pece, chodil na šichty i na noční.",
+      "turnIds": [
+        "s1-t04",
+        "s1-t08",
+        "s1-t10"
+      ]
+    },
+    {
+      "id": "p-vera",
+      "mentionName": "sestra Věrka",
+      "givenName": "Věrka",
+      "surname": null,
+      "sex": "F",
+      "birthYear": 1950,
+      "birthYearApprox": true,
+      "place": "Kladno",
+      "relationToGrandparent": "mladší sestra",
+      "notes": "O čtyři roky mladší než děda.",
+      "turnIds": [
+        "s1-t04",
+        "s1-t06"
+      ]
+    }
+  ],
+  "places": [
+    {
+      "id": "pl-kladno",
+      "name": "Kladno",
+      "context": "Rodné město, dětství pod komíny Poldovky",
+      "turnIds": [
+        "s1-t02",
+        "s1-t04"
+      ]
+    },
+    {
+      "id": "pl-poldovka",
+      "name": "Poldovka (huť Poldi, Kladno)",
+      "context": "Huť, kde dělal táta František u pece",
+      "turnIds": [
+        "s1-t02",
+        "s1-t08"
+      ]
+    },
+    {
+      "id": "pl-praha",
+      "name": "Praha",
+      "context": "Cíl útěku na pouť s Pepou v roce 1958",
+      "turnIds": [
+        "s1-t16"
+      ]
+    }
+  ],
+  "events": [
+    {
+      "id": "ev-narozeni",
+      "title": "Narození dědy Jaroslava",
+      "year": 1946,
+      "yearApprox": false,
+      "description": "Děda se narodil na Kladně.",
+      "personIds": [],
+      "placeIds": [
+        "pl-kladno"
+      ],
+      "turnIds": [
+        "s1-t02"
+      ]
+    },
+    {
+      "id": "ev-pout",
+      "title": "Útěk s Pepou na pouť do Prahy",
+      "year": 1958,
+      "yearApprox": false,
+      "description": "S Pepou utekli bez ptaní na pouť do Prahy (nedovyprávěno).",
+      "personIds": [
+        "p-pepa"
+      ],
+      "placeIds": [
+        "pl-praha"
+      ],
+      "turnIds": [
+        "s1-t16",
+        "s1-t18"
+      ]
+    }
+  ],
+  "tree": {
+    "name": "Rodokmen Novákových – ukázkový import z MyHeritage",
+    "source": "Ukázkový import z MyHeritage (smyšlená data pro demo)",
+    "persons": [
+      {
+        "id": "I1",
+        "givenName": "Jaroslav",
+        "surname": "Novák",
+        "birthSurname": null,
+        "nickname": "Jarda",
+        "sex": "M",
+        "birthYear": 1946,
+        "birthPlace": "Kladno",
+        "deathYear": null,
+        "occupation": "hutník",
+        "generation": 1
+      },
+      {
+        "id": "I2",
+        "givenName": "Marie",
+        "surname": "Nováková",
+        "birthSurname": "Svobodová",
+        "nickname": null,
+        "sex": "F",
+        "birthYear": 1949,
+        "birthPlace": "Slaný",
+        "deathYear": null,
+        "occupation": null,
+        "generation": 1
+      },
+      {
+        "id": "I3",
+        "givenName": "František",
+        "surname": "Novák",
+        "birthSurname": null,
+        "nickname": null,
+        "sex": "M",
+        "birthYear": 1919,
+        "birthPlace": "Kladno",
+        "deathYear": 1988,
+        "occupation": null,
+        "generation": 0
+      },
+      {
+        "id": "I4",
+        "givenName": "Anna",
+        "surname": "Nováková",
+        "birthSurname": "Horáková",
+        "nickname": null,
+        "sex": "F",
+        "birthYear": 1922,
+        "birthPlace": "Rakovník",
+        "deathYear": 2001,
+        "occupation": null,
+        "generation": 0
+      },
+      {
+        "id": "I5",
+        "givenName": "Věra",
+        "surname": "Dvořáková",
+        "birthSurname": "Nováková",
+        "nickname": null,
+        "sex": "F",
+        "birthYear": 1950,
+        "birthPlace": "Kladno",
+        "deathYear": null,
+        "occupation": null,
+        "generation": 1
+      },
+      {
+        "id": "I6",
+        "givenName": "Josef",
+        "surname": "Dvořák",
+        "birthSurname": null,
+        "nickname": null,
+        "sex": "M",
+        "birthYear": 1948,
+        "birthPlace": "Kladno",
+        "deathYear": null,
+        "occupation": "zámečník",
+        "generation": 1
+      },
+      {
+        "id": "I7",
+        "givenName": "Petr",
+        "surname": "Dvořák",
+        "birthSurname": null,
+        "nickname": null,
+        "sex": "M",
+        "birthYear": 1974,
+        "birthPlace": "Kladno",
+        "deathYear": null,
+        "occupation": null,
+        "generation": 2
+      },
+      {
+        "id": "I8",
+        "givenName": "Jan",
+        "surname": "Novák",
+        "birthSurname": null,
+        "nickname": null,
+        "sex": "M",
+        "birthYear": 1972,
+        "birthPlace": "Kladno",
+        "deathYear": null,
+        "occupation": null,
+        "generation": 2
+      },
+      {
+        "id": "I9",
+        "givenName": "Eva",
+        "surname": "Černá",
+        "birthSurname": "Nováková",
+        "nickname": null,
+        "sex": "F",
+        "birthYear": 1975,
+        "birthPlace": "Praha",
+        "deathYear": null,
+        "occupation": null,
+        "generation": 2
+      },
+      {
+        "id": "I10",
+        "givenName": "Tomáš",
+        "surname": "Novák",
+        "birthSurname": null,
+        "nickname": null,
+        "sex": "M",
+        "birthYear": 2001,
+        "birthPlace": "Praha",
+        "deathYear": null,
+        "occupation": null,
+        "generation": 3
+      },
+      {
+        "id": "I11",
+        "givenName": "Kateřina",
+        "surname": "Černá",
+        "birthSurname": null,
+        "nickname": null,
+        "sex": "F",
+        "birthYear": 2004,
+        "birthPlace": "Praha",
+        "deathYear": null,
+        "occupation": null,
+        "generation": 3
+      },
+      {
+        "id": "I12",
+        "givenName": "Josef",
+        "surname": "Novák",
+        "birthSurname": null,
+        "nickname": null,
+        "sex": "M",
+        "birthYear": 1924,
+        "birthPlace": "Kladno",
+        "deathYear": 1990,
+        "occupation": null,
+        "generation": 0
+      },
+      {
+        "id": "I13",
+        "givenName": "Josef",
+        "surname": "Horák",
+        "birthSurname": null,
+        "nickname": null,
+        "sex": "M",
+        "birthYear": 1946,
+        "birthPlace": "Rakovník",
+        "deathYear": null,
+        "occupation": null,
+        "generation": 1
+      },
+      {
+        "id": "I14",
+        "givenName": "Martin",
+        "surname": "Černý",
+        "birthSurname": null,
+        "nickname": null,
+        "sex": "M",
+        "birthYear": 1973,
+        "birthPlace": "Praha",
+        "deathYear": null,
+        "occupation": null,
+        "generation": 2
+      },
+      {
+        "id": "I15",
+        "givenName": "Lucie",
+        "surname": "Nováková",
+        "birthSurname": "Králová",
+        "nickname": null,
+        "sex": "F",
+        "birthYear": 1974,
+        "birthPlace": "Praha",
+        "deathYear": null,
+        "occupation": null,
+        "generation": 2
+      },
+      {
+        "id": "I16",
+        "givenName": "Karel",
+        "surname": "Horák",
+        "birthSurname": null,
+        "nickname": null,
+        "sex": "M",
+        "birthYear": 1920,
+        "birthPlace": "Rakovník",
+        "deathYear": null,
+        "occupation": null,
+        "generation": 0
+      }
+    ],
+    "families": [
+      {
+        "id": "F1",
+        "husbandId": "I3",
+        "wifeId": "I4",
+        "childIds": [
+          "I1",
+          "I5"
+        ],
+        "marriageYear": 1945,
+        "marriagePlace": "Kladno"
+      },
+      {
+        "id": "F2",
+        "husbandId": "I1",
+        "wifeId": "I2",
+        "childIds": [
+          "I8",
+          "I9"
+        ],
+        "marriageYear": 1970,
+        "marriagePlace": "Kladno"
+      },
+      {
+        "id": "F3",
+        "husbandId": "I6",
+        "wifeId": "I5",
+        "childIds": [
+          "I7"
+        ],
+        "marriageYear": 1972,
+        "marriagePlace": "Kladno"
+      },
+      {
+        "id": "F4",
+        "husbandId": "I8",
+        "wifeId": "I15",
+        "childIds": [
+          "I10"
+        ],
+        "marriageYear": null,
+        "marriagePlace": null
+      },
+      {
+        "id": "F5",
+        "husbandId": "I14",
+        "wifeId": "I9",
+        "childIds": [
+          "I11"
+        ],
+        "marriageYear": null,
+        "marriagePlace": null
+      },
+      {
+        "id": "F6",
+        "husbandId": null,
+        "wifeId": null,
+        "childIds": [
+          "I3",
+          "I12"
+        ],
+        "marriageYear": null,
+        "marriagePlace": null
+      },
+      {
+        "id": "F7",
+        "husbandId": "I16",
+        "wifeId": null,
+        "childIds": [
+          "I13"
+        ],
+        "marriageYear": null,
+        "marriagePlace": null
+      },
+      {
+        "id": "F8",
+        "husbandId": null,
+        "wifeId": null,
+        "childIds": [
+          "I4",
+          "I16"
+        ],
+        "marriageYear": null,
+        "marriagePlace": null
+      }
+    ]
+  },
+  "matches": [
+    {
+      "id": "m-p-pepa-i6",
+      "entityId": "p-pepa",
+      "treePersonId": "I6",
+      "score": 1,
+      "breakdown": {
+        "given": 1,
+        "surname": 1,
+        "year": 1,
+        "place": 1
+      },
+      "gates": [],
+      "band": "strong",
+      "reason": "Pepa → Josef (zdrobnělina) · Dvořák = Dvořák · 1948 ≈ asi 1948 · Kladno ✓",
+      "alsoConsidered": [
+        {
+          "treePersonId": "I13",
+          "score": 0.5,
+          "why": "Josef Horák *1946 – jiné příjmení, rok o 2 let jinde, jiné místo (Rakovník)"
+        },
+        {
+          "treePersonId": "I12",
+          "score": 0.45,
+          "why": "Josef Novák *1924 – jiné příjmení, rok o 24 let jinde"
+        }
+      ],
+      "status": "suggested"
+    }
+  ]
+}

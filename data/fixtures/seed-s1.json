@@ -1,0 +1,24 @@
+{
+  "note": "Seed transcript of session 1 (Kladno childhood, unfinished pouť story). Odd turns = DĚDA, even = VNUK. The opener (session.firstMessage) was spoken before t01.",
+  "firstMessage": "Ahoj dědo, to jsem já, Tomáš. Moc rád bych si s tebou povídal o tom, jak jsi byl malý. Kde jsi vyrůstal?",
+  "turns": [
+    ["grandparent", "No, to víš, že na Kladně. Narodil jsem se tam v šestačtyřicátém, v roce 1946, a vyrůstal jsem v ulici kousek od Poldovky. Z okna jsme viděli komíny."],
+    ["ai", "Komíny Poldovky přímo z okna, to si umím představit. Kdo z vaší rodiny tam pracoval?"],
+    ["grandparent", "Táta, František, dělal v huti Poldi, u pece. Když šel ráno na šichtu, bylo slyšet jeho boty po celé ulici. Domů chodil černej jak kominík."],
+    ["ai", "Táta František u pece, to musela být těžká práce. A jaká byla maminka?"],
+    ["grandparent", "Maminka se jmenovala Anna. Ta pekla buchty s povidly, to byla vůně, co se line až na dvůr. V neděli jsme se o ně prali."],
+    ["ai", "Buchty s povidly, to zní krásně. Měl jsi nějaké sourozence?"],
+    ["grandparent", "Jo, no, tak to je dlouhá historie, to by bylo na dlouho."],
+    ["ai", "Klidně si dej čas, dědo. Byl jsi nejstarší?"],
+    ["grandparent", "Byl. Pak přišla sestra Věrka. S Věrkou jsme se pořád škorpili, ale když šlo do tuhého, drželi jsme spolu jako jeden."],
+    ["ai", "To je hezké, že jste drželi spolu. S kým sis nejvíc hrál venku?"],
+    ["grandparent", "Venku? To jsme byli pořád venku, na plácku za domem. Tam byla celá banda kluků z ulice."],
+    ["ai", "Celá banda kluků na plácku. Měl jsi mezi nimi nejlepšího kamaráda?"],
+    ["grandparent", "Pepa. Pepa Dvořák. Bydlel o dům vedle a byl o dva roky mladší než já, ale to nevadilo, byl to kluk do nepohody."],
+    ["ai", "Pepa Dvořák od vedle, o dva roky mladší. Co jste spolu nejradši dělali?"],
+    ["grandparent", "Hráli jsme fotbal na plácku, dokud nebyla tma. Máma pak řvala z okna, ať jdu domů. A s Pepou jsme vymysleli všelijaký lotroviny."],
+    ["ai", "Jaké lotroviny jste s Pepou vymysleli?"],
+    ["grandparent", "No, jednou v osmapadesátém, to bylo v roce 1958, to jsme s Pepou utekli na pouť do Prahy. Bez peněz, jen tak, vlakem načerno. Ale jak jsme se dostali domů a co na to řekl táta, to ti povím příště, teď už mě bolí v krku."],
+    ["ai", "Tak to se moc těším, dědo, na to nezapomenu. Děkuju ti za dnešek."]
+  ]
+}

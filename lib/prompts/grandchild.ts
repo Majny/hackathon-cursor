@@ -1,4 +1,4 @@
-// DRAFT by WP0 (PLAN §7.1) – owned by WP2. Single source of truth for the agent system prompt.
+// PLAN §7.1 – owned by WP2. Single source of truth for the agent system prompt (template verbatim from PLAN).
 import type { MemoryContext } from "../types";
 
 export const GRANDCHILD_VARIABLES = [
