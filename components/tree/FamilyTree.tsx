@@ -67,7 +67,7 @@ export function FamilyTree({ tree, layout, confirmedByTreeId, suggestedTreeIds, 
               {person.givenName} {person.surname}
             </h2>
             {person.birthSurname && person.birthSurname !== person.surname && (
-              <p className="text-ink-soft">née {person.birthSurname}</p>
+              <p className="text-ink-soft">Maiden name: {person.birthSurname}</p>
             )}
             <p className="mt-1">
               {person.birthYear ? `*${person.birthYear}` : ""}
