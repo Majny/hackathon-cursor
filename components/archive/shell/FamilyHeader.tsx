@@ -9,7 +9,7 @@ import { TextSizeToggle } from "./TextSizeToggle";
 export function FamilyHeader({ familyName, docs }: { familyName: string; docs: SearchDoc[] }) {
   return (
     <header className="sticky top-[env(safe-area-inset-top,0px)] z-30 border-b border-line bg-paper/90 backdrop-blur supports-[backdrop-filter]:bg-paper/80">
-      <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-x-4 gap-y-1 px-5 py-2 sm:px-8 lg:flex-nowrap">
+      <div className="mx-auto flex max-w-6xl 2xl:max-w-[88rem] flex-wrap items-center gap-x-4 gap-y-1 px-5 py-2 sm:px-8 2xl:flex-nowrap">
         <Link
           href={routes.overview()}
           className="group flex min-h-11 shrink-0 items-baseline gap-2 focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-brick"
@@ -19,14 +19,14 @@ export function FamilyHeader({ familyName, docs }: { familyName: string; docs: S
             ❦
           </span>
           <span className="font-(family-name:--font-display) text-[1.45rem] font-semibold tracking-tight text-ink">Heirloom</span>
-          <span className="hidden font-(family-name:--font-display) text-[1.05rem] text-ink-soft italic xl:inline">
+          <span className="hidden font-(family-name:--font-display) text-[1.05rem] text-ink-soft italic 2xl:inline">
             · the {familyName} family archive
           </span>
         </Link>
-        <div className="order-3 w-full min-w-0 lg:order-2 lg:w-auto lg:flex-1">
-          <FamilyNav className="lg:justify-center" />
+        <div className="order-3 w-full min-w-0 2xl:order-2 2xl:w-auto 2xl:flex-1">
+          <FamilyNav />
         </div>
-        <div className="order-2 ml-auto flex shrink-0 items-center gap-2 lg:order-3 lg:ml-0">
+        <div className="order-2 ml-auto flex shrink-0 items-center gap-2 2xl:order-3 2xl:ml-0">
           <SearchPalette docs={docs} />
           <TextSizeToggle />
         </div>
