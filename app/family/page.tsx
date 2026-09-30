@@ -33,7 +33,7 @@ export default async function FamilyOverviewPage() {
           <CardTitle>Povídání</CardTitle>
           {sessions.length === 0 && (
             <p className="text-ink-soft">
-              Zatím žádné povídání. <Link href="/" className="text-brick underline">Začít povídat</Link>
+              Zatím žádné povídání. <Link href="/talk" className="text-brick underline">Začít povídat</Link>
             </p>
           )}
           <ul className="space-y-4">
@@ -44,7 +44,7 @@ export default async function FamilyOverviewPage() {
               return (
                 <li key={s.id}>
                   <Link
-                    href={`/rodina/povidani/${s.id}`}
+                    href={`/family/sessions/${s.id}`}
                     className="block rounded-xl border border-line bg-paper/60 p-4 transition hover:border-brick/50 hover:bg-paper"
                   >
                     <div className="flex flex-wrap items-center gap-2">
@@ -78,7 +78,7 @@ export default async function FamilyOverviewPage() {
               {suggested > 0 && <Badge tone="warn">{suggested === 1 ? "1 návrh shody" : `${suggested} návrhy shody`}</Badge>}
               {confirmed > 0 && <Badge tone="moss">{confirmed} potvrzeno ve stromě</Badge>}
             </div>
-            <Link href="/rodina/lide" className="mt-4 inline-block text-lg text-brick underline">Zobrazit lidi →</Link>
+            <Link href="/family/people" className="mt-4 inline-block text-lg text-brick underline">Zobrazit lidi →</Link>
           </Card>
 
           {/* Tree */}
@@ -86,7 +86,7 @@ export default async function FamilyOverviewPage() {
             <CardTitle>Rodokmen</CardTitle>
             <p className="text-ink-soft">{db.tree?.name ?? "Rodokmen"} · {db.tree?.persons.length ?? 0} osob</p>
             <div className="mt-4 flex flex-wrap items-center gap-4">
-              <Link href="/rodina/strom" className="text-lg text-brick underline">Otevřít strom →</Link>
+              <Link href="/family/tree" className="text-lg text-brick underline">Otevřít strom →</Link>
               <a
                 href="/api/export/gedcom"
                 className="rounded-lg border border-line bg-card px-4 py-2 text-base font-medium hover:bg-paper-dark"
@@ -102,7 +102,7 @@ export default async function FamilyOverviewPage() {
       <Card>
         <div className="flex flex-wrap items-baseline justify-between gap-2">
           <CardTitle>Kapitoly knihy</CardTitle>
-          <Link href="/rodina/kniha" className="text-lg text-brick underline">Číst knihu →</Link>
+          <Link href="/family/book" className="text-lg text-brick underline">Číst knihu →</Link>
         </div>
         <ul className="grid gap-3 md:grid-cols-2">
           {LIFE_TOPICS.map((t) => {
@@ -113,7 +113,7 @@ export default async function FamilyOverviewPage() {
                 <div className="min-w-0">
                   <p className="text-sm uppercase tracking-wide text-ink-soft">{t.label}</p>
                   {ch ? (
-                    <Link href={`/rodina/kniha#${ch.id}`} className="font-serif text-xl font-semibold hover:text-brick">
+                    <Link href={`/family/book#${ch.id}`} className="font-serif text-xl font-semibold hover:text-brick">
                       {ch.title}
                     </Link>
                   ) : (

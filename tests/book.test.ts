@@ -9,8 +9,8 @@ describe("book citations", () => {
   });
 
   it("builds transcript links", () => {
-    expect(transcriptHref("s1-t07")).toBe("/rodina/povidani/s1#s1-t07");
-    expect(transcriptHref("x", "s2")).toBe("/rodina/povidani/s2#x");
+    expect(transcriptHref("s1-t07")).toBe("/family/sessions/s1#s1-t07");
+    expect(transcriptHref("x", "s2")).toBe("/family/sessions/s2#x");
   });
 
   it("numbers citations by first appearance, stable across paragraphs", () => {
@@ -21,13 +21,13 @@ describe("book citations", () => {
       { citations: [{ turnId: "s2-t02", quote: "d" }, { turnId: "s2-t02", quote: "d" }] },
     ]);
     expect(res.map((p) => p.map((c) => c.n))).toEqual([[1, 2], [3, 1], [], [4]]);
-    expect(res[3][0].href).toBe("/rodina/povidani/s2#s2-t02");
+    expect(res[3][0].href).toBe("/family/sessions/s2#s2-t02");
     expect(res[3][0].sessionId).toBe("s2");
   });
 
   it("prefers explicit turn->session mapping", () => {
     const res = numberCitations([{ citations: [{ turnId: "weird", quote: "q" }] }], { weird: "s3" });
-    expect(res[0][0].href).toBe("/rodina/povidani/s3#weird");
+    expect(res[0][0].href).toBe("/family/sessions/s3#weird");
   });
 
   it("computes stats and dates", () => {

@@ -5,7 +5,7 @@
 - `/demo`: všechny odznaky v „Stav“ zelené; v „Co si AI pamatuje“ je příští první věta:
   > Ahoj dědo! Minule jsi mi začal vyprávět, jak jste s Pepou v padesátém osmém utekli na pouť do Prahy – tak jak to doma dopadlo?
 - Render zahřát (otevřít URL 2 min předem).
-- Záložky: `/`, `/rodina/kniha`, `/rodina/lide`, `/rodina/strom`, `/demo`.
+- Záložky: `/`, `/family/book`, `/family/people`, `/family/tree`, `/demo`.
 - Headset/mikrofon u „dědy“, AI z reproduktoru notebooku, echo cancellation zapnuté. Hotspot připravený.
 - Po živé session na `/demo` zkontrolovat kontrolku **„první věta agenta == firstMessage“** (zelená = paměť prošla).
 
@@ -32,11 +32,11 @@ Pro 120 s / 60 s stačí replika 1+3+4 spojená do jedné: *„To bylo v padesá
 
 ## 3 minuty (plná verze)
 1. **(20 s) Problém, EN** – viz pitch níže.
-2. **(25 s) Session 1:** `/rodina/povidani/s1` – včera děda vyprávěl o dětství na Kladně, o Pepovi, a nedořekl příběh s poutí (poslední repliky).
+2. **(25 s) Session 1:** `/family/sessions/s1` – včera děda vyprávěl o dětství na Kladně, o Pepovi, a nedořekl příběh s poutí (poslední repliky).
 3. **(50 s) Session 2 živě:** `/` → Povídat. AI řekne opener o pouti (titulky + EN řádek). Děda repliky 1–4, AI se doptá. Skončit → „Příště se zeptám na: vojna v Jihlavě“.
-4. **(40 s) Kniha** `/rodina/kniha`: kapitola „Kluk od komínů Poldovky“ → klik na citaci ukáže doslovnou větu dědy → štítek „neověřeno“ jako ochrana proti halucinacím → rodina opraví jedno slovo (tužka).
+4. **(40 s) Kniha** `/family/book`: kapitola „Kluk od komínů Poldovky“ → klik na citaci ukáže doslovnou větu dědy → štítek „neověřeno“ jako ochrana proti halucinacím → rodina opraví jedno slovo (tužka).
    - Pokud finalize/kapitola nestihne: `/demo` → „Načíst: po povídání 2“ (< 1 s) a ukázat připravenou kapitolu.
-5. **(35 s) Lidé a strom** `/rodina/lide`: Pepa z vyprávění → Josef Dvořák *1948 Kladno, manžel dědovy sestry Věry, 100 %; návnady (strýc Josef Novák 1924, bratranec Josef Horák 1946 Rakovník) vyřazené podle roku a příjmení → **[Ano, je to on]** → `/rodina/strom` uzel se rozsvítí → Stáhnout GEDCOM.
+5. **(35 s) Lidé a strom** `/family/people`: Pepa z vyprávění → Josef Dvořák *1948 Kladno, manžel dědovy sestry Věry, 100 %; návnady (strýc Josef Novák 1924, bratranec Josef Horák 1946 Rakovník) vyřazené podle roku a příjmení → **[Ano, je to on]** → `/family/tree` uzel se rozsvítí → Stáhnout GEDCOM.
 6. **(10 s) Závěr** – viz pitch.
 
 ## 120 s (finále)

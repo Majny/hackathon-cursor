@@ -89,7 +89,7 @@ export function FamilyTree({ tree, layout, confirmedByTreeId, suggestedTreeIds, 
                     <blockquote key={c.turnId} className="border-l-4 border-brick/40 pl-3 font-serif italic">
                       „{c.quote}“
                       <div>
-                        <Link className="text-sm not-italic text-brick underline" href={`/rodina/povidani/${c.turnId.split("-")[0]}#${c.turnId}`}>
+                        <Link className="text-sm not-italic text-brick underline" href={`/family/sessions/${c.turnId.split("-")[0]}#${c.turnId}`}>
                           {c.turnId}
                         </Link>
                       </div>
@@ -100,7 +100,7 @@ export function FamilyTree({ tree, layout, confirmedByTreeId, suggestedTreeIds, 
             ) : suggestedTreeIds.includes(person.id) ? (
               <p className="mt-4 text-ink-soft">
                 Možná ho děda zmínil.{" "}
-                <Link href="/rodina/lide" className="text-brick underline">Potvrdit shodu</Link>
+                <Link href="/family/people" className="text-brick underline">Potvrdit shodu</Link>
               </p>
             ) : null}
           </>

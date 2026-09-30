@@ -11,7 +11,7 @@ export default async function Home({ searchParams }: { searchParams: Promise<Rec
     <>
       <Talk warm={warm} />
       <nav className="mx-auto flex max-w-3xl justify-center gap-6 px-5 pb-8 text-base text-ink-soft">
-        <Link href="/rodina" className="underline underline-offset-4 hover:text-brick">Pro rodinu</Link>
+        <Link href="/family" className="underline underline-offset-4 hover:text-brick">Pro rodinu</Link>
         <Link href="/demo" className="underline underline-offset-4 hover:text-brick">Demo</Link>
       </nav>
     </>

@@ -123,7 +123,7 @@ export function MatchCard({ match, entity, treePerson, relatives, citations, als
           {citations.map((c) => (
             <blockquote key={c.turnId} className="border-l-4 border-brick/40 pl-3 font-serif italic">
               „{c.quote}“{" "}
-              <Link className="not-italic text-sm text-brick underline" href={`/rodina/povidani/${c.turnId.split("-")[0]}#${c.turnId}`}>
+              <Link className="not-italic text-sm text-brick underline" href={`/family/sessions/${c.turnId.split("-")[0]}#${c.turnId}`}>
                 {c.turnId}
               </Link>
             </blockquote>
@@ -143,7 +143,7 @@ export function MatchCard({ match, entity, treePerson, relatives, citations, als
       )}
       {match.status === "confirmed" && (
         <p className="mt-4">
-          <Link href={`/rodina/strom?focus=${match.treePersonId}`} className="text-brick underline">
+          <Link href={`/family/tree?focus=${match.treePersonId}`} className="text-brick underline">
             Ukázat ve stromě →
           </Link>
         </p>

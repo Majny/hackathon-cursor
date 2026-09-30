@@ -61,7 +61,7 @@ export default async function BookPage() {
         <div className="rounded-2xl border border-line bg-card p-8 text-center font-sans">
           <p className="text-xl">Kniha je zatím prázdná.</p>
           <p className="mt-2 text-ink-soft">
-            Kapitolu napíšete v <Link href="/rodina" className="text-brick underline">přehledu</Link> tlačítkem „Napsat kapitolu“.
+            Kapitolu napíšete v <Link href="/family" className="text-brick underline">přehledu</Link> tlačítkem „Napsat kapitolu“.
           </p>
         </div>
       )}

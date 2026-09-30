@@ -43,7 +43,7 @@ export function TurnLinks({ turnIds }: { turnIds: string[] }) {
   return (
     <span className="flex flex-wrap gap-1">
       {turnIds.map((t) => (
-        <Link key={t} href={`/rodina/povidani/${t.split("-")[0]}#${t}`} className="text-sm text-brick underline">
+        <Link key={t} href={`/family/sessions/${t.split("-")[0]}#${t}`} className="text-sm text-brick underline">
           {t}
         </Link>
       ))}

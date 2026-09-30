@@ -9,7 +9,7 @@ export function NextTimeCard({ nextTopic, onRestart }: { nextTopic: string; onRe
       </p>
       <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
         <Link
-          href="/rodina"
+          href="/family"
           className="rounded-2xl bg-brick px-8 py-4 text-2xl font-medium text-white hover:bg-brick-dark"
         >
           Co vzniklo pro rodinu

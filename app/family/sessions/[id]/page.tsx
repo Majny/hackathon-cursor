@@ -26,7 +26,7 @@ export default async function TranscriptPage({ params }: { params: Promise<{ id:
     <main className="mx-auto max-w-4xl space-y-8">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <Link href="/rodina" className="text-ink-soft hover:text-brick">← Přehled</Link>
+          <Link href="/family" className="text-ink-soft hover:text-brick">← Přehled</Link>
           <h1 className="mt-1 font-serif text-4xl font-semibold">Povídání {session.index}</h1>
           <p className="text-lg text-ink-soft">
             {formatCzDate(session.startedAt)} · {turns.length} replik · {session.mode === "voice" ? "hlasem" : "psané"}
@@ -37,7 +37,7 @@ export default async function TranscriptPage({ params }: { params: Promise<{ id:
             {sessions.map((s) => (
               <Link
                 key={s.id}
-                href={`/rodina/povidani/${s.id}`}
+                href={`/family/sessions/${s.id}`}
                 className={`rounded-full px-4 py-1.5 ${s.id === id ? "bg-ink text-paper" : "border border-line bg-card hover:bg-paper-dark"}`}
               >
                 {s.index}
