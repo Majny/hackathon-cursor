@@ -1,6 +1,5 @@
 import { getDb } from "@/lib/store";
 import { getPlaceProfile, getPlaces } from "@/lib/archive";
-import { SectionLabel } from "@/components/landing/SectionLabel";
 import { EmptyNote, display } from "@/components/archive/people/kit";
 import { PlaceStampCard } from "@/components/archive/places/PlaceStampCard";
 
@@ -14,20 +13,17 @@ export default async function PlacesPage() {
 
   return (
     <main>
-      <header className="pb-10 pt-2">
-        <SectionLabel num="05">Places in his stories</SectionLabel>
-        <h1 className={`${display} text-[2.6rem] leading-[1.05] tracking-tight sm:text-[3.3rem]`}>
-          Where his life <em className="italic text-brick">happened</em>
-        </h1>
-        <p className="mt-3 max-w-[60ch] text-[1.1rem] leading-relaxed text-ink-soft">
-          {places.length} places, mentioned {total} times across his calls with Tom. Open one to read everything he said about it.
+      <header className="pb-6 pt-2">
+        <h1 className={`${display} text-[2.2rem] leading-tight sm:text-[2.6rem]`}>Places</h1>
+        <p className="mt-2 max-w-[60ch] text-ink-soft">
+          {places.length} places Grandpa Jarda has mentioned {total} times in his calls with Tom.
         </p>
       </header>
 
       {places.length === 0 ? (
         <EmptyNote>Grandpa hasn’t named any places yet. Tom will ask where it all happened.</EmptyNote>
       ) : (
-        <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="divide-y divide-line border-y border-line">
           {places.map((pl) => (
             <li key={pl.id}>
               <PlaceStampCard place={pl} people={peopleAt.get(pl.id) ?? []} />

@@ -15,6 +15,8 @@ export interface LlmStructuredOpts<T> {
   system: string;
   user: string;
   writer?: boolean;
+  /** MOCK_AI only: fixture file to use instead of the task default. */
+  mockFixture?: string;
 }
 
 export interface LlmStructuredResult<T> {
@@ -172,7 +174,7 @@ async function geminiText(opts: LlmTextOpts): Promise<string> {
     parts: [{ text: m.content }],
   }));
   if (contents.length === 0 || contents[0].role !== "user") {
-    contents.unshift({ role: "user", parts: [{ text: "(začátek rozhovoru)" }] });
+    contents.unshift({ role: "user", parts: [{ text: "(start of the conversation)" }] });
   }
   const res = await gemini().models.generateContent({
     model,
@@ -192,7 +194,7 @@ async function geminiText(opts: LlmTextOpts): Promise<string> {
 export async function llmStructured<T>(opts: LlmStructuredOpts<T>): Promise<LlmStructuredResult<T>> {
   const t0 = Date.now();
   if (isMockAi()) {
-    const fixture = opts.task === "extract" ? "extraction" : opts.task; // data/fixtures/{summary,extraction,chapter}.json
+    const fixture = opts.mockFixture ?? (opts.task === "extract" ? "extraction" : opts.task); // data/fixtures/{summary,extraction,chapter}.json
     const data = opts.schema.parse(await readFixture(fixture));
     return { data, provider: "mock", model: "fixture", ms: Date.now() - t0 };
   }

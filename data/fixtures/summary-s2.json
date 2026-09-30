@@ -1,0 +1,28 @@
+{
+  "summary": "Grandpa finished the story of running off to the fair in Prague in 1958: he and Pepa rode part of the way by tram without tickets, then walked, with no money, and came back in the middle of the night. His dad was waiting in the doorway with a belt, and Pepa was grounded for the whole summer holidays. Pepa later married Grandpa's sister Věrka. Then Grandpa moved on to his military service in Jihlava from 1965, which he promised to tell properly next time.",
+  "topicsCovered": [
+    "detstvi",
+    "vojna"
+  ],
+  "newOpenThreads": [
+    {
+      "title": "Military service in Jihlava",
+      "whyUnfinished": "Grandpa started on his first day of military service in Jihlava (1965) and promised the rest for next time.",
+      "turnIds": [
+        "s2-t12",
+        "s2-t14"
+      ]
+    }
+  ],
+  "resolvedThreadIds": [
+    "th-pout"
+  ],
+  "nextTopic": "Military service in Jihlava (1965–1967)",
+  "nextSessionOpener": "Hi Grandpa! Last time you promised to tell me about your military service in Jihlava — what was that first day like, when they shaved your heads?",
+  "keyFacts": [
+    "Ran off to the fair in Prague in summer 1958 – by tram and on foot, no money, home in the middle of the night",
+    "Dad punished him with a belt, Pepa was grounded for the whole summer holidays",
+    "Pepa Dvořák later married Grandpa's sister Věrka – became his brother-in-law",
+    "Called up for military service in 1965, in Jihlava"
+  ]
+}

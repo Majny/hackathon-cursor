@@ -1,14 +1,12 @@
 import Link from "next/link";
 import { getDb } from "@/lib/store";
-import { getPeople, getPersonProfile, initials, routes, type PersonCardVM, type QuoteRef } from "@/lib/archive";
+import { getPeople, getPersonProfile, routes, type PersonCardVM, type QuoteRef } from "@/lib/archive";
 import { resolveTree } from "@/lib/treeLayout";
 import type { Db } from "@/lib/types";
-import { SectionLabel } from "@/components/landing/SectionLabel";
 import { MatchCard } from "@/components/people/MatchCard";
 import { RecomputeButton } from "@/components/people/RecomputeButton";
 import { describeRelatives } from "@/components/people/relatives";
 import { Avatar, Chip, TreeBadge, cardCls, display, focusRing, EmptyNote } from "@/components/archive/people/kit";
-import { PeopleConstellation } from "@/components/archive/people/PeopleConstellation";
 
 export const dynamic = "force-dynamic";
 
@@ -81,29 +79,18 @@ export default async function PeoplePage({ searchParams }: { searchParams: Promi
   const turns = new Map(db.turns.map((t) => [t.id, t]));
   const alsoNames = Object.fromEntries(tree.persons.map((p) => [p.id, `${p.givenName} ${p.surname}`]));
   const pending = db.matches.filter((m) => m.status === "suggested").sort((a, b) => b.score - a.score);
-  const gp = db.grandparent;
 
   const counts = new Map(FILTERS.map((f) => [f.key, people.filter((p) => matches(db, p, f.key)).length]));
   const visibleFilters = FILTERS.filter((f) => f.key === "all" || f.key === filter || (counts.get(f.key) ?? 0) > 0);
 
   return (
     <main>
-      <header className="pb-8 pt-2">
-        <SectionLabel num="04">People in his stories</SectionLabel>
-        <h1 className={`${display} text-[2.6rem] leading-[1.05] tracking-tight sm:text-[3.3rem]`}>
-          Everyone he <em className="italic text-brick">remembers</em>
-        </h1>
-        <p className="mt-3 max-w-[60ch] text-[1.1rem] leading-relaxed text-ink-soft">
-          {people.length} people Grandpa has talked about so far, each linked to his own words and, where we can, to the family tree. The family
-          always has the final say on a match.
+      <header className="pb-6 pt-2">
+        <h1 className={`${display} text-[2.2rem] leading-tight sm:text-[2.6rem]`}>People</h1>
+        <p className="mt-2 max-w-[60ch] text-ink-soft">
+          {people.length} people Grandpa Jarda has talked about, linked to his own words and, where possible, to the family tree.
         </p>
       </header>
-
-      {people.length > 0 && (
-        <section aria-label="Who Grandpa talks about most" className="mb-10">
-          <PeopleConstellation people={people} centerLabel={gp.displayName} centerInitials={initials(gp.fullName)} />
-        </section>
-      )}
 
       <div className="mb-6 py-1">
         <div className="flex flex-wrap items-center justify-between gap-3">
@@ -134,7 +121,7 @@ export default async function PeoplePage({ searchParams }: { searchParams: Promi
       </div>
 
       {shown.length === 0 ? (
-        <EmptyNote>Nobody here yet. Tom will keep asking, and new people will appear after the next call.</EmptyNote>
+        <EmptyNote>No people in this filter.</EmptyNote>
       ) : view === "cards" ? (
         <ul className="grid gap-5 md:grid-cols-2">
           {shown.map((p) => {
@@ -143,12 +130,12 @@ export default async function PeoplePage({ searchParams }: { searchParams: Promi
               <li key={p.id}>
                 <Link
                   href={p.href}
-                  className={`${cardCls} group flex h-full flex-col gap-4 transition-[transform,border-color] hover:-translate-y-0.5 hover:border-brick/50 motion-reduce:transition-none motion-reduce:hover:translate-y-0 ${focusRing}`}
+                  className={`${cardCls} group flex h-full flex-col gap-4 transition-colors hover:border-brick/50 ${focusRing}`}
                 >
                   <div className="flex items-start gap-4">
-                    <Avatar initials={p.initials} tone={p.treeStatus === "none" ? "neutral" : p.group === "family" ? "brick" : "moss"} size={60} />
+                    <Avatar initials={p.initials} tone={p.treeStatus === "none" ? "neutral" : p.group === "family" ? "brick" : "moss"} size={48} />
                     <div className="min-w-0 flex-1">
-                      <h2 className={`${display} text-[1.55rem] leading-tight group-hover:text-brick-dark`}>{p.name}</h2>
+                      <h2 className={`${display} text-[1.35rem] leading-tight group-hover:text-brick-dark`}>{p.name}</h2>
                       <p className="mt-0.5 text-ink-soft">{capitalize(p.relation)}</p>
                     </div>
                   </div>
@@ -162,16 +149,16 @@ export default async function PeoplePage({ searchParams }: { searchParams: Promi
                     )}
                   </div>
                   {q && (
-                    <blockquote className={`${display} border-l-2 border-brick/40 pl-3 text-[1.05rem] italic leading-relaxed text-ink`}>
+                    <blockquote className={`border-l-2 border-line pl-3 leading-relaxed text-ink`}>
                       “{q.quote.length > 120 ? `${q.quote.slice(0, 118).replace(/\s+\S*$/, "")}…` : q.quote}”
                     </blockquote>
                   )}
                   <div className="mt-auto flex flex-wrap items-center justify-between gap-2 border-t border-line pt-3 text-[0.92rem] text-ink-soft">
                     <span>
-                      {[p.years ? `born ${p.years}` : null, p.place].filter(Boolean).join(" · ") || "Year unknown. Tom will ask."}
+                      {[p.years ? `born ${p.years}` : null, p.place].filter(Boolean).join(" · ") || "Year unknown"}
                     </span>
                     <span>
-                      <strong className="text-ink">mentioned {p.mentionCount}×</strong>
+                      {p.mentionCount} mentions
                       {p.callsMentioned.length ? ` · ${callsText(p.callsMentioned)}` : ""}
                     </span>
                   </div>
@@ -183,7 +170,7 @@ export default async function PeoplePage({ searchParams }: { searchParams: Promi
       ) : (
         <div className="overflow-x-auto rounded-2xl border border-line bg-card">
           <table className="w-full min-w-[720px] text-left">
-            <thead className="bg-paper-dark text-[0.78rem] uppercase tracking-[0.14em] text-ink-soft">
+            <thead className="bg-paper-dark text-sm text-ink-soft">
               <tr>
                 <th className="px-4 py-3 font-semibold">Name</th>
                 <th className="px-4 py-3 font-semibold">Relation</th>
@@ -206,7 +193,7 @@ export default async function PeoplePage({ searchParams }: { searchParams: Promi
                   <td className="px-4 py-3 text-ink-soft">{capitalize(p.relation)}</td>
                   <td className="px-4 py-3 tabular-nums">{p.years || <span className="text-ink-soft">unknown</span>}</td>
                   <td className="px-4 py-3">{p.place ?? <span className="text-ink-soft">unknown</span>}</td>
-                  <td className="px-4 py-3 text-right tabular-nums">{p.mentionCount}×</td>
+                  <td className="px-4 py-3 text-right tabular-nums">{p.mentionCount}</td>
                   <td className="px-4 py-3 tabular-nums">{p.callsMentioned.join(", ")}</td>
                   <td className="px-4 py-3">
                     <div className="flex flex-col items-start gap-1">
@@ -228,19 +215,17 @@ export default async function PeoplePage({ searchParams }: { searchParams: Promi
       <section aria-labelledby="pending-h" className="mt-16 border-t border-line pt-10">
         <div className="mb-5 flex flex-wrap items-end justify-between gap-4">
           <div>
-            <SectionLabel num="✓">Needs a family member to confirm</SectionLabel>
-            <h2 id="pending-h" className={`${display} text-[1.8rem] leading-tight`}>
-              Is this the right person in the tree?
+            <h2 id="pending-h" className={`${display} text-[1.5rem] leading-tight`}>
+              Matches to confirm
             </h2>
             <p className="mt-1 max-w-[60ch] text-ink-soft">
-              We compare what Grandpa said (names, nicknames, years, places) with the family tree. Nothing is linked for certain until someone
-              in the family says yes.
+              Names, years and places from the calls compared with the family tree. A match is only linked once someone in the family confirms it.
             </p>
           </div>
           <RecomputeButton />
         </div>
         {pending.length === 0 ? (
-          <EmptyNote>Every suggested match has been checked. Thank you!</EmptyNote>
+          <EmptyNote>No matches waiting.</EmptyNote>
         ) : (
           <div className="space-y-5">
             {pending.map((m) => {

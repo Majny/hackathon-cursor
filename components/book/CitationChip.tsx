@@ -62,7 +62,7 @@ export function CitationChip({ c, speaker = "Grandpa" }: { c: ChipCitation; spea
             href={c.href}
             className="mt-3 inline-flex min-h-11 items-center font-medium text-brick underline underline-offset-4 hover:text-brick-dark"
           >
-            Hear it in the conversation →
+            Open in transcript
           </Link>
         </span>
       )}

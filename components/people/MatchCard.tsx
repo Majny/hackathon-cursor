@@ -20,9 +20,9 @@ export interface MatchCardProps {
 }
 
 const GATE_LABELS: Record<string, string> = {
-  "surname-mismatch-cap": "different surname → capped at 50%",
-  "year-gap-cap": "years differ by more than 10 → capped at 50%",
-  "no-surname-cap": "surname never mentioned → capped at 90%",
+  "surname-mismatch-cap": "Different surname, capped at 50%",
+  "year-gap-cap": "Years differ by more than 10, capped at 50%",
+  "no-surname-cap": "No surname mentioned, capped at 90%",
 };
 
 const pct = (n: number | null) => (n == null ? "–" : `${Math.round(n * 100)}%`);
@@ -52,15 +52,16 @@ export function MatchCard({ match, entity, treePerson, relatives, citations, als
     : "";
 
   return (
-    <Card className={match.status === "confirmed" ? "border-moss" : match.status === "rejected" ? "opacity-70" : "border-brick/40"}>
-      <div className="mb-2 flex flex-wrap items-center gap-2">
-        {match.status === "suggested" && <Badge tone="brick">Suggested match</Badge>}
+    <Card className={match.status === "rejected" ? "opacity-70" : ""}>
+      <div className="mb-2 flex flex-wrap items-center gap-2 text-sm text-ink-soft">
         {match.status === "confirmed" && <Badge tone="moss">Confirmed by the family</Badge>}
         {match.status === "rejected" && <Badge>Rejected</Badge>}
-        <Badge tone={match.band === "strong" ? "moss" : "warn"}>{match.band === "strong" ? "strong match" : "possible match"}</Badge>
+        <span>
+          {match.band === "strong" ? "Strong match" : "Possible match"}: <strong className="tabular-nums text-ink">{pct(match.score)}</strong>
+        </span>
       </div>
 
-      <p className="text-xl leading-relaxed">
+      <p className="text-[1.1rem] leading-relaxed">
         {entity ? (
           <Link href={routes.person(entity.id)} className="font-semibold text-brick-dark underline-offset-4 hover:underline">
             {entity.mentionName}
@@ -68,8 +69,8 @@ export function MatchCard({ match, entity, treePerson, relatives, citations, als
         ) : (
           <strong>{match.entityId}</strong>
         )}{" "}
-        from the stories
-        {entityDesc && <span className="text-ink-soft"> ({entityDesc})</span>} → in the tree{" "}
+        from the calls
+        {entityDesc && <span className="text-ink-soft"> ({entityDesc})</span>} may be{" "}
         <strong>
           {treePerson ? `${treePerson.givenName} ${treePerson.surname}` : match.treePersonId}
         </strong>
@@ -79,8 +80,8 @@ export function MatchCard({ match, entity, treePerson, relatives, citations, als
             (*{treePerson.birthYear ?? "?"}
             {treePerson.birthPlace ? `, ${treePerson.birthPlace}` : ""})
           </span>
-        )}
-        . Match <strong>{pct(match.score)}</strong>.
+        )}{" "}
+        in the tree.
       </p>
       {relatives && <p className="mt-1 text-ink-soft">{relatives}</p>}
       <p className="mt-2 text-ink-soft">{match.reason}</p>
@@ -92,24 +93,22 @@ export function MatchCard({ match, entity, treePerson, relatives, citations, als
           ["Year", match.breakdown.year],
           ["Place", match.breakdown.place],
         ] as const).map(([label, v]) => (
-          <div key={label} className="rounded-lg border border-line bg-paper px-3 py-2">
+          <div key={label} className="rounded-lg bg-paper px-3 py-2">
             <div className="text-sm text-ink-soft">{label}</div>
-            <div className="text-lg font-semibold">{pct(v)}</div>
-            <div className="mt-1 h-1.5 rounded bg-paper-dark">
-              <div className="h-1.5 rounded bg-moss" style={{ width: `${Math.round((v ?? 0) * 100)}%` }} />
+            <div className="font-semibold tabular-nums">{v == null ? "not said" : pct(v)}</div>
+            <div className="mt-1 h-1 rounded bg-paper-dark">
+              <div className="h-1 rounded bg-ink-soft/60" style={{ width: `${Math.round((v ?? 0) * 100)}%` }} />
             </div>
           </div>
         ))}
       </div>
 
       {match.gates.length > 0 && (
-        <div className="mt-3 flex flex-wrap gap-2">
+        <ul className="mt-3 space-y-1 text-sm text-ink-soft">
           {match.gates.map((g) => (
-            <Badge key={g} tone="warn">
-              {GATE_LABELS[g] ?? g}
-            </Badge>
+            <li key={g}>{GATE_LABELS[g] ?? g}</li>
           ))}
-        </div>
+        </ul>
       )}
 
       {match.alsoConsidered.length > 0 && (
@@ -127,12 +126,12 @@ export function MatchCard({ match, entity, treePerson, relatives, citations, als
 
       {citations.length > 0 && (
         <div className="mt-4 space-y-2">
-          <div className="text-sm font-semibold uppercase tracking-wide text-ink-soft">What Grandpa said</div>
+          <div className="text-sm font-semibold text-ink">What Grandpa said</div>
           {citations.map((c) => (
-            <blockquote key={c.turnId} className="border-l-4 border-brick/40 pl-3 font-serif italic">
+            <blockquote key={c.turnId} className="border-l-2 border-line pl-3">
               “{c.quote}”{" "}
-              <Link className="not-italic text-sm text-brick underline" href={routes.turn(c.turnId.replace(/-t\d+$/, ""), c.turnId)}>
-                {c.turnId}
+              <Link className="text-sm text-brick underline-offset-4 hover:underline" href={routes.turn(c.turnId.replace(/-t\d+$/, ""), c.turnId)}>
+                Open in call
               </Link>
             </blockquote>
           ))}
@@ -152,7 +151,7 @@ export function MatchCard({ match, entity, treePerson, relatives, citations, als
       {match.status === "confirmed" && (
         <p className="mt-4">
           <Link href={routes.tree(match.treePersonId)} className="text-brick underline">
-            Show in the tree →
+            View in tree
           </Link>
         </p>
       )}

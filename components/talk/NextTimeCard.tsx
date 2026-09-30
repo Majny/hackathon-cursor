@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export function NextTimeCard({ nextTopic, onRestart }: { nextTopic: string; onRestart?: () => void }) {
   return (
-    <div className="w-full rounded-3xl border-2 border-brick bg-card p-8 text-center shadow-sm">
+    <div className="w-full rounded-2xl border border-line bg-card p-8 text-center">
       <p className="text-2xl text-ink-soft">Thank you, Grandpa. Your memories are saved.</p>
       <p className="mt-4 font-serif text-[34px] leading-tight text-ink">
         Next time I’ll ask about: <span className="text-brick">{nextTopic}</span>
@@ -12,7 +12,7 @@ export function NextTimeCard({ nextTopic, onRestart }: { nextTopic: string; onRe
           href="/family"
           className="rounded-2xl bg-brick px-8 py-4 text-2xl font-medium text-white hover:bg-brick-dark"
         >
-          See what the family gets
+          Open the family archive
         </Link>
         {onRestart && (
           <button onClick={onRestart} className="rounded-2xl border border-line px-6 py-4 text-xl text-ink hover:bg-paper-dark">

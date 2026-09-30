@@ -12,7 +12,7 @@ import { chapterStats, formatDate } from "./citations";
 /**
  * One chapter of the family book. Data comes pre-joined from `getChapterView` (lib/archive):
  * numbered citations already point to /family/conversations/<sid>#<turnId>.
- * Family can correct a paragraph (✎) and approve the chapter.
+ * Family can correct a paragraph and approve the chapter.
  */
 export function ChapterView({
   view,
@@ -65,9 +65,9 @@ export function ChapterView({
           {chapter.title}
         </h2>
         <div className="mt-4 flex flex-wrap justify-center gap-2 font-sans">
-          {chapter.status === "approved" ? <Badge tone="moss">✓ Approved by the family</Badge> : <Badge>Draft</Badge>}
-          {stats.unverified > 0 && <Badge tone="warn">{stats.unverified} need checking</Badge>}
-          {stats.edited > 0 && <Badge tone="brick">✎ corrected by family</Badge>}
+          {chapter.status === "approved" ? <Badge tone="moss">Approved by family</Badge> : <Badge>Draft</Badge>}
+          {stats.unverified > 0 && <Badge tone="warn">{stats.unverified} unverified</Badge>}
+          {stats.edited > 0 && <Badge tone="brick">Edited by family</Badge>}
         </div>
 
         {/* Verified meter */}
@@ -81,7 +81,7 @@ export function ChapterView({
             <span className="font-semibold text-moss">
               {verified} of {stats.total}
             </span>{" "}
-            paragraphs backed by his own words{pct === 100 ? " ✓" : ""}
+            paragraphs backed by his own words
           </p>
         </div>
       </header>
@@ -100,11 +100,8 @@ export function ChapterView({
       </div>
 
       {chapter.openQuestions.length > 0 && (
-        <aside className="mt-12 rounded-2xl border border-dashed border-moss/50 bg-moss/5 p-6 font-sans sm:p-7">
-          <p className="text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-moss">Still to ask</p>
-          <h3 className="mt-1 font-(family-name:--font-display) text-2xl font-medium text-ink">
-            Tom will ask about these on a <em className="italic text-moss">future call</em>
-          </h3>
+        <aside className="mt-12 rounded-2xl border border-line bg-card p-6 font-sans sm:p-7">
+          <h3 className="font-(family-name:--font-display) text-2xl font-medium text-ink">Tom will ask next</h3>
           <ul className="mt-4 space-y-2.5 text-lg">
             {chapter.openQuestions.map((q, i) => (
               <li key={i} className="flex gap-3">
@@ -119,10 +116,10 @@ export function ChapterView({
       <footer className="mt-10 flex flex-wrap items-center justify-center gap-3 font-sans">
         {chapter.status !== "approved" ? (
           <Button size="lg" onClick={approve} disabled={approving}>
-            {approving ? "Approving…" : "✓ The family approves this chapter"}
+            {approving ? "Approving…" : "Approve chapter"}
           </Button>
         ) : (
-          <span className="text-lg text-moss">✓ This chapter has been approved by the family.</span>
+          <span className="text-lg text-moss">Approved by the family.</span>
         )}
         {err && <span className="text-red-700">{err}</span>}
       </footer>
@@ -224,17 +221,17 @@ function Paragraph({
             }}
             title="Correct this paragraph"
             aria-label="Correct this paragraph"
-            className="ml-2 inline-flex h-9 w-9 items-center justify-center rounded-full align-middle font-sans text-base text-ink-soft opacity-40 transition hover:bg-paper-dark hover:text-brick hover:opacity-100 focus-visible:opacity-100 focus-visible:outline-3 focus-visible:outline-brick group-hover:opacity-100"
+            className="ml-2 inline-flex h-9 items-center justify-center rounded-full px-3 align-middle font-sans text-sm text-ink-soft opacity-40 transition hover:bg-paper-dark hover:text-brick hover:opacity-100 focus-visible:opacity-100 focus-visible:outline-3 focus-visible:outline-brick group-hover:opacity-100"
           >
-            ✎
+            Edit
           </button>
         </p>
       )}
 
       {(unverified || p.editedByFamily) && !editing && (
         <div className="mt-2 flex flex-wrap items-center gap-2 font-sans">
-          {unverified && <Badge tone="warn">⚠ Needs checking</Badge>}
-          {p.editedByFamily && <Badge tone="brick">✎ corrected by family</Badge>}
+          {unverified && <Badge tone="warn">Unverified</Badge>}
+          {p.editedByFamily && <Badge tone="brick">Edited by family</Badge>}
           {unverified && citations.length === 0 && (
             <span className="text-sm text-ink-soft">We couldn’t find this in Grandpa’s own words yet.</span>
           )}

@@ -39,7 +39,7 @@ const LINKS: { href: string; label: string }[] = [
 ];
 
 function Flag({ ok, label }: { ok: boolean; label: string }) {
-  return <Badge tone={ok ? "moss" : "warn"}>{ok ? "✓" : "✗"} {label}</Badge>;
+  return <Badge tone={ok ? "moss" : "warn"}>{label}: {ok ? "ok" : "missing"}</Badge>;
 }
 
 export default function DemoPage() {
@@ -159,7 +159,7 @@ export default function DemoPage() {
                     c.ok ? "border-green-600 bg-green-100 text-green-800" : "border-red-500 bg-red-100 text-red-800"
                   }`}
                 >
-                  {c.ok ? "✓ match" : c.firstAi === null ? "✗ no AI line" : "✗ mismatch – variable injection failed?"}
+                  {c.ok ? "Match" : c.firstAi === null ? "No AI line" : "Mismatch (variable injection failed?)"}
                 </span>
                 <Badge>{c.session.status}</Badge>
                 <Badge>{c.session.mode}</Badge>

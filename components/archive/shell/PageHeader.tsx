@@ -1,6 +1,5 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { SectionLabel } from "@/components/landing/SectionLabel";
 
 export type Crumb = { label: string; href?: string };
 
@@ -31,10 +30,9 @@ export function Breadcrumbs({ crumbs }: { crumbs: Crumb[] }) {
 
 /**
  * Standard archive page header. `title` may contain an <em className="italic text-brick"> accent word.
- * Usage: <PageHeader num="01" label="Everyone he remembers" title={<>Everyone he <em>remembers</em></>} />
+ * `num` is accepted for older callers and ignored.
  */
 export function PageHeader({
-  num,
   label,
   title,
   lede,
@@ -53,8 +51,8 @@ export function PageHeader({
       <Breadcrumbs crumbs={crumbs} />
       <div className="flex flex-wrap items-end justify-between gap-6">
         <div className="min-w-0 max-w-3xl">
-          {label && <SectionLabel num={num ?? "—"}>{label}</SectionLabel>}
-          <h1 className="font-(family-name:--font-display) text-[2.4rem] leading-[1.05] font-medium tracking-tight text-ink sm:text-[3.1rem] [&_em]:text-brick [&_em]:italic">
+          {label && <p className="mb-2 text-sm font-medium text-ink-soft">{label}</p>}
+          <h1 className="font-(family-name:--font-display) text-[2.4rem] leading-[1.05] font-medium tracking-tight text-ink sm:text-[2.8rem] [&_em]:text-brick [&_em]:italic">
             {title}
           </h1>
           {lede && <p className="mt-3 max-w-[60ch] text-[1.1rem] leading-relaxed text-ink-soft">{lede}</p>}

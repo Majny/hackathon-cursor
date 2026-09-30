@@ -26,25 +26,16 @@ export function Avatar({ initials, tone = "brick", size = 48 }: { initials: stri
   );
 }
 
-function Leaf({ className = "" }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 16 16" className={`h-3.5 w-3.5 ${className}`} aria-hidden>
-      <path d="M13.5 2.5C7 2.5 3 5.5 3 10.5c0 1 .2 2 .6 3 .5-3.2 2.6-6 6-7.6-2.8 2-4.4 4.4-5 7.3 1 .4 1.8.5 2.6.5 5 0 6.3-5.2 6.3-11.2z" fill="currentColor" />
-    </svg>
-  );
-}
-
 export function TreeBadge({ status }: { status: TreeLinkStatus }) {
   const map: Record<TreeLinkStatus, { cls: string; label: string }> = {
     confirmed: { cls: "border-moss/40 bg-moss/10 text-moss", label: "In family tree" },
     suggested: { cls: "border-warn bg-warn-soft text-ink", label: "Suggested match" },
-    inferred: { cls: "border-brick/30 bg-brick/10 text-brick-dark", label: "In family tree (via family)" },
+    inferred: { cls: "border-brick/30 bg-brick/10 text-brick-dark", label: "In family tree" },
     none: { cls: "border-dashed border-ink-soft/50 bg-transparent text-ink-soft", label: "Not in tree yet" },
   };
   const m = map[status];
   return (
-    <span className={`inline-flex items-center gap-1.5 whitespace-nowrap rounded-full border px-2.5 py-0.5 text-sm font-medium ${m.cls}`}>
-      <Leaf />
+    <span className={`inline-flex items-center whitespace-nowrap rounded-full border px-2.5 py-0.5 text-sm font-medium ${m.cls}`}>
       {m.label}
     </span>
   );
@@ -74,22 +65,18 @@ export function Chip({ href, active = false, children, count, dashed = false }: 
 export function QuoteCard({ q, size = "sm", showSource = true }: { q: QuoteRef; size?: "sm" | "lg"; showSource?: boolean }) {
   const grandpa = q.role === "grandparent";
   return (
-    <figure className={`${cardCls} ${grandpa ? "" : "bg-paper-dark/60"} relative`}>
-      <blockquote
-        className={`${grandpa ? `${display} italic` : "text-ink-soft"} ${size === "lg" ? "text-[1.35rem] leading-[1.55]" : "text-[1.12rem] leading-[1.65]"} max-w-[65ch]`}
-      >
-        {grandpa ? <span className="mr-0.5 text-brick">“</span> : null}
-        {q.quote}
-        {grandpa ? <span className="ml-0.5 text-brick">”</span> : null}
+    <figure className="border-l-2 border-line pl-4">
+      <blockquote className={`${grandpa ? "text-ink" : "text-ink-soft"} ${size === "lg" ? "text-[1.2rem]" : "text-[1.05rem]"} max-w-[65ch] leading-relaxed`}>
+        “{q.quote}”
       </blockquote>
       {showSource && (
-        <figcaption className="mt-3 flex flex-wrap items-center justify-between gap-x-4 gap-y-1 text-[0.9rem] text-ink-soft">
+        <figcaption className="mt-1 flex flex-wrap items-center gap-x-3 text-[0.9rem] text-ink-soft">
           <span>
-            <span className="font-medium text-ink">{q.speaker}</span> · {q.source}
-            {q.sessionDate ? ` · ${q.sessionDate}` : ""}
+            {q.speaker}, {q.source}
+            {q.sessionDate ? `, ${q.sessionDate}` : ""}
           </span>
-          <Link href={q.href} className={`inline-flex min-h-11 items-center font-medium text-brick underline-offset-4 hover:underline ${focusRing}`}>
-            Open in conversation →
+          <Link href={q.href} className={`inline-flex min-h-11 items-center text-brick underline-offset-4 hover:underline ${focusRing}`}>
+            Open in call
           </Link>
         </figcaption>
       )}
@@ -120,11 +107,10 @@ export function Crumbs({ crumbs }: { crumbs: { label: string; href?: string }[] 
   );
 }
 
-export function SectionHeading({ num, children, aside }: { num?: string; children: ReactNode; aside?: ReactNode }) {
+export function SectionHeading({ children, aside }: { num?: string; children: ReactNode; aside?: ReactNode }) {
   return (
     <div className="mb-5 flex flex-wrap items-end justify-between gap-3">
-      <h2 className={`${display} text-[1.7rem] leading-tight text-ink`}>
-        {num && <span className="mr-2 text-base italic text-ink-soft">{num}</span>}
+      <h2 className={`${display} text-[1.5rem] leading-tight text-ink`}>
         {children}
       </h2>
       {aside}
@@ -138,15 +124,14 @@ export function Stamp({ name, size = 132, sub }: { name: string; size?: number; 
   return (
     <span
       aria-hidden
-      className="relative inline-flex shrink-0 items-center justify-center rounded-full border-2 border-dashed border-brick/50 bg-card p-2 text-center transition-transform duration-300 group-hover:rotate-3 motion-reduce:transition-none"
+      className="relative inline-flex shrink-0 items-center justify-center rounded-full border border-line bg-paper-dark p-2 text-center"
       style={{ width: size, height: size }}
     >
-      <span className="absolute inset-1.5 rounded-full border border-brick/25" />
       <span className="flex flex-col items-center px-2">
         <span className={`${display} leading-tight text-brick-dark`} style={{ fontSize: Math.max(14, Math.round(size / (short.length > 9 ? 8.5 : 6.2))) }}>
           {short}
         </span>
-        {sub && <span className="mt-1 text-[0.62rem] font-semibold uppercase tracking-[0.2em] text-ink-soft">{sub}</span>}
+        {sub && <span className="mt-1 text-xs tabular-nums text-ink-soft">{sub}</span>}
       </span>
     </span>
   );
@@ -158,18 +143,9 @@ export function EmptyNote({ children }: { children: ReactNode }) {
 
 export function ChapterRefLink({ r }: { r: { title: string; n: number; href: string; paragraphId: string } }) {
   return (
-    <Link
-      href={r.href}
-      className={`group flex min-h-11 items-center justify-between gap-3 rounded-xl border border-line bg-card px-4 py-2.5 hover:border-brick/50 ${focusRing}`}
-    >
-      <span>
-        <span className={`${display} italic`}>{r.title}</span>
-      </span>
-      <span className="inline-flex items-center gap-2 text-sm text-ink-soft">
-        cites his words
-        <span className="rounded-md bg-brick/10 px-1.5 font-semibold tabular-nums text-brick-dark">[{r.n}]</span>
-        <span className="text-brick transition-transform group-hover:translate-x-0.5">→</span>
-      </span>
+    <Link href={r.href} className={`inline-flex min-h-11 items-center gap-2 text-ink underline-offset-4 hover:text-brick hover:underline ${focusRing}`}>
+      {r.title}
+      <span className="text-sm tabular-nums text-ink-soft">[{r.n}]</span>
     </Link>
   );
 }

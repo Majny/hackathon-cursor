@@ -13,14 +13,6 @@ const KIND_LABEL: Record<SearchKind, string> = {
   quote: "In his words",
   conversation: "Conversations",
 };
-const KIND_ICON: Record<SearchKind, string> = {
-  person: "☺",
-  place: "⌖",
-  event: "◷",
-  chapter: "❦",
-  quote: "“",
-  conversation: "☏",
-};
 const SUGGESTIONS = ["Pepa", "Kladno", "1958", "verka", "Jihlava", "fair"];
 
 /** Header pill + ⌘K / Ctrl-K / "/" command palette over the whole archive. */
@@ -216,12 +208,6 @@ export function SearchPalette({ docs }: { docs: SearchDoc[] }) {
                               i === active ? "bg-paper-dark" : ""
                             }`}
                           >
-                            <span
-                              aria-hidden
-                              className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-line bg-paper font-(family-name:--font-display) text-brick"
-                            >
-                              {KIND_ICON[h.kind]}
-                            </span>
                             <span className="min-w-0 flex-1">
                               <span
                                 className={`block truncate text-ink ${

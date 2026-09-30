@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { getDb } from "@/lib/store";
 import { entityLinkTerms, getConversation, getConversations, routes } from "@/lib/archive";
 import { TranscriptTurn } from "@/components/archive/conversations/TranscriptTurn";
-import { Crumbs, Label, Pill, WhatsAppGlyph, focusRing } from "@/components/archive/conversations/parts";
+import { Crumbs, Pill, WhatsAppGlyph, focusRing } from "@/components/archive/conversations/parts";
 
 export const dynamic = "force-dynamic";
 
@@ -41,11 +41,12 @@ export default async function ConversationPage({ params }: { params: Promise<{ i
 
       <header className="mt-6 flex flex-wrap items-end justify-between gap-6">
         <div>
-          <Label>Transcript</Label>
           <h1 className="font-(family-name:--font-display) text-[2.6rem] leading-[1.02] tracking-[-0.015em] text-ink sm:text-[3.4rem]">
-            {c.title} <em className="italic text-brick">· {c.date}</em>
+            {c.title}
           </h1>
           <p className="mt-3 flex flex-wrap items-center gap-x-2 gap-y-1 text-[1rem] text-ink-soft">
+            <span>{c.date}</span>
+            <span aria-hidden>·</span>
             <span className="inline-flex items-center gap-1.5 text-[#1f8a4c]">
               <WhatsAppGlyph /> {c.channel}
             </span>
@@ -84,7 +85,7 @@ export default async function ConversationPage({ params }: { params: Promise<{ i
           <h2 className="text-[0.72rem] font-semibold uppercase tracking-[0.2em] text-ink-soft">What Grandpa talked about</h2>
           {c.continuedThread && (
             <p className="mt-3">
-              <Pill tone="brick"><span aria-hidden>↪</span> Continued from last call: {c.continuedThread.title}</Pill>
+              <Pill tone="brick">Continues: {c.continuedThread.title}</Pill>
             </p>
           )}
           {c.summary ? (
@@ -120,7 +121,7 @@ export default async function ConversationPage({ params }: { params: Promise<{ i
               <h2 className="text-[0.72rem] font-semibold uppercase tracking-[0.2em] text-moss">Finished in this call</h2>
               <ul className="mt-2 space-y-1">
                 {c.resolvedThreads.map((t) => (
-                  <li key={t.id} className="font-semibold text-ink">✓ {t.title}</li>
+                  <li key={t.id} className="font-semibold text-ink">{t.title}</li>
                 ))}
               </ul>
             </div>
@@ -132,8 +133,8 @@ export default async function ConversationPage({ params }: { params: Promise<{ i
                 {threadAnchors.map((t) => (
                   <li key={t.id}>
                     <p className="font-semibold text-ink">
-                      {t.resolvedInSession ? "✓ " : "○ "}
                       {t.title}
+                      {t.resolvedInSession && <span className="ml-2 text-[0.85rem] font-normal text-moss">finished</span>}
                     </p>
                     {t.whyUnfinished && <p className="text-[0.9rem] leading-snug text-ink-soft">{t.whyUnfinished}</p>}
                     {t.turnIds.length > 0 && (
@@ -156,7 +157,7 @@ export default async function ConversationPage({ params }: { params: Promise<{ i
           {(c.nextTopic || c.nextSessionOpener) && (
             <div className="rounded-2xl border border-line bg-card p-5">
               <h2 className="flex items-center gap-2 text-[0.72rem] font-semibold uppercase tracking-[0.2em] text-moss">
-                <span className="h-2 w-2 rounded-full bg-moss" /> Next time
+                Next call
               </h2>
               {c.nextTopic && <p className="mt-2 text-[1.02rem] text-ink">Tom will ask about {c.nextTopic}</p>}
               {c.nextSessionOpener && (
@@ -172,7 +173,7 @@ export default async function ConversationPage({ params }: { params: Promise<{ i
       {/* Transcript */}
       <section aria-label="Transcript" className="mx-auto mt-14 max-w-4xl">
         <div className="mb-4 flex flex-wrap items-end justify-between gap-3">
-          <h2 className="font-(family-name:--font-display) text-[2rem] text-ink">The whole call</h2>
+          <h2 className="font-(family-name:--font-display) text-[2rem] text-ink">Transcript</h2>
           <p className="text-[0.85rem] text-ink-soft">
             Names and places link to their pages. <span className="text-brick-dark">Outlined lines</span> are quoted in the book.
           </p>
@@ -193,16 +194,16 @@ export default async function ConversationPage({ params }: { params: Promise<{ i
       <nav aria-label="Previous and next call" className="mx-auto mt-12 flex max-w-4xl flex-wrap justify-between gap-3 border-t border-line pt-6">
         {prev ? (
           <Link href={prev.href} className={`rounded-xl px-2 py-2 text-brick hover:text-brick-dark ${focusRing}`}>
-            ← {prev.title} · {prev.date}
+            Previous: {prev.title} · {prev.date}
           </Link>
         ) : <span />}
         {next ? (
           <Link href={next.href} className={`rounded-xl px-2 py-2 text-brick hover:text-brick-dark ${focusRing}`}>
-            {next.title} · {next.date} →
+            Next: {next.title} · {next.date}
           </Link>
         ) : (
           <Link href={routes.conversations()} className={`rounded-xl px-2 py-2 text-brick hover:text-brick-dark ${focusRing}`}>
-            All conversations →
+            All calls
           </Link>
         )}
       </nav>

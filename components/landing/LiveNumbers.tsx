@@ -1,35 +1,16 @@
 "use client";
 
-import { animate, useInView } from "motion/react";
-import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 import { api } from "@/lib/api-client";
-import { SectionLabel } from "./SectionLabel";
 
-type Stats = { sessions: number; memories: number; people: number; live: boolean };
+type Stats = { calls: number; memories: number; people: number };
 
 // Shown when the API is unreachable (e.g. static preview). Mirrors the demo snapshot.
-const FALLBACK: Stats = { sessions: 2, memories: 14, people: 6, live: false };
-
-function Counter({ value }: { value: number }) {
-  const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true });
-  useEffect(() => {
-    if (!inView || !ref.current) return;
-    const el = ref.current;
-    const controls = animate(0, value, {
-      duration: 1.6,
-      ease: [0.22, 1, 0.36, 1],
-      onUpdate: (v) => {
-        el.textContent = Math.round(v).toString();
-      },
-    });
-    return () => controls.stop();
-  }, [inView, value]);
-  return <span ref={ref}>0</span>;
-}
+const FALLBACK: Stats = { calls: 2, memories: 14, people: 6 };
 
 export function LiveNumbers() {
-  const [stats, setStats] = useState<Stats | null>(null);
+  const [stats, setStats] = useState<Stats>(FALLBACK);
 
   useEffect(() => {
     let cancelled = false;
@@ -37,52 +18,39 @@ export function LiveNumbers() {
       .then(([ent, sessions]) => {
         if (cancelled) return;
         setStats({
-          sessions: sessions.length,
+          calls: sessions.length,
           memories: (ent.events?.length ?? 0) + (ent.places?.length ?? 0),
           people: ent.persons?.length ?? 0,
-          live: true,
         });
       })
-      .catch(() => {
-        if (!cancelled) setStats(FALLBACK);
-      });
+      .catch(() => {});
     return () => {
       cancelled = true;
     };
   }, []);
 
-  const s = stats ?? FALLBACK;
   const items = [
-    { label: "Conversations with Grandpa", value: s.sessions },
-    { label: "Memories captured (events & places)", value: s.memories },
-    { label: "People found in his stories", value: s.people },
+    { label: "calls", value: stats.calls, href: "/family/conversations" },
+    { label: "events and places", value: stats.memories, href: "/family/timeline" },
+    { label: "people", value: stats.people, href: "/family/people" },
   ];
 
   return (
-    <section className="bg-ink text-paper">
+    <section className="border-t border-line">
       <div className="mx-auto max-w-6xl px-6 py-20">
-        <div className="flex flex-wrap items-end justify-between gap-4">
-          <div>
-            <SectionLabel num="03" dark>
-              Right now, in this demo
-            </SectionLabel>
-            <h2 className="font-(family-name:--font-display) max-w-2xl text-[2.2rem] leading-[1.08] sm:text-[2.8rem]">
-              Grandpa Jarda&apos;s archive, <span className="italic text-warn">live.</span>
-            </h2>
-          </div>
-          <span className="inline-flex items-center gap-2 rounded-full border border-paper/15 px-3 py-1.5 text-[0.72rem] text-paper/70">
-            <span className={`h-2 w-2 rounded-full ${stats?.live ? "animate-pulse bg-moss" : "bg-paper/40"}`} />
-            {stats === null ? "Connecting…" : stats.live ? "Live from /api" : "Demo snapshot"}
-          </span>
-        </div>
-        <div className="mt-12 grid gap-px overflow-hidden rounded-2xl bg-paper/10 sm:grid-cols-3">
+        <h2 className="font-(family-name:--font-display) text-[2rem] leading-tight text-ink sm:text-[2.4rem]">
+          Grandpa Jarda&apos;s archive so far
+        </h2>
+        <div className="mt-10 grid gap-4 sm:grid-cols-3">
           {items.map((it) => (
-            <div key={it.label} className="bg-ink p-8">
-              <div className="font-(family-name:--font-display) text-[4.2rem] leading-none text-paper">
-                <Counter key={`${it.label}-${it.value}`} value={it.value} />
-              </div>
-              <div className="mt-3 text-[0.85rem] text-paper/65">{it.label}</div>
-            </div>
+            <Link
+              key={it.label}
+              href={it.href}
+              className="rounded-2xl border border-line bg-card p-6 transition-colors hover:border-brick/40"
+            >
+              <div className="font-(family-name:--font-display) text-[2.6rem] leading-none text-ink">{it.value}</div>
+              <div className="mt-2 text-[0.9rem] text-ink-soft">{it.label}</div>
+            </Link>
           ))}
         </div>
       </div>

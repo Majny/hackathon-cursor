@@ -49,7 +49,7 @@ export default async function PersonPage({ params }: { params: Promise<{ id: str
     capitalize(p.relation),
     p.years ? `born ${p.years}` : null,
     p.place,
-    `mentioned ${p.mentionCount}× in ${calls.length} ${calls.length === 1 ? "call" : "calls"}`,
+    `mentioned ${p.mentionCount} times in ${calls.length} ${calls.length === 1 ? "call" : "calls"}`,
   ].filter(Boolean) as string[];
 
   return (
@@ -57,10 +57,9 @@ export default async function PersonPage({ params }: { params: Promise<{ id: str
       <Crumbs crumbs={[{ label: "Overview", href: routes.overview() }, { label: "People", href: routes.people() }, { label: p.name }]} />
 
       <header className="flex flex-col gap-5 pb-8 sm:flex-row sm:items-center">
-        <Avatar initials={p.initials} size={104} tone={p.treeStatus === "none" ? "neutral" : p.group === "family" ? "brick" : "moss"} />
+        <Avatar initials={p.initials} size={72} tone={p.treeStatus === "none" ? "neutral" : p.group === "family" ? "brick" : "moss"} />
         <div className="min-w-0">
-          <p className="text-[0.75rem] font-semibold uppercase tracking-[0.22em] text-brick">{p.group === "family" ? "Family" : "Friend"}</p>
-          <h1 className={`${display} mt-1 text-[2.5rem] leading-[1.05] tracking-tight sm:text-[3.1rem]`}>{p.name}</h1>
+                    <h1 className={`${display} text-[2.2rem] leading-tight sm:text-[2.6rem]`}>{p.name}</h1>
           <p className="mt-2 text-[1.05rem] text-ink-soft">{meta.join(" · ")}</p>
           <div className="mt-3">
             <TreeBadge status={p.treeStatus} />
@@ -69,7 +68,7 @@ export default async function PersonPage({ params }: { params: Promise<{ id: str
       </header>
 
       <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_20rem]">
-        <div className="min-w-0 space-y-12">
+        <div className="min-w-0 space-y-10">
           <TreeLinkCard
             name={p.name}
             status={p.treeStatus}
@@ -82,26 +81,26 @@ export default async function PersonPage({ params }: { params: Promise<{ id: str
           />
 
           <section aria-labelledby="words-h">
-            <SectionHeading num="01">
+            <SectionHeading>
               <span id="words-h">
-                In grandpa’s <em className="italic text-brick">words</em>
+                What Grandpa said
               </span>
             </SectionHeading>
             {grandpaQuotes.length === 0 ? (
               <EmptyNote>Grandpa hasn’t said much about {p.name} yet. Tom will ask on the next call.</EmptyNote>
             ) : (
-              <div className="space-y-4">
+              <div className="space-y-5">
                 {grandpaQuotes.map((q, i) => (
                   <QuoteCard key={q.turnId} q={q} size={i === 0 ? "lg" : "sm"} />
                 ))}
               </div>
             )}
             {tomQuotes.length > 0 && (
-              <details className="mt-4 rounded-2xl border border-line bg-card/60 px-5 py-2">
+              <details className="mt-4">
                 <summary className={`min-h-11 cursor-pointer py-2.5 text-ink-soft ${focusRing}`}>
                   What Tom asked about {p.name} ({tomQuotes.length})
                 </summary>
-                <div className="space-y-3 pb-3">
+                <div className="space-y-4 pb-3 pt-2">
                   {tomQuotes.map((q) => (
                     <QuoteCard key={q.turnId} q={q} />
                   ))}
@@ -111,7 +110,7 @@ export default async function PersonPage({ params }: { params: Promise<{ id: str
           </section>
 
           <section aria-labelledby="appears-h">
-            <SectionHeading num="02">
+            <SectionHeading>
               <span id="appears-h">Appears in</span>
             </SectionHeading>
             {p.chapterRefs.length === 0 && p.events.length === 0 ? (
@@ -120,8 +119,8 @@ export default async function PersonPage({ params }: { params: Promise<{ id: str
               <div className="space-y-6">
                 {p.chapterRefs.length > 0 && (
                   <div>
-                    <h3 className="mb-2 text-[0.78rem] font-semibold uppercase tracking-[0.18em] text-ink-soft">Stories</h3>
-                    <ul className="space-y-2">
+                    <h3 className="mb-2 text-base font-semibold text-ink">Stories</h3>
+                    <ul className="space-y-1">
                       {p.chapterRefs.map((r) => (
                         <li key={`${r.chapterId}-${r.paragraphId}`}>
                           <ChapterRefLink r={r} />
@@ -132,15 +131,15 @@ export default async function PersonPage({ params }: { params: Promise<{ id: str
                 )}
                 {p.events.length > 0 && (
                   <div>
-                    <h3 className="mb-2 text-[0.78rem] font-semibold uppercase tracking-[0.18em] text-ink-soft">On the life timeline</h3>
-                    <ul className="space-y-2">
+                    <h3 className="mb-2 text-base font-semibold text-ink">On the life timeline</h3>
+                    <ul className="space-y-1">
                       {p.events.map((e) => (
                         <li key={e.id}>
                           <Link
                             href={e.href}
-                            className={`flex min-h-11 items-center gap-4 rounded-xl border border-line bg-card px-4 py-2.5 hover:border-brick/50 ${focusRing}`}
+                            className={`flex min-h-11 items-baseline gap-4 py-1 hover:text-brick ${focusRing}`}
                           >
-                            <span className={`${display} w-20 shrink-0 text-lg tabular-nums text-brick-dark`}>{e.year}</span>
+                            <span className={`w-14 shrink-0 tabular-nums text-ink-soft`}>{e.year}</span>
                             <span>{e.title}</span>
                           </Link>
                         </li>
@@ -156,27 +155,26 @@ export default async function PersonPage({ params }: { params: Promise<{ id: str
         <aside className="space-y-6 lg:sticky lg:top-24 lg:self-start">
           {p.notes && (
             <div className={cardCls}>
-              <h2 className="mb-2 text-[0.75rem] font-semibold uppercase tracking-[0.2em] text-brick">What we know</h2>
+              <h2 className="mb-2 text-base font-semibold text-ink">What we know</h2>
               <p className="leading-relaxed">{p.notes}</p>
-              <p className="mt-3 text-sm text-ink-soft">Summarised from Grandpa’s calls. Every detail is in the quotes.</p>
             </div>
           )}
 
           {p.firstMentioned && (
             <div className={cardCls}>
-              <h2 className="mb-2 text-[0.75rem] font-semibold uppercase tracking-[0.2em] text-brick">First mentioned</h2>
+              <h2 className="mb-2 text-base font-semibold text-ink">First mentioned</h2>
               <p className="text-ink-soft">
                 {p.firstMentioned.source}
                 {p.firstMentioned.sessionDate ? ` · ${p.firstMentioned.sessionDate}` : ""}
               </p>
               <Link href={p.firstMentioned.href} className={`mt-1 inline-flex min-h-11 items-center font-medium text-brick underline-offset-4 hover:underline ${focusRing}`}>
-                Jump to that moment →
+                Open in call
               </Link>
             </div>
           )}
 
           <div className={cardCls}>
-            <h2 className="mb-3 text-[0.75rem] font-semibold uppercase tracking-[0.2em] text-brick">Places</h2>
+            <h2 className="mb-3 text-base font-semibold text-ink">Places</h2>
             {p.places.length === 0 ? (
               <p className="text-ink-soft">No places linked yet.</p>
             ) : (
@@ -192,7 +190,7 @@ export default async function PersonPage({ params }: { params: Promise<{ id: str
 
           {alsoPeople.length > 0 && (
             <div className={cardCls}>
-              <h2 className="mb-3 text-[0.75rem] font-semibold uppercase tracking-[0.2em] text-brick">In the same stories</h2>
+              <h2 className="mb-3 text-base font-semibold text-ink">In the same stories</h2>
               <ul className="space-y-1">
                 {alsoPeople.map((x) => (
                   <li key={x.id}>
@@ -220,7 +218,7 @@ export default async function PersonPage({ params }: { params: Promise<{ id: str
           <span />
         )}
         <Link href={routes.people()} className={`inline-flex min-h-11 items-center text-ink-soft underline-offset-4 hover:underline ${focusRing}`}>
-          Everyone he remembers
+          All people
         </Link>
         {next ? (
           <Link href={next.href} className={`inline-flex min-h-11 items-center text-brick underline-offset-4 hover:underline ${focusRing}`}>

@@ -325,11 +325,11 @@ function TalkInner({ warm }: { warm: boolean }) {
         <>
           <button
             onClick={() => void startVoice()}
-            className="flex aspect-square w-[min(80vw,45vh)] min-w-56 items-center justify-center rounded-full bg-brick text-[40px] font-semibold text-white shadow-xl transition-transform hover:scale-[1.02] hover:bg-brick-dark active:scale-95"
+            className="flex aspect-square w-[min(80vw,45vh)] min-w-56 items-center justify-center rounded-full bg-brick text-[40px] font-semibold text-white transition-colors hover:bg-brick-dark"
           >
             Talk
           </button>
-          <p className="text-center text-2xl text-ink-soft">Press the button and have a chat with {grandchild}.</p>
+          <p className="text-center text-2xl text-ink-soft">Press the button to talk with {grandchild}.</p>
         </>
       )}
 

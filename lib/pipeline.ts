@@ -49,6 +49,8 @@ export async function analyzeSession(db: Db, sessionId: string): Promise<{
     llmStructured({
       task: "summary", schema: SessionSummarySchema, system: SUMMARIZER_SYSTEM,
       user: buildSummarizerUser({ turns, openThreads, keyFacts }),
+      // mock mode: a follow-up call gets the session-2 summary so Tom doesn't repeat the same opener
+      mockFixture: db.summaries.length > 0 ? "summary-s2" : undefined,
     }),
     llmStructured({
       task: "extract", schema: ExtractionSchema, system: renderExtractorSystem(db.grandparent),

@@ -12,7 +12,7 @@ export function MemoryPeek({ memory }: { memory: MemoryContext | null }) {
   return (
     <details className="w-full rounded-2xl border border-line bg-card p-5 text-left">
       <summary className="cursor-pointer text-xl font-medium text-ink">
-        What I remember from last time <span className="text-base text-ink-soft">· the AI’s memory</span>
+        What Tom remembers
       </summary>
       <dl className="mt-4 space-y-3">
         <div className="text-sm text-ink-soft">Conversation no. {memory.sessionNo}</div>

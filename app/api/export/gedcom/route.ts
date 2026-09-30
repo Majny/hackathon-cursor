@@ -13,7 +13,7 @@ export async function GET(req: Request) {
     return new Response(ged, {
       headers: {
         "Content-Type": "text/plain; charset=utf-8",
-        "Content-Disposition": 'attachment; filename="rodokmen-novakovi.ged"',
+        "Content-Disposition": 'attachment; filename="novak-family-tree.ged"',
         "Cache-Control": "no-store",
       },
     });

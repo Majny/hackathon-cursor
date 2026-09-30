@@ -4,12 +4,9 @@ import { Pill, WhatsAppGlyph, focusRing } from "./parts";
 
 export function ConversationCard({ c, latest = false }: { c: ConversationCardVM; latest?: boolean }) {
   return (
-    <article className="group relative rounded-2xl border border-line bg-card p-5 shadow-[0_1px_0_rgba(59,42,30,0.04)] transition hover:-translate-y-0.5 hover:border-brick/30 hover:shadow-[0_24px_50px_-32px_rgba(59,42,30,0.55)] sm:p-7">
+    <article className="group relative rounded-2xl border border-line bg-card p-5 shadow-[0_1px_0_rgba(59,42,30,0.04)] transition-colors hover:border-brick/30 sm:p-7">
       <div className="flex flex-wrap items-start justify-between gap-4">
-        <div className="flex items-center gap-4">
-          <div className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-ink text-paper">
-            <span className="font-(family-name:--font-display) text-[1.6rem] leading-none">{c.index}</span>
-          </div>
+        <div>
           <div>
             <h2 className="font-(family-name:--font-display) text-[1.7rem] leading-tight text-ink">
               <Link href={c.href} className={`rounded after:absolute after:inset-0 after:rounded-2xl hover:text-brick ${focusRing}`}>
@@ -51,7 +48,7 @@ export function ConversationCard({ c, latest = false }: { c: ConversationCardVM;
       {c.continuedThread && (
         <p className="relative z-10 mt-5">
           <Pill tone="brick" title="This call picked up an unfinished story">
-            <span aria-hidden>↪</span> Continued from last call: {c.continuedThread.title}
+            Continues: {c.continuedThread.title}
           </Pill>
         </p>
       )}
@@ -78,14 +75,14 @@ export function ConversationCard({ c, latest = false }: { c: ConversationCardVM;
             <Pill key={p.id} href={p.href}>{p.name}</Pill>
           ))}
           {c.resolvedThreads.map((t) => (
-            <Pill key={t.id} tone="moss">✓ Finished: {t.title}</Pill>
+            <Pill key={t.id} tone="moss">Finished: {t.title}</Pill>
           ))}
           {c.openedThreads.map((t) => (
-            <Pill key={t.id} tone="warn">○ To continue: {t.title}</Pill>
+            <Pill key={t.id} tone="warn">Open: {t.title}</Pill>
           ))}
         </div>
-        <span className="text-[0.9rem] font-semibold text-brick transition group-hover:translate-x-1">
-          Read the transcript →
+        <span className="text-[0.9rem] font-semibold text-brick">
+          Transcript
         </span>
       </div>
     </article>

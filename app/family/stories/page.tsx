@@ -5,7 +5,6 @@ import { getChapterView, getTopicCoverage, routes, type TopicCoverage } from "@/
 import type { Chapter } from "@/lib/types";
 import { ChapterView } from "@/components/book/ChapterView";
 import { GenerateChapterButton } from "@/components/book/GenerateChapterButton";
-import { SectionLabel } from "@/components/landing/SectionLabel";
 
 export const dynamic = "force-dynamic";
 
@@ -32,13 +31,11 @@ export default async function StoriesPage() {
     <main className="mx-auto max-w-6xl">
       {/* Hero */}
       <header className="border-b border-line pb-10 pt-2 sm:pb-14">
-        <SectionLabel num="03">The family book</SectionLabel>
         <h1 className="font-(family-name:--font-display) text-5xl font-medium leading-[1.05] tracking-tight text-ink sm:text-6xl">
-          {speaker}’s <em className="italic text-brick">stories</em>
+          {speaker}’s stories
         </h1>
         <p className="mt-4 max-w-[60ch] text-[1.15rem] leading-[1.7] text-ink-soft">
-          Told to his grandson {grandchild} over WhatsApp calls, written down with the help of AI. Nothing is invented: tap any
-          little number to see the exact words he said.
+          Written from his calls with {grandchild}. Each numbered note links to the exact words he said.
         </p>
         {totalParas > 0 && (
           <p className="mt-3 text-base text-ink-soft">
@@ -74,39 +71,30 @@ export default async function StoriesPage() {
             ))}
           </div>
         )}
-        <p className="mt-20 text-center font-(family-name:--font-display) text-3xl text-brick/60" aria-hidden>
-          ❦
-        </p>
       </div>
 
       {/* Not yet told */}
       {untold.length > 0 && (
         <section className="border-t border-line py-14" aria-labelledby="untold-h">
-          <SectionLabel num="∴">Chapters still to come</SectionLabel>
           <h2 id="untold-h" className="font-(family-name:--font-display) text-3xl font-medium tracking-tight text-ink sm:text-4xl">
-            Parts of his life <em className="italic text-brick">not yet told</em>
+            Not yet written
           </h2>
           <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {untold.map((t) => (
               <li
                 key={t.key}
                 id={`topic-${t.key}`}
-                className={`scroll-mt-28 rounded-2xl border-2 border-dashed p-5 sm:p-6 ${
-                  t.state === "next" ? "border-moss/60 bg-moss/5" : t.state === "talked" ? "border-brick/35 bg-card" : "border-line bg-paper"
-                }`}
+                className="scroll-mt-28 rounded-2xl border border-line bg-card p-5 sm:p-6"
               >
                 <p className="font-(family-name:--font-display) text-2xl text-ink">{t.label}</p>
                 <p className="mt-2 text-base leading-relaxed text-ink-soft">
                   {t.state === "next" && (
-                    <>
-                      <span className="mr-1.5 inline-block h-2.5 w-2.5 animate-pulse rounded-full bg-moss align-middle" aria-hidden />
-                      <span className="font-medium text-moss">Tom will ask on the next call.</span>
-                    </>
+<span className="font-medium text-moss">Tom will ask on the next call.</span>
                   )}
                   {t.state === "talked" && (
-                    <>Talked about in call {t.coveredInCalls.join(" & ")}, not written up yet.</>
+                    <>Discussed in call {t.coveredInCalls.join(" & ")}. Not written yet.</>
                   )}
-                  {t.state === "not-yet" && <>Grandpa hasn’t told this part yet.</>}
+                  {t.state === "not-yet" && <>Not discussed yet.</>}
                 </p>
                 {t.state === "talked" && (
                   <div className="mt-3">
@@ -117,9 +105,8 @@ export default async function StoriesPage() {
             ))}
           </ul>
           <p className="mt-10 text-base text-ink-soft">
-            Want to hear the originals?{" "}
             <Link href={routes.conversations()} className="font-medium text-brick underline underline-offset-4 hover:text-brick-dark">
-              Read the full conversations →
+              All call transcripts
             </Link>
           </p>
         </section>
@@ -134,7 +121,6 @@ function TopicChip({ t }: { t: TopicCoverage }) {
   if (t.state === "written" && t.chapter) {
     return (
       <a href={`#${t.chapter.id}`} className={`${base} border-brick/40 bg-brick/10 font-medium text-brick-dark hover:bg-brick hover:text-white`}>
-        <span aria-hidden>✦</span>
         {t.label}
         <span className="text-sm opacity-80">
           {t.chapter.verified}/{t.chapter.total}
@@ -142,17 +128,11 @@ function TopicChip({ t }: { t: TopicCoverage }) {
       </a>
     );
   }
-  const tone =
-    t.state === "next"
-      ? "border-dashed border-moss/60 text-moss hover:bg-moss/10"
-      : t.state === "talked"
-        ? "border-dashed border-brick/40 text-ink hover:bg-card"
-        : "border-dashed border-line text-ink-soft hover:bg-card";
+  const tone = t.state === "next" ? "border-line text-moss hover:bg-card" : "border-line text-ink-soft hover:bg-card";
   return (
     <a href={`#topic-${t.key}`} className={`${base} ${tone}`}>
-      {t.state === "next" && <span className="h-2 w-2 animate-pulse rounded-full bg-moss" aria-hidden />}
       {t.label}
-      <span className="text-sm opacity-80">{t.state === "next" ? "next call" : t.state === "talked" ? "talked" : "not yet told"}</span>
+      <span className="text-sm opacity-80">{t.state === "next" ? "next call" : t.state === "talked" ? "discussed" : "not yet"}</span>
     </a>
   );
 }

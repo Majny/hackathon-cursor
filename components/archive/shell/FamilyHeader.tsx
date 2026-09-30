@@ -12,16 +12,11 @@ export function FamilyHeader({ familyName, docs }: { familyName: string; docs: S
       <div className="mx-auto flex max-w-6xl 2xl:max-w-[88rem] flex-wrap items-center gap-x-4 gap-y-1 px-5 py-2 sm:px-8 2xl:flex-nowrap">
         <Link
           href={routes.overview()}
-          className="group flex min-h-11 shrink-0 items-baseline gap-2 focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-brick"
+          className="flex min-h-11 shrink-0 items-baseline gap-2 focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-brick"
           aria-label={`Heirloom, the ${familyName} family archive, overview`}
         >
-          <span className="text-xl text-brick transition-transform group-hover:-rotate-12" aria-hidden>
-            ❦
-          </span>
           <span className="font-(family-name:--font-display) text-[1.45rem] font-semibold tracking-tight text-ink">Heirloom</span>
-          <span className="hidden font-(family-name:--font-display) text-[1.05rem] text-ink-soft italic 2xl:inline">
-            · the {familyName} family archive
-          </span>
+          <span className="hidden text-[0.95rem] text-ink-soft 2xl:inline">{familyName} family archive</span>
         </Link>
         <div className="order-3 w-full min-w-0 2xl:order-2 2xl:w-auto 2xl:flex-1">
           <FamilyNav />
