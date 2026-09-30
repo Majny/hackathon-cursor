@@ -39,7 +39,7 @@ export function LiveNumbers() {
     <section className="border-t border-line">
       <div className="mx-auto max-w-6xl px-6 py-20">
         <h2 className="font-(family-name:--font-display) text-[2rem] leading-tight text-ink sm:text-[2.4rem]">
-          Grandpa Jarda&apos;s archive so far
+          Grandpa Jerry&apos;s archive so far
         </h2>
         <div className="mt-10 grid gap-4 sm:grid-cols-3">
           {items.map((it) => (

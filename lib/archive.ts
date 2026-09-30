@@ -40,7 +40,7 @@ export const routes = {
 
 // ─────────────────────────────── small helpers ───────────────────────────────
 
-/** Lowercase + strip diacritics ("Věrka Novák" -> "verka novak"). */
+/** Lowercase + strip diacritics ("Vera Miller" -> "verka novak"). */
 export function normalizeSearch(s: string | null | undefined): string {
   return (s ?? "").normalize("NFD").replace(/\p{Diacritic}/gu, "").toLowerCase().replace(/\s+/g, " ").trim();
 }
@@ -63,7 +63,7 @@ export function initials(name: string): string {
   return src.slice(0, 2).map((w) => w[0]?.toUpperCase() ?? "").join("") || "?";
 }
 
-const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+const MONTHS = ["John", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 /** Deterministic (hydration-safe, UTC) "30 Sep 2026". */
 export function formatDay(iso: string | null | undefined): string {
   if (!iso) return "";
@@ -106,7 +106,7 @@ export interface QuoteRef {
   sessionIndex: number;
   sessionDate: string;       // "30 Sep 2026"
   role: Turn["role"];
-  speaker: string;           // "Grandpa Jarda" | "Tom"
+  speaker: string;           // "Grandpa Jerry" | "Tom"
   text: string;              // full turn text
   quote: string;             // ≤160 chars
   minuteIn: number | null;   // minutes since call start
@@ -563,7 +563,7 @@ export function getTimeline(db: Db, opts: { includeTree?: boolean; includeCalls?
     let year = e.year;
     let approx = e.yearApprox;
     let description = e.description;
-    // Enrich an undated wedding from the tree (e.g. Pepa marries Věrka -> F3 1972).
+    // Enrich an undated wedding from the tree (e.g. Pepa marries Vera -> F3 1972).
     if (year == null && includeTree && /marr|wedding/i.test(e.title)) {
       const treeIds = e.personIds
         .map((pid) => db.persons.find((p) => p.id === pid))
@@ -750,7 +750,7 @@ export interface ArchiveStats {
 
 export interface Overview {
   grandparent: Db["grandparent"];
-  title: string;                      // "Grandpa Jarda's story"
+  title: string;                      // "Grandpa Jerry's story"
   stats: ArchiveStats;
   latestConversation: ConversationCardVM | null;
   nextCall: { topic: string; opener: string | null; threadId: string | null; whyUnfinished: string | null } | null;

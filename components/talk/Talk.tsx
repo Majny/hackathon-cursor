@@ -304,7 +304,7 @@ function TalkInner({ warm }: { warm: boolean }) {
   useEffect(() => () => clearNoAudioTimer(), []);
 
   // ---------- render ----------
-  const grandparent = nickname(memory?.grandparentName, "Jarda");
+  const grandparent = nickname(memory?.grandparentName, "Jerry");
   const grandchild = nickname(memory?.grandchildName, "Tom");
   const orb: OrbState =
     phase === "starting" || conversation.status === "connecting"

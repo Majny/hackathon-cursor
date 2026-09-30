@@ -112,7 +112,7 @@ describe("demo content specifics", () => {
     expect(db.turns.filter((t) => t.sessionId === "s1").length).toBeGreaterThanOrEqual(18);
     expect(db.threads.find((t) => t.id === "th-pout")?.resolvedInSession).toBeNull();
     const pepa = db.persons.find((p) => p.givenName === "Pepa")!;
-    expect(pepa).toMatchObject({ surname: "Dvořák", sex: "M", birthYear: 1948, birthYearApprox: true, place: "Kladno" });
+    expect(pepa).toMatchObject({ surname: "Walker", sex: "M", birthYear: 1948, birthYearApprox: true, place: "Kladno" });
     expect(db.matches).toHaveLength(1);
     expect(db.matches[0]).toMatchObject({ entityId: pepa.id, treePersonId: "I6", status: "suggested" });
     expect(db.tree.persons).toHaveLength(16);

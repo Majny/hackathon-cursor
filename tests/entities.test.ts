@@ -11,7 +11,7 @@ const empty = { persons: [], places: [], events: [] };
 
 describe("mergeEntities", () => {
   it("drops unknown turnIds and items without turnIds", () => {
-    const r = mergeEntities(empty, { persons: [person({ turnIds: ["s1-t13", "x-t1"] }), person({ mentionName: "Karel", givenName: "Karel", turnIds: ["zz"] })],
+    const r = mergeEntities(empty, { persons: [person({ turnIds: ["s1-t13", "x-t1"] }), person({ mentionName: "Charles", givenName: "Charles", turnIds: ["zz"] })],
       places: [{ name: "Kladno", context: "", turnIds: ["nope"] }], events: [] }, valid);
     expect(r.persons).toHaveLength(1);
     expect(r.persons[0].turnIds).toEqual(["s1-t13"]);
@@ -19,11 +19,11 @@ describe("mergeEntities", () => {
   });
 
   it("merges by normalized name and by existingId, fills missing fields", () => {
-    const a = mergeEntities(empty, { persons: [person({ surname: "Dvořák", mentionName: "Pepa Dvořák" })], places: [], events: [] }, valid);
+    const a = mergeEntities(empty, { persons: [person({ surname: "Walker", mentionName: "Pepa Walker" })], places: [], events: [] }, valid);
     const b = mergeEntities(a, { persons: [person({ givenName: "pepa", birthYear: 1948, birthYearApprox: true, place: "Kladno", turnIds: ["s1-t15"] })],
       places: [], events: [] }, valid);
     expect(b.persons).toHaveLength(1);
-    expect(b.persons[0]).toMatchObject({ surname: "Dvořák", birthYear: 1948, birthYearApprox: true, place: "Kladno" });
+    expect(b.persons[0]).toMatchObject({ surname: "Walker", birthYear: 1948, birthYearApprox: true, place: "Kladno" });
     expect(b.persons[0].turnIds.sort()).toEqual(["s1-t13", "s1-t15"]);
     const id = b.persons[0].id;
     const c = mergeEntities(b, { persons: [person({ mentionName: "Josef", givenName: "Josef", existingId: id, turnIds: ["s2-t03"] })], places: [], events: [] }, valid);
@@ -33,9 +33,9 @@ describe("mergeEntities", () => {
 
   it("different surname -> different person; events link persons/places", () => {
     const r = mergeEntities(empty, {
-      persons: [person({ surname: "Dvořák" }), person({ surname: "Novotný", mentionName: "Pepa Novotný" })],
+      persons: [person({ surname: "Walker" }), person({ surname: "Novotný", mentionName: "Pepa Novotný" })],
       places: [{ name: "Praha", context: "pouť", turnIds: ["s1-t15"] }],
-      events: [{ title: "Pouť", year: 1958, yearApprox: false, description: "", personNames: ["Pepa Dvořák"], placeNames: ["Praha"], turnIds: ["s1-t15"] }],
+      events: [{ title: "Pouť", year: 1958, yearApprox: false, description: "", personNames: ["Pepa Walker"], placeNames: ["Praha"], turnIds: ["s1-t15"] }],
     }, valid);
     expect(r.persons).toHaveLength(2);
     expect(r.events[0].personIds).toEqual([r.persons[0].id]);

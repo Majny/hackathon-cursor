@@ -19,7 +19,7 @@ describe("store (file mode)", () => {
   it("auto-seeds when db file is missing", async () => {
     const db = await getDb();
     expect(db.version).toBe(1);
-    expect(db.grandparent.fullName).toBe("Jaroslav Novák");
+    expect(db.grandparent.fullName).toBe("Jerry Miller");
     await expect(fs.stat(file)).resolves.toBeTruthy();
   });
 
@@ -76,7 +76,7 @@ describe("snapshots & fixtures", () => {
     expect(s.provider).toBe("mock");
     expect(s.data.nextSessionOpener).toContain("fair in Prague");
     const e = await llmStructured({ task: "extract", schema: ExtractionSchema, system: "", user: "" });
-    expect(e.data.persons.find((p) => p.surname === "Dvořák")?.birthYear).toBe(1948);
+    expect(e.data.persons.find((p) => p.surname === "Walker")?.birthYear).toBe(1948);
     const c = await llmStructured({ task: "chapter", schema: ChapterSchema, system: "", user: "", writer: true });
     expect(c.data.paragraphs.length).toBeGreaterThanOrEqual(3);
   });

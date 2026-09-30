@@ -5,12 +5,12 @@ import type { Chapter, FamilyTree, Match, PersonEntity, Turn } from "@/lib/types
 import { buildGedcom, noteLines, type GedcomInput } from "@/lib/gedcom";
 
 const pepa: PersonEntity = {
-  id: "pepa", mentionName: "Pepa Dvořák", givenName: "Pepa", surname: "Dvořák", sex: "M", birthYear: 1948,
+  id: "pepa", mentionName: "Pepa Walker", givenName: "Pepa", surname: "Walker", sex: "M", birthYear: 1948,
   birthYearApprox: true, place: "Kladno", relationToGrandparent: "childhood friend, neighbour", notes: "Lived next door.",
   turnIds: ["s1-t07"],
 };
 const anna: PersonEntity = { ...pepa, id: "anna", mentionName: "teta Anča", givenName: "Anča", surname: null, sex: "F", birthYear: 1930, relationToGrandparent: "aunt", turnIds: [] };
-const turn: Turn = { id: "s1-t07", sessionId: "s1", idx: 7, clientSeq: 7, role: "grandparent", text: "Pepa Dvořák, ten bydlel o dům vedle, byl o dva roky mladší než já. E-mail pepa@kladno.cz", at: "2026-09-30T10:00:00Z" };
+const turn: Turn = { id: "s1-t07", sessionId: "s1", idx: 7, clientSeq: 7, role: "grandparent", text: "Pepa Walker, ten bydlel o dům vedle, byl o dva roky mladší než já. E-mail pepa@kladno.cz", at: "2026-09-30T10:00:00Z" };
 const longText = ("Dlouhý odstavec o dětství v Kladně, kde se všichni znali a chodili spolu do huti. ").repeat(12).trim();
 const chapter: Chapter = {
   id: "ch1", key: "detstvi", title: "Dětství v Kladně", status: "draft", generatedAt: "2026-09-30T10:00:00Z", model: "x", openQuestions: [],
@@ -26,7 +26,7 @@ const confirmed: Match = {
 };
 const base: GedcomInput = {
   tree: tree as FamilyTree, matches: [], persons: [pepa, anna], turns: [turn], chapters: [chapter],
-  grandparent: { id: "jaroslav", displayName: "Grandpa Jarda", fullName: "Jaroslav Novák", birthYear: 1946, birthPlace: "Kladno", sex: "M", treePersonId: "I1", grandchildName: "Tom" },
+  grandparent: { id: "jaroslav", displayName: "Grandpa Jerry", fullName: "Jerry Miller", birthYear: 1946, birthPlace: "Kladno", sex: "M", treePersonId: "I1", grandchildName: "Tom" },
 };
 
 const lines = (g: string) => g.replace(/^﻿/, "").split("\r\n").filter((l, i, a) => !(i === a.length - 1 && l === ""));
@@ -84,7 +84,7 @@ describe("buildGedcom", () => {
     expect(i6).toContain("2 NICK Pepa");
     expect(i6).toContain("1 SOUR @S1@");
     expect(i6).toContain("2 PAGE session 1, turn s1-t07");
-    expect(g).toContain("In Grandpa Jaroslav's stories: Pepa Dvořák");
+    expect(g).toContain("In Grandpa Jerry's stories: Pepa Walker");
     expect(g).toContain("pepa@@kladno.cz");
     expect(L).toContain("2 TYPE maiden");
   });
@@ -100,12 +100,12 @@ describe("buildGedcom", () => {
     expect(gc.getIndividualRecord().length).toBe(16);
     expect(gc.getFamilyRecord().length).toBe(8);
     const i6 = gc.getIndividualRecord("@I6@");
-    expect(i6.getName().valueAsParts()[0]?.join(" ")).toContain("Dvořák");
+    expect(i6.getName().valueAsParts()[0]?.join(" ")).toContain("Walker");
     const texts = gc.getNoteRecord().value().map((v) => v ?? "");
     expect(i6.getNote().value()[0]).toMatch(/^@N\d+@$/);
     expect(texts.join("\n")).toContain("Pepa");
     const i5names = gc.getIndividualRecord("@I5@").getName().valueAsParts().flat().join(" ");
-    expect(i5names).toContain("Dvořáková");
+    expect(i5names).toContain("Walker");
   });
 
   it("without matches has 16 INDI / 8 FAM and no X records", () => {

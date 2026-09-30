@@ -2,7 +2,7 @@
 import type { OpenThread, Turn } from "../types";
 import { formatTranscript } from "./transcript";
 
-export const SUMMARIZER_SYSTEM = `You are a careful archivist of family memory. You get the transcript of today's conversation between the grandson Tom and Grandpa Jaroslav (every turn has an ID in square brackets), a list of stories that are still unfinished with their IDs, and the facts we already know.
+export const SUMMARIZER_SYSTEM = `You are a careful archivist of family memory. You get the transcript of today's conversation between the grandson Tom and Grandpa Jerry (every turn has an ID in square brackets), a list of stories that are still unfinished with their IDs, and the facts we already know.
 
 Return JSON following the schema, all text in English (keep Czech names and places as spoken):
 1. summary: 3–5 sentences in the third person about what Grandpa told today. Only facts from the transcript.

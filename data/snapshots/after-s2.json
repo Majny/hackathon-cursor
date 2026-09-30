@@ -2,8 +2,8 @@
   "version": 1,
   "grandparent": {
     "id": "jaroslav",
-    "displayName": "Grandpa Jarda",
-    "fullName": "Jaroslav Novák",
+    "displayName": "Grandpa Jerry",
+    "fullName": "Jerry Miller",
     "birthYear": 1946,
     "birthPlace": "Kladno",
     "sex": "M",
@@ -70,7 +70,7 @@
       "idx": 4,
       "clientSeq": 4,
       "role": "grandparent",
-      "text": "My mum Anna, my dad František and my little sister Věrka. She was four years younger, always hanging on to my trousers. And Mum, she baked the best buns in all of Kladno, with poppy seeds and with plum jam.",
+      "text": "My mum Anna, my dad Frank and my little sister Vera. She was four years younger, always hanging on to my trousers. And Mum, she baked the best buns in all of Kladno, with poppy seeds and with plum jam.",
       "at": "2026-09-29T16:01:15.000Z"
     },
     {
@@ -88,7 +88,7 @@
       "idx": 6,
       "clientSeq": 6,
       "role": "grandparent",
-      "text": "Every Saturday. The whole house smelled of them. Věrka and I always waited by the oven to see who'd get the first one, still hot. Mum would smack our fingers with the wooden spoon, but in the end she gave us one each.",
+      "text": "Every Saturday. The whole house smelled of them. Vera and I always waited by the oven to see who'd get the first one, still hot. Mum would smack our fingers with the wooden spoon, but in the end she gave us one each.",
       "at": "2026-09-29T16:02:05.000Z"
     },
     {
@@ -106,7 +106,7 @@
       "idx": 8,
       "clientSeq": 8,
       "role": "grandparent",
-      "text": "My dad František worked at the furnace in the Poldi steelworks, a steelworker he was. He worked shifts, nights too. When he came home he was black with soot and Mum heated water for him in the washtub. He didn't talk much, but when he did, we listened.",
+      "text": "My dad Frank worked at the furnace in the Poldi steelworks, a steelworker he was. He worked shifts, nights too. When he came home he was black with soot and Mum heated water for him in the washtub. He didn't talk much, but when he did, we listened.",
       "at": "2026-09-29T16:02:55.000Z"
     },
     {
@@ -142,7 +142,7 @@
       "idx": 12,
       "clientSeq": 12,
       "role": "grandparent",
-      "text": "With Pepa Dvořák. Pepa Dvořák lived in the house next door, he was two years younger than me. But a clever lad, I'll give him that.",
+      "text": "With Pepa Walker. Pepa Walker lived in the house next door, he was two years younger than me. But a clever lad, I'll give him that.",
       "at": "2026-09-29T16:04:35.000Z"
     },
     {
@@ -304,7 +304,7 @@
       "idx": 10,
       "clientSeq": 10,
       "role": "grandparent",
-      "text": "Of course we did. And you know the best part? Pepa later married our Věrka. So my friend became my brother-in-law. At the wedding we remembered that fair and Dad just laughed.",
+      "text": "Of course we did. And you know the best part? Pepa later married our Vera. So my friend became my brother-in-law. At the wedding we remembered that fair and Dad just laughed.",
       "at": "2026-09-30T10:03:45.000Z"
     },
     {
@@ -365,7 +365,7 @@
   "summaries": [
     {
       "sessionId": "s1",
-      "summary": "Grandpa talked about his childhood in Kladno under the chimneys of the Poldi steelworks: his mum Anna and her Saturday poppy seed buns, his dad František, a steelworker at the Poldi furnace, his little sister Věrka, and his friend Pepa Dvořák from next door, with whom he played football on the patch behind the building. He started the story of running off with Pepa to the fair in Prague in 1958, but didn't finish it.",
+      "summary": "Grandpa talked about his childhood in Kladno under the chimneys of the Poldi steelworks: his mum Anna and her Saturday poppy seed buns, his dad Frank, a steelworker at the Poldi furnace, his little sister Vera, and his friend Pepa Walker from next door, with whom he played football on the patch behind the building. He started the story of running off with Pepa to the fair in Prague in 1958, but didn't finish it.",
       "topicsCovered": [
         "detstvi"
       ],
@@ -385,14 +385,14 @@
       "keyFacts": [
         "Born in 1946 in Kladno, could see the Poldi steelworks chimneys from the window",
         "Mum Anna baked poppy seed and plum jam buns every Saturday",
-        "Dad František was a steelworker at the Poldi furnace",
-        "Little sister Věrka (four years younger)",
-        "Friend Pepa Dvořák lived next door, two years younger"
+        "Dad Frank was a steelworker at the Poldi furnace",
+        "Little sister Vera (four years younger)",
+        "Friend Pepa Walker lived next door, two years younger"
       ]
     },
     {
       "sessionId": "s2",
-      "summary": "Grandpa finished the story of running off to the fair in Prague in 1958: he and Pepa rode part of the way by tram without tickets, then walked, with no money, and came back in the middle of the night. His dad was waiting in the doorway with a belt, and Pepa was grounded for the whole summer holidays. Pepa later married Grandpa's sister Věrka. Then Grandpa moved on to his military service in Jihlava from 1965, which he promised to tell properly next time.",
+      "summary": "Grandpa finished the story of running off to the fair in Prague in 1958: he and Pepa rode part of the way by tram without tickets, then walked, with no money, and came back in the middle of the night. His dad was waiting in the doorway with a belt, and Pepa was grounded for the whole summer holidays. Pepa later married Grandpa's sister Vera. Then Grandpa moved on to his military service in Jihlava from 1965, which he promised to tell properly next time.",
       "topicsCovered": [
         "detstvi",
         "vojna"
@@ -415,7 +415,7 @@
       "keyFacts": [
         "Ran off to the fair in Prague in summer 1958 – by tram and on foot, no money, home in the middle of the night",
         "Dad punished him with a belt, Pepa was grounded for the whole summer holidays",
-        "Pepa Dvořák later married Grandpa's sister Věrka – became his brother-in-law",
+        "Pepa Walker later married Grandpa's sister Vera – became his brother-in-law",
         "Called up for military service in 1965, in Jihlava"
       ]
     }
@@ -467,15 +467,15 @@
         },
         {
           "id": "ch-detstvi-p2",
-          "text": "There were four of us at home: my mum Anna, my dad František, me and my little sister Věrka, four years younger. Every Saturday my mum baked buns with poppy seeds and plum jam, and Věrka and I waited by the oven to see who would get the first one, \"still hot\".",
+          "text": "There were four of us at home: my mum Anna, my dad Frank, me and my little sister Vera, four years younger. Every Saturday my mum baked buns with poppy seeds and plum jam, and Vera and I waited by the oven to see who would get the first one, \"still hot\".",
           "citations": [
             {
               "turnId": "s1-t04",
-              "quote": "My mum Anna, my dad František and my little sister Věrka. She was four years younger, always hanging on to my trousers. And Mum, she baked the best buns in all "
+              "quote": "My mum Anna, my dad Frank and my little sister Vera. She was four years younger, always hanging on to my trousers. And Mum, she baked the best buns in all "
             },
             {
               "turnId": "s1-t06",
-              "quote": "Every Saturday. The whole house smelled of them. Věrka and I always waited by the oven to see who'd get the first one, still hot. Mum would smack our fingers wi"
+              "quote": "Every Saturday. The whole house smelled of them. Vera and I always waited by the oven to see who'd get the first one, still hot. Mum would smack our fingers wi"
             }
           ],
           "verified": true,
@@ -488,7 +488,7 @@
           "citations": [
             {
               "turnId": "s1-t08",
-              "quote": "My dad František worked at the furnace in the Poldi steelworks, a steelworker he was. He worked shifts, nights too. When he came home he was black with soot and"
+              "quote": "My dad Frank worked at the furnace in the Poldi steelworks, a steelworker he was. He worked shifts, nights too. When he came home he was black with soot and"
             },
             {
               "turnId": "s1-t10",
@@ -501,11 +501,11 @@
         },
         {
           "id": "ch-detstvi-p4",
-          "text": "Most of all I ran around with Pepa Dvořák, who lived in the house next door and was two years younger than me. We played football till dark on the patch behind our building, with goals made of two stones and our coats. Pepa was in goal and I did the kicking.",
+          "text": "Most of all I ran around with Pepa Walker, who lived in the house next door and was two years younger than me. We played football till dark on the patch behind our building, with goals made of two stones and our coats. Pepa was in goal and I did the kicking.",
           "citations": [
             {
               "turnId": "s1-t12",
-              "quote": "With Pepa Dvořák. Pepa Dvořák lived in the house next door, he was two years younger than me. But a clever lad, I'll give him that."
+              "quote": "With Pepa Walker. Pepa Walker lived in the house next door, he was two years younger than me. But a clever lad, I'll give him that."
             },
             {
               "turnId": "s1-t14",
@@ -518,7 +518,7 @@
         },
         {
           "id": "ch-detstvi-p5",
-          "text": "The biggest trouble came in 1958, when Pepa and I ran off to the fair in Prague without asking. Part of the way we rode the tram without a ticket, then we walked, and we had no money at all. We got home in the middle of the night, my dad was waiting in the doorway with his belt, and Pepa was grounded for the whole summer holidays. In the end Pepa married our Věrka, and my friend became my brother-in-law.",
+          "text": "The biggest trouble came in 1958, when Pepa and I ran off to the fair in Prague without asking. Part of the way we rode the tram without a ticket, then we walked, and we had no money at all. We got home in the middle of the night, my dad was waiting in the doorway with his belt, and Pepa was grounded for the whole summer holidays. In the end Pepa married our Vera, and my friend became my brother-in-law.",
           "citations": [
             {
               "turnId": "s1-t16",
@@ -546,7 +546,7 @@
             },
             {
               "turnId": "s2-t10",
-              "quote": "Of course we did. And you know the best part? Pepa later married our Věrka. So my friend became my brother-in-law. At the wedding we remembered that fair and Da"
+              "quote": "Of course we did. And you know the best part? Pepa later married our Vera. So my friend became my brother-in-law. At the wedding we remembered that fair and Da"
             }
           ],
           "verified": true,
@@ -567,15 +567,15 @@
   "persons": [
     {
       "id": "p-pepa",
-      "mentionName": "Pepa Dvořák",
+      "mentionName": "Pepa Walker",
       "givenName": "Pepa",
-      "surname": "Dvořák",
+      "surname": "Walker",
       "sex": "M",
       "birthYear": 1948,
       "birthYearApprox": true,
       "place": "Kladno",
-      "relationToGrandparent": "childhood friend, later brother-in-law (married sister Věrka)",
-      "notes": "Lived next door, two years younger. Played in goal on the football patch. In 1958 they ran off together to the fair in Prague; he was grounded. Later married Věrka.",
+      "relationToGrandparent": "childhood friend, later brother-in-law (married sister Vera)",
+      "notes": "Lived next door, two years younger. Played in goal on the football patch. In 1958 they ran off together to the fair in Prague; he was grounded. Later married Vera.",
       "turnIds": [
         "s1-t12",
         "s1-t14",
@@ -605,8 +605,8 @@
     },
     {
       "id": "p-frantisek",
-      "mentionName": "dad František",
-      "givenName": "František",
+      "mentionName": "dad Frank",
+      "givenName": "Frank",
       "surname": null,
       "sex": "M",
       "birthYear": null,
@@ -624,8 +624,8 @@
     },
     {
       "id": "p-vera",
-      "mentionName": "sister Věrka",
-      "givenName": "Věrka",
+      "mentionName": "sister Vera",
+      "givenName": "Vera",
       "surname": null,
       "sex": "F",
       "birthYear": 1950,
@@ -653,7 +653,7 @@
     {
       "id": "pl-poldovka",
       "name": "Poldi steelworks (Kladno)",
-      "context": "Steelworks where his dad František worked at the furnace",
+      "context": "Steelworks where his dad Frank worked at the furnace",
       "turnIds": [
         "s1-t02",
         "s1-t08"
@@ -682,7 +682,7 @@
   "events": [
     {
       "id": "ev-narozeni",
-      "title": "Grandpa Jaroslav is born",
+      "title": "Grandpa Jerry is born",
       "year": 1946,
       "yearApprox": false,
       "description": "Grandpa was born in Kladno.",
@@ -717,7 +717,7 @@
     },
     {
       "id": "ev-svatba-vera",
-      "title": "Pepa marries sister Věrka",
+      "title": "Pepa marries sister Vera",
       "year": null,
       "yearApprox": false,
       "description": "His friend Pepa became Grandpa's brother-in-law.",
@@ -747,15 +747,15 @@
     }
   ],
   "tree": {
-    "name": "The Novák family tree — sample MyHeritage import",
+    "name": "The Miller family tree — sample MyHeritage import",
     "source": "Sample MyHeritage import (fictional demo data)",
     "persons": [
       {
         "id": "I1",
-        "givenName": "Jaroslav",
-        "surname": "Novák",
+        "givenName": "Jerry",
+        "surname": "Miller",
         "birthSurname": null,
-        "nickname": "Jarda",
+        "nickname": "Jerry",
         "sex": "M",
         "birthYear": 1946,
         "birthPlace": "Kladno",
@@ -765,9 +765,9 @@
       },
       {
         "id": "I2",
-        "givenName": "Marie",
-        "surname": "Nováková",
-        "birthSurname": "Svobodová",
+        "givenName": "Mary",
+        "surname": "Miller",
+        "birthSurname": "Stone",
         "nickname": null,
         "sex": "F",
         "birthYear": 1949,
@@ -778,8 +778,8 @@
       },
       {
         "id": "I3",
-        "givenName": "František",
-        "surname": "Novák",
+        "givenName": "Frank",
+        "surname": "Miller",
         "birthSurname": null,
         "nickname": null,
         "sex": "M",
@@ -792,8 +792,8 @@
       {
         "id": "I4",
         "givenName": "Anna",
-        "surname": "Nováková",
-        "birthSurname": "Horáková",
+        "surname": "Miller",
+        "birthSurname": "Hill",
         "nickname": null,
         "sex": "F",
         "birthYear": 1922,
@@ -804,9 +804,9 @@
       },
       {
         "id": "I5",
-        "givenName": "Věra",
-        "surname": "Dvořáková",
-        "birthSurname": "Nováková",
+        "givenName": "Vera",
+        "surname": "Walker",
+        "birthSurname": "Miller",
         "nickname": null,
         "sex": "F",
         "birthYear": 1950,
@@ -818,7 +818,7 @@
       {
         "id": "I6",
         "givenName": "Josef",
-        "surname": "Dvořák",
+        "surname": "Walker",
         "birthSurname": null,
         "nickname": null,
         "sex": "M",
@@ -831,7 +831,7 @@
       {
         "id": "I7",
         "givenName": "Petr",
-        "surname": "Dvořák",
+        "surname": "Walker",
         "birthSurname": null,
         "nickname": null,
         "sex": "M",
@@ -843,8 +843,8 @@
       },
       {
         "id": "I8",
-        "givenName": "Jan",
-        "surname": "Novák",
+        "givenName": "John",
+        "surname": "Miller",
         "birthSurname": null,
         "nickname": null,
         "sex": "M",
@@ -857,8 +857,8 @@
       {
         "id": "I9",
         "givenName": "Eva",
-        "surname": "Černá",
-        "birthSurname": "Nováková",
+        "surname": "Black",
+        "birthSurname": "Miller",
         "nickname": null,
         "sex": "F",
         "birthYear": 1975,
@@ -870,7 +870,7 @@
       {
         "id": "I10",
         "givenName": "Tomáš",
-        "surname": "Novák",
+        "surname": "Miller",
         "birthSurname": null,
         "nickname": null,
         "sex": "M",
@@ -882,8 +882,8 @@
       },
       {
         "id": "I11",
-        "givenName": "Kateřina",
-        "surname": "Černá",
+        "givenName": "Kate",
+        "surname": "Black",
         "birthSurname": null,
         "nickname": null,
         "sex": "F",
@@ -896,7 +896,7 @@
       {
         "id": "I12",
         "givenName": "Josef",
-        "surname": "Novák",
+        "surname": "Miller",
         "birthSurname": null,
         "nickname": null,
         "sex": "M",
@@ -909,7 +909,7 @@
       {
         "id": "I13",
         "givenName": "Josef",
-        "surname": "Horák",
+        "surname": "Hill",
         "birthSurname": null,
         "nickname": null,
         "sex": "M",
@@ -922,7 +922,7 @@
       {
         "id": "I14",
         "givenName": "Martin",
-        "surname": "Černý",
+        "surname": "Black",
         "birthSurname": null,
         "nickname": null,
         "sex": "M",
@@ -934,8 +934,8 @@
       },
       {
         "id": "I15",
-        "givenName": "Lucie",
-        "surname": "Nováková",
+        "givenName": "Lucy",
+        "surname": "Miller",
         "birthSurname": "Králová",
         "nickname": null,
         "sex": "F",
@@ -947,8 +947,8 @@
       },
       {
         "id": "I16",
-        "givenName": "Karel",
-        "surname": "Horák",
+        "givenName": "Charles",
+        "surname": "Hill",
         "birthSurname": null,
         "nickname": null,
         "sex": "M",
@@ -1060,22 +1060,22 @@
       },
       "gates": [],
       "band": "strong",
-      "reason": "Pepa → Josef (diminutive) · Dvořák = Dvořák · 1948 ≈ c. 1948 · Kladno ✓",
+      "reason": "Pepa → Josef (diminutive) · Walker = Walker · 1948 ≈ c. 1948 · Kladno ✓",
       "alsoConsidered": [
         {
           "treePersonId": "I13",
           "score": 0.5,
-          "why": "Josef Horák *1946 – different surname, born 2 years apart, different place (Rakovník)"
+          "why": "Josef Hill *1946 – different surname, born 2 years apart, different place (Rakovník)"
         },
         {
           "treePersonId": "I12",
           "score": 0.45,
-          "why": "Josef Novák *1924 – different surname, born 24 years apart"
+          "why": "Josef Miller *1924 – different surname, born 24 years apart"
         },
         {
           "treePersonId": "I7",
           "score": 0.4,
-          "why": "Petr Dvořák *1974 – born 26 years apart, different first name"
+          "why": "Petr Walker *1974 – born 26 years apart, different first name"
         }
       ],
       "status": "suggested"

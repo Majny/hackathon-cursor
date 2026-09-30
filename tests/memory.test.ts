@@ -43,7 +43,7 @@ describe("buildMemory", () => {
     expect(m.openThreads.toLowerCase()).toContain("fair");
     expect(m.memorySummary).toMatch(/^Session 1/);
     expect(m.memorySummary.length).toBeLessThanOrEqual(1500);
-    expect(m.knownPeople).toContain("Pepa Dvořák");
+    expect(m.knownPeople).toContain("Pepa Walker");
     expect(m.continuedThreadId).toBeTruthy();
     expect(m.uncoveredTopics).not.toContain("Childhood");
     expect(m.uncoveredTopics).toContain("Military service");

@@ -39,7 +39,7 @@ describe("book citations", () => {
     expect(formatDate("2026-09-30T10:00:00")).toBe("30 Sep 2026");
     expect(formatDate(null)).toBe("");
     expect(formatTime("2026-09-30T09:05:00")).toBe("09:05");
-    expect(nickname("Jaroslav Novák")).toBe("Jarda");
+    expect(nickname("Jerry Miller")).toBe("Jerry");
     expect(nickname("Tomáš")).toBe("Tom");
     expect(nickname("", "Grandpa")).toBe("Grandpa");
   });
@@ -48,9 +48,9 @@ describe("book citations", () => {
 import { bookTitle } from "@/components/book/citations";
 describe("bookTitle", () => {
   it("builds English possessive title", () => {
-    expect(bookTitle({ fullName: "Jaroslav Novák", sex: "M" })).toBe("Grandpa Jaroslav's Memories");
-    expect(bookTitle({ fullName: "Marta Nováková", sex: "F" })).toBe("Grandma Marta's Memories");
-    expect(bookTitle(null)).toBe("Grandpa Jaroslav's Memories");
+    expect(bookTitle({ fullName: "Jerry Miller", sex: "M" })).toBe("Grandpa Jerry's Memories");
+    expect(bookTitle({ fullName: "Marta Miller", sex: "F" })).toBe("Grandma Marta's Memories");
+    expect(bookTitle(null)).toBe("Grandpa Jerry's Memories");
   });
 });
 

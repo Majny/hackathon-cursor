@@ -54,7 +54,7 @@ export function chapterStats(ch: Pick<Chapter, "paragraphs">) {
   return { total, unverified, edited };
 }
 
-const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+const MONTHS = ["John", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
 /** "2026-09-30T14:05:00Z" -> "30 Sep 2026" (en-GB style, fixed format, no locale dependency -> no hydration mismatch). */
 export function formatDate(iso: string | null | undefined): string {
@@ -76,15 +76,15 @@ export function formatTime(iso: string | null | undefined): string {
 export const formatCzDate = formatDate;
 export const formatCzTime = formatTime;
 
-/** "Jaroslav" (M) -> "Grandpa Jaroslav's Memories"; "Marta" (F) -> "Grandma Marta's Memories". */
+/** "Jerry" (M) -> "Grandpa Jerry's Memories"; "Marta" (F) -> "Grandma Marta's Memories". */
 export function bookTitle(gp: { fullName?: string; sex?: "M" | "F" } | null | undefined): string {
-  const first = gp?.fullName?.split(/\s+/)[0] || "Jaroslav";
+  const first = gp?.fullName?.split(/\s+/)[0] || "Jerry";
   return `${gp?.sex === "F" ? "Grandma" : "Grandpa"} ${first}'s Memories`;
 }
 
-const NICKNAMES: Record<string, string> = { Jaroslav: "Jarda", Josef: "Pepa", "Tomáš": "Tom", Tomas: "Tom" };
+const NICKNAMES: Record<string, string> = { Jerry: "Jerry", Josef: "Pepa", "Tomáš": "Tom", Tomas: "Tom" };
 
-/** Friendly short name: "Jaroslav Novák" -> "Jarda", "Tomáš" -> "Tom". */
+/** Friendly short name: "Jerry Miller" -> "Jerry", "Tomáš" -> "Tom". */
 export function nickname(name: string | null | undefined, fallback = ""): string {
   const first = name?.trim().split(/\s+/)[0];
   if (!first) return fallback;

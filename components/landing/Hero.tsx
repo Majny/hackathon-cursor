@@ -15,7 +15,7 @@ export function Hero() {
           Your family&apos;s stories, in their own voice.
         </h1>
         <p className="mt-6 max-w-xl text-[1.1rem] leading-relaxed text-ink-soft">
-          Tom, an AI grandson, calls Grandpa Jarda on WhatsApp and turns the calls into a family archive.
+          Tom, an AI grandson, calls Grandpa Jerry on WhatsApp and turns the calls into a family archive.
         </p>
         <div className="mt-8 flex flex-wrap gap-3">
           <Link href="/family" className={primaryCta}>

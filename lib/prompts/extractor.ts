@@ -2,10 +2,10 @@
 import type { Grandparent, PersonEntity, Turn } from "../types";
 import { formatTranscript } from "./transcript";
 
-export const EXTRACTOR_TEMPLATE = `From the transcript of a conversation with Grandpa Jaroslav (born {{birthYear}}, {{birthPlace}}) extract structured data for the family tree. Write descriptive fields in English, but keep names and places exactly as spoken (Czech spelling). Grandpa himself and his grandson Tom are NOT in the list of persons.
+export const EXTRACTOR_TEMPLATE = `From the transcript of a conversation with Grandpa Jerry (born {{birthYear}}, {{birthPlace}}) extract structured data for the family tree. Write descriptive fields in English, but keep names and places exactly as spoken (Czech spelling). Grandpa himself and his grandson Tom are NOT in the list of persons.
 
 persons – every specific person mentioned, even if only a nickname was said:
-- mentionName: exactly as it was said ("Pepa Dvořák", "my mum Anna").
+- mentionName: exactly as it was said ("Pepa Walker", "my mum Anna").
 - givenName: the first name or nickname as it was said ("Pepa"). Do NOT convert a nickname to a full name – another system does that. If only a relation was said ("my mum") and no name, use null.
 - surname: the surname if it was said, otherwise null.
 - sex: only when clear from the words or the name, otherwise null.

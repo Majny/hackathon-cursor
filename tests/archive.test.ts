@@ -28,7 +28,7 @@ describe("archive helpers", () => {
   it("formats years and normalises diacritics", () => {
     expect(formatYear(1948, true)).toBe("c. 1948");
     expect(formatYear(null)).toBe("Year unknown");
-    expect(normalizeSearch("Věrka Novák")).toBe("verka novak");
+    expect(normalizeSearch("Vera Miller")).toBe("verka novak");
   });
   it("quoteForTurn links to the conversation anchor", () => {
     const q = quoteForTurn(db, "s1-t02")!;
@@ -120,8 +120,8 @@ describe("search", () => {
     expect(searchDocs(idx, "verka").some((h) => h.id === "person:p-vera")).toBe(true);
   });
   it("builds snippets on accented text", () => {
-    const s = snippetFor("sister Věrka was small", "verka")!;
-    expect(s.match).toBe("Věrka");
+    const s = snippetFor("sister Vera was small", "verka")!;
+    expect(s.match).toBe("Vera");
   });
 });
 

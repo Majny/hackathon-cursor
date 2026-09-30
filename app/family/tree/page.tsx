@@ -27,7 +27,7 @@ export default async function TreePage({ searchParams }: { searchParams: Promise
   // Featured story for the demo: how Grandpa met Grandma (the "love" chapter), if it exists.
   const love = db.chapters.find((c) => c.key === "laska");
   const loveQuote = db.turns.find((t) => t.role === "grandparent" && /dance like a steelworker/i.test(t.text));
-  const wifeId = tree.persons.find((p) => p.birthSurname === "Svobodová")?.id ?? null;
+  const wifeId = tree.persons.find((p) => p.birthSurname === "Stone")?.id ?? null;
   const featuredFocus = love && wifeId ? wifeId : null;
 
   return (
@@ -63,7 +63,7 @@ export default async function TreePage({ searchParams }: { searchParams: Promise
             <h2 className="mt-1 font-(family-name:--font-display) text-[1.8rem] leading-tight text-ink">How Grandpa met Grandma</h2>
             {loveQuote && (
               <p className="mt-2 max-w-[48ch] font-serif text-[1.2rem] italic text-ink">
-                “Jarda, you dance like a steelworker.” <span className="not-italic text-ink-soft">— Marie, at a dance in Kladno</span>
+                “Jerry, you dance like a steelworker.” <span className="not-italic text-ink-soft">— Mary, at a dance in Kladno</span>
               </p>
             )}
           </div>

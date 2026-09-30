@@ -238,7 +238,7 @@ export function SearchPalette({ docs }: { docs: SearchDoc[] }) {
                 <span><kbd className="font-sans">↑↓</kbd> move</span>
                 <span><kbd className="font-sans">↵</kbd> open</span>
                 <span><kbd className="font-sans">Esc</kbd> close</span>
-                <span className="ml-auto">Accents optional: “verka” finds Věrka</span>
+                <span className="ml-auto">Accents optional: “verka” finds Vera</span>
               </div>
             </motion.div>
           </motion.div>

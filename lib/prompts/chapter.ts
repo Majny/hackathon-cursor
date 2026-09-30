@@ -2,7 +2,7 @@
 import type { Turn } from "../types";
 import { formatTurn, sortTurns } from "./transcript";
 
-export const CHAPTER_TEMPLATE = `You are writing the chapter "{{label}}" of Grandpa Jaroslav Novák's memory book for his family.
+export const CHAPTER_TEMPLATE = `You are writing the chapter "{{label}}" of Grandpa Jerry Miller's memory book for his family.
 
 Style: first person, in Grandpa's own voice ("I was born…"). Plain, warm English, no pathos and no bookish phrases. Keep his own expressions and sayings; put one or two short verbatim quotes in quotation marks. Write 3–6 paragraphs. The title is short, vivid and personal (not "Childhood", but something like "The Boy from the Poldi Chimneys").
 

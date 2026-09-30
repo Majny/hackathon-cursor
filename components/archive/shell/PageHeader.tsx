@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 
 export type Crumb = { label: string; href?: string };
 
-/** Breadcrumb trail: "Overview / People / Pepa Dvořák". */
+/** Breadcrumb trail: "Overview / People / Pepa Walker". */
 export function Breadcrumbs({ crumbs }: { crumbs: Crumb[] }) {
   if (!crumbs.length) return null;
   return (

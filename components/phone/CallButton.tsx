@@ -97,7 +97,7 @@ export function CallButton({ className = "" }: { className?: string }) {
         <p className="text-sm text-ink-soft">Phone calls aren&apos;t configured yet — see docs/PHONE.md.</p>
       )}
       {phase === "ringing" && (
-        <p className="text-ink-soft">Tom is calling Grandpa Jarda. The memories appear here when the call ends.</p>
+        <p className="text-ink-soft">Tom is calling Grandpa Jerry. The memories appear here when the call ends.</p>
       )}
       {phase === "processing" && (
         <p className="text-ink-soft">Call finished — {turns} lines transcribed. Writing the family book…</p>

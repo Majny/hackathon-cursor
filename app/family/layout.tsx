@@ -10,14 +10,14 @@ const body = Inter({ subsets: ["latin", "latin-ext"], variable: "--font-body" })
 
 export const metadata: Metadata = {
   title: "Family archive · Heirloom",
-  description: "Stories, people, places and a timeline from Grandpa Jarda's calls with Tom.",
+  description: "Stories, people, places and a timeline from Grandpa Jerry's calls with Tom.",
 };
 
 export const dynamic = "force-dynamic";
 
 export default async function FamilyLayout({ children }: { children: React.ReactNode }) {
   let docs: SearchDoc[] = [];
-  let familyName = "Novák";
+  let familyName = "Miller";
   try {
     const db = await getDb();
     docs = buildSearchIndex(db);
@@ -42,7 +42,7 @@ export default async function FamilyLayout({ children }: { children: React.React
       </div>
       <footer className="mt-10 border-t border-line">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-5 py-6 text-sm text-ink-soft sm:px-8">
-          <p>Heirloom. Stories from Grandpa Jarda&apos;s calls with Tom.</p>
+          <p>Heirloom. Stories from Grandpa Jerry&apos;s calls with Tom.</p>
           <div className="flex flex-wrap gap-4">
             <Link href={routes.tree()} className="hover:text-brick">Family tree</Link>
             <a href={routes.gedcom()} className="hover:text-brick">Download for MyHeritage (GEDCOM)</a>

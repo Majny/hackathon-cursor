@@ -6,7 +6,7 @@ const t = (id: string, role: Turn["role"], text: string): Turn => ({ id, session
 const turns = [
   t("s1-t01", "grandparent", "I was born in Kladno in 1946 and my dad worked at the Poldi steelworks."),
   t("s1-t02", "ai", "And who was Pepa? Was that in 1957?"),
-  t("s1-t13", "grandparent", "Pepa Dvořák lived next door and was two years younger than me."),
+  t("s1-t13", "grandparent", "Pepa Walker lived next door and was two years younger than me."),
 ];
 
 describe("validateCitations", () => {
@@ -37,13 +37,13 @@ describe("validateCitations", () => {
 
   it("grounded names pass (incl. possessive), invented names fail", () => {
     const [ok, bad] = validateCitations({ title: "x", openQuestions: [], paragraphs: [
-      { text: "Mostly I was with Pepa Dvořák, and I grew up with Pepa's gang in Kladno.", citations: ["s1-t13", "s1-t01"] },
-      { text: "Mostly I was with Karel Zeman.", citations: ["s1-t13"] },
+      { text: "Mostly I was with Pepa Walker, and I grew up with Pepa's gang in Kladno.", citations: ["s1-t13", "s1-t01"] },
+      { text: "Mostly I was with Charles Zeman.", citations: ["s1-t13"] },
     ] }, turns);
     expect(ok.warnings).toEqual([]);
     expect(ok.verified).toBe(true);
     expect(bad.verified).toBe(false);
-    expect(bad.warnings.join(" ")).toContain("Karel");
+    expect(bad.warnings.join(" ")).toContain("Charles");
   });
 
   it("sentence-initial and quoted words are not names", () => {

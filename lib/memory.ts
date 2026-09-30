@@ -8,7 +8,7 @@ export const FIRST_SESSION_OPENER =
 const MEMORY_MAX = 1500;
 const NONE = "None.";
 
-const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+const MONTHS = ["John", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
 function shortDate(iso: string | undefined): string {
   if (!iso) return "";

@@ -5,8 +5,8 @@ export type LifeTopicKey = "detstvi" | "skola" | "vojna" | "prace" | "laska" | "
 
 export interface Grandparent {
   id: string;               // "jaroslav"
-  displayName: string;      // "děda Jarda"
-  fullName: string;         // "Jaroslav Novák"
+  displayName: string;      // "děda Jerry"
+  fullName: string;         // "Jerry Miller"
   birthYear: number;        // 1946
   birthPlace: string;       // "Kladno"
   sex: "M" | "F";
@@ -78,7 +78,7 @@ export interface Chapter {
 
 export interface PersonEntity {
   id: string;
-  mentionName: string;      // "Pepa Dvořák"
+  mentionName: string;      // "Pepa Walker"
   givenName: string | null; // "Pepa" – přezdívka zůstává, převod dělá matching
   surname: string | null;
   sex: "M" | "F" | null;

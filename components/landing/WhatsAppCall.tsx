@@ -36,7 +36,7 @@ export function WhatsAppCall() {
             <div className="mt-1.5 text-[0.78rem] text-white/60">04:12</div>
           </div>
           <div className="mt-auto">
-            <div className="mb-1 text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-white/60">Grandpa Jarda</div>
+            <div className="mb-1 text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-white/60">Grandpa Jerry</div>
             <p className="text-[0.95rem] leading-snug text-white/90">
               &ldquo;My father was waiting in the doorway. Pepa was grounded for the whole summer.&rdquo;
             </p>
