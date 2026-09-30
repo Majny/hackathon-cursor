@@ -6,3 +6,11 @@ data/db.json
 .DS_Store
 *.tsbuildinfo
 next-env.d.ts
+
+# testing / misc
+/coverage
+/out/
+.vercel
+*.pem
+npm-debug.log*
+data/db.json.*.tmp

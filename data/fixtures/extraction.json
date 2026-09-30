@@ -1,0 +1,16 @@
+{
+  "persons": [
+    { "mentionName": "Pepa Dvořák", "givenName": "Pepa", "surname": "Dvořák", "sex": "M", "birthYear": 1948, "birthYearApprox": true, "place": "Kladno", "relationToGrandparent": "kamarád z dětství, soused", "notes": "Bydlel o dům vedle a byl o dva roky mladší než děda.", "existingId": null, "turnIds": ["s1-t13", "s1-t15"] },
+    { "mentionName": "maminka Anna", "givenName": "Anna", "surname": null, "sex": "F", "birthYear": null, "birthYearApprox": false, "place": "Kladno", "relationToGrandparent": "matka", "notes": "Pekla buchty s povidly.", "existingId": null, "turnIds": ["s1-t05"] },
+    { "mentionName": "táta František", "givenName": "František", "surname": null, "sex": "M", "birthYear": null, "birthYearApprox": false, "place": "Kladno", "relationToGrandparent": "otec", "notes": "Pracoval v huti Poldi.", "existingId": null, "turnIds": ["s1-t03"] },
+    { "mentionName": "Věrka", "givenName": "Věrka", "surname": null, "sex": "F", "birthYear": null, "birthYearApprox": false, "place": "Kladno", "relationToGrandparent": "mladší sestra", "notes": "Mladší sestra, se kterou si hrál doma.", "existingId": null, "turnIds": ["s1-t09"] }
+  ],
+  "places": [
+    { "name": "Kladno", "context": "Město, kde děda vyrůstal.", "turnIds": ["s1-t01"] },
+    { "name": "huť Poldi", "context": "Ocelárna, kde pracoval táta František.", "turnIds": ["s1-t03"] },
+    { "name": "Praha", "context": "Cíl útěku na pouť.", "turnIds": ["s1-t17"] }
+  ],
+  "events": [
+    { "title": "Útěk na pouť do Prahy", "year": 1958, "yearApprox": false, "description": "Děda s Pepou utekli z Kladna na pouť do Prahy.", "personNames": ["Pepa Dvořák"], "placeNames": ["Praha", "Kladno"], "turnIds": ["s1-t17"] }
+  ]
+}

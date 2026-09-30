@@ -1,0 +1,42 @@
+services:
+  - type: web
+    name: hackathon-cursor
+    runtime: node
+    plan: starter
+    region: frankfurt
+    branch: main
+    autoDeploy: true
+    buildCommand: npm ci && npm run build
+    startCommand: npm run start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: STORE
+        value: supabase
+      - key: STATE_ID
+        value: prod
+      - key: LLM_PROVIDER
+        value: openai
+      - key: MOCK_AI
+        value: "0"
+      - key: OPENAI_MODEL
+        value: gpt-5-mini
+      - key: OPENAI_MODEL_WRITER
+        value: gpt-5
+      - key: GEMINI_MODEL
+        value: gemini-2.5-flash
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: ELEVENLABS_API_KEY
+        sync: false
+      - key: ELEVENLABS_AGENT_ID
+        sync: false
+      - key: ELEVENLABS_VOICE_ID
+        sync: false
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false
