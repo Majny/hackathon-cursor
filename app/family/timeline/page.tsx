@@ -7,22 +7,17 @@ export const dynamic = "force-dynamic";
 export default async function TimelinePage() {
   const db = await getDb();
   const t = getTimeline(db);
-  const gp = db.grandparent;
-  const name = gp?.displayName || "Grandpa";
-  const grandchild = gp?.grandchildName || "Tom";
-  const told = t.items.filter((i) => i.kind === "event" || i.kind === "birth").length + t.undated.filter((i) => i.kind === "event").length;
-  const calls = t.items.filter((i) => i.kind === "call").length;
+  const name = db.grandparent?.displayName || "Grandpa";
 
   return (
-    <main className="mx-auto max-w-3xl">
-      <header className="pb-6 pt-2">
-        <h1 className="font-(family-name:--font-display) text-[2.2rem] leading-tight text-ink sm:text-[2.6rem]">Timeline</h1>
-        <p className="mt-2 max-w-[60ch] text-ink-soft">
-          {name}, born {t.birthYear} in {gp?.birthPlace ?? "Kladno"}. {told} moments from his calls, dates from the family tree, and{" "}
-          {calls} call{calls === 1 ? "" : "s"} with {grandchild}.
+    <main className="mx-auto max-w-3xl text-[18px]">
+      <header className="pb-8 pt-2">
+        <h1 className="font-(family-name:--font-display) text-[2.4rem] leading-tight text-ink sm:text-[2.8rem]">Timeline</h1>
+        <p className="mt-3 max-w-[55ch] text-[1.2rem] leading-[1.6] text-ink-soft">
+          {name}’s life year by year, from his birth in {t.birthYear} until today.
         </p>
       </header>
-      <LifeTimeline t={t} grandchild={grandchild} />
+      <LifeTimeline t={t} grandchild={db.grandparent?.grandchildName || "Tom"} />
     </main>
   );
 }

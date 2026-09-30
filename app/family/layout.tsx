@@ -28,7 +28,7 @@ export default async function FamilyLayout({ children }: { children: React.React
 
   return (
     <div
-      className={`${display.variable} ${body.variable} min-h-screen bg-paper font-(family-name:--font-body) text-ink selection:bg-brick/20`}
+      className={`${display.variable} ${body.variable} min-h-screen bg-paper text-[1.125rem] font-(family-name:--font-body) text-ink selection:bg-brick/20`}
     >
       <a
         href="#main"
@@ -45,7 +45,7 @@ export default async function FamilyLayout({ children }: { children: React.React
           <p>Heirloom. Stories from Grandpa Jarda&apos;s calls with Tom.</p>
           <div className="flex flex-wrap gap-4">
             <Link href={routes.tree()} className="hover:text-brick">Family tree</Link>
-            <a href={routes.gedcom()} className="hover:text-brick">Export GEDCOM</a>
+            <a href={routes.gedcom()} className="hover:text-brick">Download for MyHeritage (GEDCOM)</a>
             <Link href="/" className="hover:text-brick">About Heirloom</Link>
           </div>
         </div>

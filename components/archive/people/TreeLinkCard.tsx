@@ -63,125 +63,120 @@ export function TreeLinkCard({ name, status, match, treePerson, alsoConsidered, 
     }
   };
 
-  const pronoun = match?.treePersonId && treePerson?.sex === "F" ? "her" : "him";
+  const pronoun = "this match";
+
+  const tpLabel = treePerson ? `${tpName(treePerson)}${treePerson.birthYear ? ` (born ${treePerson.birthYear})` : ""}` : "";
+  const asking = !!match && match.status === "suggested" && done == null;
 
   return (
-    <section aria-labelledby="tree-link-h" className="rounded-2xl border border-line bg-card p-5 sm:p-6">
-      <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
-        <h2 id="tree-link-h" className="text-base font-semibold text-ink">
-          Family tree
-        </h2>
-        {status === "suggested" && (
-          <span className="text-sm text-ink-soft">Needs confirmation</span>
-        )}
-        {status === "confirmed" && <span className="text-sm text-moss">Confirmed by the family</span>}
-      </div>
+    <section
+      aria-labelledby="tree-link-h"
+      className={`rounded-2xl border p-5 text-lg sm:p-6 ${asking ? "border-2 border-warn bg-warn-soft/50" : "border-line bg-card"}`}
+    >
+      <h2 id="tree-link-h" className="sr-only">
+        Family tree
+      </h2>
 
       {status === "none" || !treePerson ? (
-        <div>
-          <p className="text-[1.1rem]">Not in the family tree yet.</p>
-          <p className="mt-1 text-ink-soft">Tom can ask Grandpa Jarda for a surname or birth year on the next call.</p>
-        </div>
+        <p>
+          {name} isn’t in your family tree yet. We can ask Grandpa for a surname or birth year on the next call.
+        </p>
+      ) : asking ? (
+        <p className="text-[1.25rem] leading-snug text-ink">
+          Is this the same person as <strong>{tpLabel}</strong> in your family tree?
+        </p>
       ) : (
-        <>
-          <p className="text-[1.15rem]">
-            {status === "suggested" ? "Probably " : status === "inferred" ? "Linked to " : ""}
-            <span className="font-semibold">{tpName(treePerson)}</span>{" "}
-            <span className="text-sm text-ink-soft">({treePerson.id})</span>
-          </p>
-          {tpMeta(treePerson) && <p className="mt-1 text-ink-soft">{tpMeta(treePerson)}</p>}
-          {relatives && <p className="mt-0.5 text-[0.92rem] text-ink-soft">{relatives}</p>}
-
-          {status === "inferred" && inferredReason && (
-            <p className="mt-3 text-ink-soft">
-              Linked through the family: {inferredReason}. Grandpa named the relationship himself, so no confirmation is needed.
-            </p>
-          )}
-
-          {match && (
-            <>
-              <div className="mt-4 flex flex-wrap items-center gap-3">
-                <span className="text-sm text-ink-soft">
-                  {match.band === "strong" ? "Strong match" : "Possible match"}: <strong className="text-ink tabular-nums">{pct(match.score)}</strong>
-                </span>
-              </div>
-              <dl className="mt-4 grid grid-cols-2 gap-2.5 sm:grid-cols-4">
-                {(
-                  [
-                    ["First name", match.breakdown.given],
-                    ["Surname", match.breakdown.surname],
-                    ["Birth year", match.breakdown.year],
-                    ["Place", match.breakdown.place],
-                  ] as const
-                ).map(([label, v]) => (
-                  <div key={label} className="rounded-lg bg-paper px-3 py-2">
-                    <dt className="text-sm text-ink-soft">{label}</dt>
-                    <dd className="font-semibold tabular-nums">{v == null ? "not said" : pct(v)}</dd>
-                    <div className="mt-1 h-1 rounded-full bg-paper-dark" aria-hidden>
-                      <div className="h-1 rounded-full bg-ink-soft/60" style={{ width: `${Math.round((v ?? 0) * 100)}%` }} />
-                    </div>
-                  </div>
-                ))}
-              </dl>
-              <p className="mt-3 max-w-[65ch]">
-                <span className="font-semibold">Why: </span>
-                {match.reason}
-              </p>
-              {match.gates.length > 0 && (
-                <ul className="mt-2 space-y-1 text-[0.92rem] text-ink-soft">
-                  {match.gates.map((g) => (
-                    <li key={g}>{GATE_LABELS[g] ?? g}</li>
-                  ))}
-                </ul>
-              )}
-            </>
-          )}
-        </>
+        <p>
+          In your family tree as <strong>{tpLabel}</strong>
+          {status === "confirmed" ? ", confirmed by the family." : "."}
+        </p>
       )}
 
-      <div className="mt-5 flex flex-wrap items-center gap-3">
-        {match && match.status === "suggested" && done == null && (
+      <div className="mt-4 flex flex-wrap items-center gap-3">
+        {asking && (
           <>
             <button
               type="button"
               onClick={() => act("confirm")}
               disabled={!!busy}
-              className={`min-h-11 rounded-xl bg-moss px-5 font-medium text-white hover:brightness-95 disabled:opacity-50 ${focusRing}`}
+              className={`min-h-12 rounded-xl bg-moss px-6 text-lg font-medium text-white hover:brightness-95 disabled:opacity-50 ${focusRing}`}
             >
-              {busy === "confirm" ? "Saving…" : `Yes, that’s ${pronoun}`}
+              {busy === "confirm" ? "Saving…" : "Yes"}
             </button>
             <button
               type="button"
               onClick={() => act("reject")}
               disabled={!!busy}
-              className={`min-h-11 rounded-xl border border-line bg-card px-5 font-medium text-ink hover:bg-paper-dark disabled:opacity-50 ${focusRing}`}
+              className={`min-h-12 rounded-xl border border-line bg-card px-6 text-lg font-medium text-ink hover:bg-paper-dark disabled:opacity-50 ${focusRing}`}
             >
-              {busy === "reject" ? "Saving…" : `Not ${pronoun}`}
+              {busy === "reject" ? "Saving…" : "No"}
             </button>
           </>
         )}
         {done === "confirm" && <span className="font-medium text-moss">Thank you, saved to the family tree.</span>}
-        {done === "reject" && <span className="font-medium text-ink-soft">Got it. We won’t suggest this match again.</span>}
+        {done === "reject" && <span className="font-medium text-ink-soft">Got it. We won’t suggest {pronoun} again.</span>}
         {treeHref && (
-          <Link href={treeHref} className={`inline-flex min-h-11 items-center font-medium text-brick underline-offset-4 hover:underline ${focusRing}`}>
-            View in tree
+          <Link href={treeHref} className={`inline-flex min-h-11 items-center text-brick underline-offset-4 hover:underline ${focusRing}`}>
+            See in the family tree
           </Link>
         )}
       </div>
 
-      {alsoConsidered.length > 0 && (
-        <details className="mt-4">
-          <summary className={`min-h-11 cursor-pointer py-2 text-ink-soft ${focusRing}`}>Also considered ({alsoConsidered.length})</summary>
-          <ul className="mb-2 space-y-1.5">
-            {alsoConsidered.map((a, i) => (
-              <li key={a.treePerson?.id ?? i} className="flex flex-wrap justify-between gap-2 text-[0.95rem]">
-                <span>
-                  {a.treePerson ? <strong>{tpName(a.treePerson)}</strong> : null} {a.why && <span className="text-ink-soft">({a.why})</span>}
-                </span>
-                <span className="tabular-nums text-ink-soft">{pct(a.score)}</span>
-              </li>
-            ))}
-          </ul>
+      {treePerson && (match || inferredReason || alsoConsidered.length > 0) && (
+        <details className="mt-4 text-base">
+          <summary className={`min-h-11 cursor-pointer py-2 text-ink-soft ${focusRing}`}>Why we think so</summary>
+          <div className="space-y-3 pb-1 pt-2">
+            {tpMeta(treePerson) && <p className="text-ink-soft">In the tree: {tpMeta(treePerson)}</p>}
+            {relatives && <p className="text-ink-soft">{relatives}</p>}
+            {status === "inferred" && inferredReason && (
+              <p className="text-ink-soft">Linked through the family: {inferredReason}. Grandpa named the relationship himself.</p>
+            )}
+            {match && (
+              <>
+                <p>{match.reason}</p>
+                <p className="text-ink-soft">
+                  {match.band === "strong" ? "Strong match" : "Possible match"}: <span className="tabular-nums">{pct(match.score)}</span>
+                </p>
+                <dl className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+                  {(
+                    [
+                      ["First name", match.breakdown.given],
+                      ["Surname", match.breakdown.surname],
+                      ["Birth year", match.breakdown.year],
+                      ["Place", match.breakdown.place],
+                    ] as const
+                  ).map(([label, v]) => (
+                    <div key={label} className="rounded-lg bg-paper px-3 py-2">
+                      <dt className="text-sm text-ink-soft">{label}</dt>
+                      <dd className="tabular-nums">{v == null ? "not said" : pct(v)}</dd>
+                    </div>
+                  ))}
+                </dl>
+                {match.gates.length > 0 && (
+                  <ul className="space-y-1 text-ink-soft">
+                    {match.gates.map((g) => (
+                      <li key={g}>{GATE_LABELS[g] ?? g}</li>
+                    ))}
+                  </ul>
+                )}
+              </>
+            )}
+            {alsoConsidered.length > 0 && (
+              <div>
+                <p className="text-ink-soft">Others we considered:</p>
+                <ul className="mt-1 space-y-1">
+                  {alsoConsidered.map((a, i) => (
+                    <li key={a.treePerson?.id ?? i} className="flex flex-wrap justify-between gap-2">
+                      <span>
+                        {a.treePerson ? tpName(a.treePerson) : null} {a.why && <span className="text-ink-soft">({a.why})</span>}
+                      </span>
+                      <span className="tabular-nums text-ink-soft">{pct(a.score)}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
         </details>
       )}
       {error && (

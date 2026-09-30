@@ -1,255 +1,135 @@
 import Link from "next/link";
-import type { ReactNode } from "react";
 import { getDb } from "@/lib/store";
-import { getOverview, getTimeline, routes, type TopicCoverage } from "@/lib/archive";
-import { Card } from "@/components/ui/Card";
-import { StatCard } from "@/components/archive/shell/StatCard";
+import { getChapterView, getOverview, routes } from "@/lib/archive";
+import { MatchAnswer } from "@/components/archive/shell/MatchAnswer";
 
 export const dynamic = "force-dynamic";
 
 const DISPLAY = "font-(family-name:--font-display)";
-const H2 = `${DISPLAY} text-[1.5rem] leading-tight text-ink`;
-const LINK =
-  "font-medium text-brick underline-offset-4 hover:underline focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-brick rounded";
+const FOCUS = "focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-brick";
+const QUIET_LINK = `rounded text-ink-soft underline-offset-4 hover:text-brick hover:underline ${FOCUS}`;
 
-export default async function FamilyOverviewPage() {
+/** Home: a simple family feed. Greeting, what needs an answer, the newest story, the next call. */
+export default async function FamilyHomePage() {
   const db = await getDb();
   const o = getOverview(db);
-  const tl = getTimeline(db);
   const gp = o.grandparent;
   const tom = gp.grandchildName || "Tom";
-  const s = o.stats;
-  const conv = o.latestConversation;
-  const age = tl.nowYear - gp.birthYear;
-  const chaptersWritten = o.topics.filter((t) => t.state === "written").length;
+  const grandpa = gp.displayName || "Grandpa";
+
+  const matches = o.pendingMatches.filter((m) => m.person && m.treePerson);
+  const drafts = db.chapters.filter((c) => c.status !== "approved").map((c) => getChapterView(db, c));
+  const needsAnswer = matches.length > 0 || drafts.length > 0;
+
+  const story = o.latestChapter;
+  const call = o.latestConversation;
 
   return (
-    <main className="space-y-12">
-      {/* Who he is */}
+    <main className="mx-auto max-w-3xl space-y-10 text-[1.15rem] leading-relaxed">
+      {/* 1. Greeting */}
       <header>
-        <h1 className={`${DISPLAY} text-[2.4rem] leading-[1.05] font-medium tracking-tight text-ink sm:text-[2.8rem]`}>
-          {gp.displayName}
+        <h1 className={`${DISPLAY} text-[2.4rem] leading-[1.1] font-medium tracking-tight text-ink sm:text-[2.8rem]`}>
+          {grandpa}&apos;s stories
         </h1>
-        <p className="mt-2 text-[1.1rem] text-ink-soft">
-          {gp.fullName}, born {gp.birthYear} in {gp.birthPlace}
-          {age > 0 && <>, {age} this year</>}
+        <p className="mt-3 max-w-[55ch] text-[1.2rem] text-ink-soft">
+          {tom}, an AI grandson, calls {grandpa} and writes down what he tells. Here you can read it.
         </p>
-        <p className="mt-4 max-w-[60ch] text-ink-soft">
-          {s.conversations > 0 ? (
-            <>
-              {tom} calls him on WhatsApp and asks about his life. Each chapter below is written from those calls and
-              cites the lines it came from.
-            </>
-          ) : (
-            <>{tom} hasn&apos;t called yet. Stories will appear here after the first call.</>
-          )}
-        </p>
-
-        <ul className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
-          <li>
-            <StatCard value={s.conversations} label={s.conversations === 1 ? "call" : "calls"} href={routes.conversations()} />
-          </li>
-          <li>
-            <StatCard value={s.minutesRecorded} label="minutes recorded" href={routes.conversations()} />
-          </li>
-          <li>
-            <StatCard value={s.people} label="people mentioned" href={routes.people()} />
-          </li>
-          <li>
-            <StatCard value={s.places} label="places" href={routes.places()} />
-          </li>
-          <li>
-            <StatCard
-              value={s.verifiedParagraphs}
-              suffix={` / ${s.totalParagraphs}`}
-              label="paragraphs verified"
-              href={routes.stories()}
-            />
-          </li>
-        </ul>
       </header>
 
-      {/* Latest call | Next call */}
-      <section className="grid gap-6 lg:grid-cols-[1.4fr_1fr]">
-        <div>
-          <h2 className={`${H2} mb-4`}>Latest call</h2>
-          {conv ? (
-            <Card>
-              <p className="text-sm text-ink-soft">
-                {conv.date}
-                {conv.durationMin != null && <> · {conv.durationMin} min</>}
-                {conv.topics.length > 0 && <> · {conv.topics.map((t) => t.label).join(", ")}</>}
-              </p>
-              <h3 className={`${DISPLAY} mt-1 text-[1.3rem] text-ink`}>{conv.title}</h3>
-              {conv.summary && <p className="mt-3 max-w-[65ch] leading-relaxed text-ink">{conv.summary}</p>}
-              {conv.keyFacts.length > 0 && (
-                <ul className="mt-4 list-disc space-y-1 pl-5 text-ink-soft marker:text-line">
-                  {conv.keyFacts.slice(0, 3).map((f) => (
-                    <li key={f}>{f}</li>
-                  ))}
-                </ul>
-              )}
-              {conv.highlight && (
-                <figure className="mt-5 border-l-2 border-line pl-4">
-                  <blockquote className={`${DISPLAY} text-[1.1rem] leading-snug text-ink italic`}>
-                    “{conv.highlight.quote}”
-                  </blockquote>
-                  <figcaption className="mt-1 text-sm text-ink-soft">
-                    {conv.highlight.speaker} ·{" "}
-                    <Link href={conv.highlight.href} className={LINK}>
-                      {conv.highlight.source}
-                    </Link>
-                  </figcaption>
-                </figure>
-              )}
-              <Link href={conv.href} className={`${LINK} mt-5 inline-block`}>
-                Read the transcript
-              </Link>
-            </Card>
-          ) : (
-            <Empty>No calls yet.</Empty>
-          )}
-        </div>
-
-        <div className="space-y-6">
-          <div>
-            <h2 className={`${H2} mb-4`}>Next call</h2>
-            {o.nextCall && o.nextCall.topic ? (
-              <Card>
+      {/* 2. Needs your answer (only when there is something) */}
+      {needsAnswer && (
+        <section aria-labelledby="needs-answer" className="rounded-3xl border-2 border-brick/40 bg-card p-6 sm:p-8">
+          <h2 id="needs-answer" className={`${DISPLAY} text-[1.6rem] leading-tight text-ink`}>
+            Needs your answer
+          </h2>
+          <div className="mt-4 divide-y divide-line">
+            {matches.map((m) => (
+              <div key={m.match.id} className="py-5 first:pt-0 last:pb-0">
                 <p className="text-ink">
-                  {tom} will ask about <span className="font-medium">{o.nextCall.topic}</span>.
+                  Grandpa mentioned <span className="font-semibold">{m.person!.mentionName}</span>. Is he{" "}
+                  <span className="font-semibold">
+                    {m.treePerson!.givenName} {m.treePerson!.surname}
+                  </span>
+                  {m.treePerson!.birthYear ? ` (born ${m.treePerson!.birthYear})` : ""} from your family tree?
                 </p>
-                {o.nextCall.opener && (
-                  <p className={`${DISPLAY} mt-3 text-ink-soft italic`}>“{o.nextCall.opener}”</p>
-                )}
-                {o.nextCall.whyUnfinished && <p className="mt-3 text-sm text-ink-soft">{o.nextCall.whyUnfinished}</p>}
-              </Card>
-            ) : (
-              <Empty>{tom} will pick a new topic on the next call.</Empty>
-            )}
-          </div>
-
-          {(o.openThreads.length > 0 || o.resolvedThreads.length > 0) && (
-            <div>
-              <h2 className={`${H2} mb-4`}>Unfinished stories</h2>
-              <Card className="divide-y divide-line !py-2">
-                {o.openThreads.map((t) => (
-                  <div key={t.thread.id} className="py-3">
-                    <p className="font-medium text-ink">{t.thread.title}</p>
-                    <p className="mt-0.5 text-sm text-ink-soft">
-                      Open{t.openedInCall != null && <>, since call {t.openedInCall}</>}
-                      {t.quotes[0] && (
-                        <>
-                          {" · "}
-                          <Link href={t.quotes[0].href} className={LINK}>
-                            where he left off
-                          </Link>
-                        </>
-                      )}
-                    </p>
-                  </div>
-                ))}
-                {o.resolvedThreads.map((t) => (
-                  <div key={t.thread.id} className="py-3">
-                    <p className="text-ink-soft">{t.thread.title}</p>
-                    <p className="mt-0.5 text-sm text-moss">
-                      Finished{t.resolvedInCall != null && <> in call {t.resolvedInCall}</>}
-                    </p>
-                  </div>
-                ))}
-              </Card>
-            </div>
-          )}
-
-          {o.pendingMatches.length > 0 && (
-            <div>
-              <h2 className={`${H2} mb-4`}>Needs your check</h2>
-              <Card className="space-y-3 border-warn">
-                {o.pendingMatches.map((m) => (
-                  <p key={m.match.id} className="text-ink">
-                    Is <span className="font-medium">{m.person?.mentionName ?? "this person"}</span> the same as{" "}
-                    <span className="font-medium">
-                      {m.treePerson ? `${m.treePerson.givenName} ${m.treePerson.surname}` : "someone"}
-                    </span>
-                    {m.treePerson?.birthYear ? ` (b. ${m.treePerson.birthYear})` : ""} in the family tree?{" "}
-                    <Link href={m.href} className={LINK}>
-                      Review
-                    </Link>
-                  </p>
-                ))}
-              </Card>
-            </div>
-          )}
-        </div>
-      </section>
-
-      {/* Chapters */}
-      <section>
-        <div className="mb-4 flex flex-wrap items-baseline justify-between gap-3">
-          <h2 className={H2}>Chapters</h2>
-          <p className="text-sm text-ink-soft">
-            {chaptersWritten} of {o.topics.length} written ·{" "}
-            <Link href={routes.stories()} className={LINK}>
-              All stories
-            </Link>
-          </p>
-        </div>
-        <Card className="!p-0">
-          <ul className="divide-y divide-line">
-            {o.topics.map((t) => (
-              <TopicRow key={t.key} t={t} tom={tom} />
+                <MatchAnswer matchId={m.match.id} />
+              </div>
             ))}
-          </ul>
-        </Card>
-      </section>
-    </main>
-  );
-}
-
-function Empty({ children }: { children: ReactNode }) {
-  return <div className="rounded-2xl border border-dashed border-line p-6 text-ink-soft">{children}</div>;
-}
-
-function TopicRow({ t, tom }: { t: TopicCoverage; tom: string }) {
-  let status: ReactNode;
-  if (t.state === "written" && t.chapter) {
-    status = (
-      <span className="text-moss">
-        Written · {t.chapter.verified}/{t.chapter.total} verified
-      </span>
-    );
-  } else if (t.state === "next") {
-    status = <span className="text-ink">Next call</span>;
-  } else if (t.state === "talked") {
-    status = <span>Talked about in call {t.coveredInCalls.join(" & ")}</span>;
-  } else {
-    status = <span>Not yet</span>;
-  }
-  const body = (
-    <>
-      <span className="min-w-0">
-        <span className="block text-ink">{t.label}</span>
-        {t.state === "written" && t.chapter && <span className="block text-sm text-ink-soft">{t.chapter.title}</span>}
-      </span>
-      <span className="shrink-0 text-right text-sm text-ink-soft">{status}</span>
-    </>
-  );
-  const cls = "flex min-h-11 items-center justify-between gap-4 px-5 py-3";
-  return (
-    <li>
-      {t.state === "written" && t.chapter ? (
-        <Link
-          href={routes.story(t.chapter.id)}
-          className={`${cls} hover:bg-paper-dark focus-visible:outline-3 focus-visible:outline-offset-[-3px] focus-visible:outline-brick`}
-          aria-label={`${t.label}: ${t.chapter.title}`}
-        >
-          {body}
-        </Link>
-      ) : (
-        <div className={cls} title={t.state === "next" ? `${tom} will ask about this next` : undefined}>
-          {body}
-        </div>
+            {drafts.map((d) => (
+              <div key={d.chapter.id} className="py-5 first:pt-0 last:pb-0">
+                <p className="text-ink">
+                  A new story is ready: <span className="font-semibold">{d.chapter.title}</span>. Please read it and
+                  approve it.
+                </p>
+                <Link
+                  href={d.href}
+                  className={`mt-4 inline-flex min-h-12 items-center rounded-full bg-ink px-6 text-[1.1rem] font-medium text-paper hover:bg-ink/90 ${FOCUS}`}
+                >
+                  Read and approve
+                </Link>
+              </div>
+            ))}
+          </div>
+        </section>
       )}
-    </li>
+
+      {/* 3. Newest story (or the latest call if no story yet) */}
+      <section aria-labelledby="newest">
+        {story ? (
+          <article className="rounded-3xl border border-line bg-card p-6 sm:p-8">
+            <p id="newest" className="text-[1rem] font-medium text-ink-soft">
+              Newest story
+            </p>
+            <h2 className={`${DISPLAY} mt-1 text-[1.9rem] leading-tight text-ink`}>{story.chapter.title}</h2>
+            <p className="mt-4 max-w-[62ch] text-ink">{story.chapter.paragraphs[0]?.text ?? story.excerpt}</p>
+            <Link
+              href={story.href}
+              className={`mt-6 inline-flex min-h-14 items-center rounded-full bg-brick px-8 text-[1.2rem] font-semibold text-paper hover:bg-brick/90 ${FOCUS}`}
+            >
+              Read the story
+            </Link>
+          </article>
+        ) : call ? (
+          <article className="rounded-3xl border border-line bg-card p-6 sm:p-8">
+            <p id="newest" className="text-[1rem] font-medium text-ink-soft">
+              Latest call · {call.date}
+            </p>
+            <h2 className={`${DISPLAY} mt-1 text-[1.9rem] leading-tight text-ink`}>{call.title}</h2>
+            {call.summary && <p className="mt-4 max-w-[62ch] text-ink">{call.summary}</p>}
+            <Link
+              href={call.href}
+              className={`mt-6 inline-flex min-h-14 items-center rounded-full bg-brick px-8 text-[1.2rem] font-semibold text-paper hover:bg-brick/90 ${FOCUS}`}
+            >
+              Read the call
+            </Link>
+          </article>
+        ) : (
+          <p id="newest" className="rounded-3xl border border-dashed border-line p-6 text-ink-soft sm:p-8">
+            {tom} hasn&apos;t called yet. The first story will appear here after the first call.
+          </p>
+        )}
+      </section>
+
+      {/* 4. Next call */}
+      {o.nextCall?.topic && (
+        <p className="text-ink">
+          <span className="font-medium">Next call:</span> next time {tom} will ask about{" "}
+          <span className="font-medium">{o.nextCall.topic}</span>.
+        </p>
+      )}
+
+      {/* 5. Quiet links */}
+      <nav aria-label="More in the archive" className="border-t border-line pt-6">
+        <p className="flex flex-wrap items-center gap-x-3 gap-y-2 text-[1.1rem]">
+          <Link href={routes.people()} className={QUIET_LINK}>People</Link>
+          <span aria-hidden className="text-line">·</span>
+          <Link href={routes.conversations()} className={QUIET_LINK}>Calls</Link>
+          <span aria-hidden className="text-line">·</span>
+          <Link href={routes.timeline()} className={QUIET_LINK}>Timeline</Link>
+          <span aria-hidden className="text-line">·</span>
+          <Link href={routes.tree()} className={QUIET_LINK}>Family tree</Link>
+        </p>
+      </nav>
+    </main>
   );
 }

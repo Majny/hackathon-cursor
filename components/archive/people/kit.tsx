@@ -29,7 +29,7 @@ export function Avatar({ initials, tone = "brick", size = 48 }: { initials: stri
 export function TreeBadge({ status }: { status: TreeLinkStatus }) {
   const map: Record<TreeLinkStatus, { cls: string; label: string }> = {
     confirmed: { cls: "border-moss/40 bg-moss/10 text-moss", label: "In family tree" },
-    suggested: { cls: "border-warn bg-warn-soft text-ink", label: "Suggested match" },
+    suggested: { cls: "border-warn bg-warn-soft text-ink", label: "Needs your answer" },
     inferred: { cls: "border-brick/30 bg-brick/10 text-brick-dark", label: "In family tree" },
     none: { cls: "border-dashed border-ink-soft/50 bg-transparent text-ink-soft", label: "Not in tree yet" },
   };
@@ -76,7 +76,7 @@ export function QuoteCard({ q, size = "sm", showSource = true }: { q: QuoteRef; 
             {q.sessionDate ? `, ${q.sessionDate}` : ""}
           </span>
           <Link href={q.href} className={`inline-flex min-h-11 items-center text-brick underline-offset-4 hover:underline ${focusRing}`}>
-            Open in call
+            Hear it in the call
           </Link>
         </figcaption>
       )}

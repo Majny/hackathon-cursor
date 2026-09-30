@@ -60,7 +60,7 @@ export function FamilyTree({ tree, layout, confirmedByTreeId, suggestedTreeIds, 
 
       <aside className="rounded-2xl border border-line bg-card p-5 lg:w-80 lg:shrink-0">
         {!person ? (
-          <p className="text-ink-soft">Click on someone in the tree.</p>
+          <p className="text-[1.1rem] text-ink-soft">Tap a name in the tree to see who they are.</p>
         ) : (
           <>
             <h2 className="text-2xl font-semibold">
@@ -79,9 +79,7 @@ export function FamilyTree({ tree, layout, confirmedByTreeId, suggestedTreeIds, 
 
             {story ? (
               <div className="mt-4 border-t border-line pt-4">
-                <div className="mb-2 inline-block rounded-full bg-moss px-3 py-0.5 text-sm font-medium text-white">
-                  From the memories: “{story.entity.mentionName}”
-                </div>
+                <p className="mb-2 font-semibold text-moss">From Grandpa’s own words</p>
                 <p className="text-ink-soft">{story.entity.relationToGrandparent}</p>
                 {story.entity.notes && <p className="mt-1">{story.entity.notes}</p>}
                 <div className="mt-3 space-y-3">
@@ -90,7 +88,7 @@ export function FamilyTree({ tree, layout, confirmedByTreeId, suggestedTreeIds, 
                       “{c.quote}”
                       <div>
                         <Link className="text-sm not-italic text-brick underline" href={`/family/conversations/${c.turnId.split("-")[0]}#${c.turnId}`}>
-                          {c.turnId}
+                          Read it in the call
                         </Link>
                       </div>
                     </blockquote>
@@ -99,8 +97,8 @@ export function FamilyTree({ tree, layout, confirmedByTreeId, suggestedTreeIds, 
               </div>
             ) : suggestedTreeIds.includes(person.id) ? (
               <p className="mt-4 text-ink-soft">
-                Grandpa may have mentioned them.{" "}
-                <Link href="/family/people" className="text-brick underline">Confirm the match</Link>
+                Grandpa may have talked about this person.{" "}
+                <Link href="/family/people" className="text-brick underline">Is this the same person?</Link>
               </p>
             ) : null}
           </>

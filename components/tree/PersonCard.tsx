@@ -1,10 +1,10 @@
 import type { TreePerson } from "@/lib/types";
 
-export function PersonCard({ person, highlighted, suggested, selected, isGrandparent, onClick }: {
+export function PersonCard({ person, highlighted, selected, isGrandparent, onClick }: {
   person: TreePerson; highlighted?: boolean; suggested?: boolean; selected?: boolean; isGrandparent?: boolean; onClick?: () => void;
 }) {
   const sexCls = highlighted ? "bg-moss/5 border-moss/50" : "bg-paper border-line";
-  const ring = selected ? "ring-2 ring-brick" : highlighted ? "ring-2 ring-moss" : suggested ? "ring-2 ring-warn" : "";
+  const ring = selected ? "ring-2 ring-brick" : highlighted ? "ring-2 ring-moss" : "";
   return (
     <button
       type="button"
@@ -20,8 +20,7 @@ export function PersonCard({ person, highlighted, suggested, selected, isGrandpa
         {person.birthPlace ? ` · ${person.birthPlace}` : ""}
       </span>
       {highlighted && <span className="mt-0.5 rounded-full bg-moss px-2 text-xs font-medium text-white">in the stories</span>}
-      {!highlighted && isGrandparent && <span className="mt-0.5 rounded-full bg-brick px-2 text-xs font-medium text-white">storyteller</span>}
-      {!highlighted && !isGrandparent && suggested && <span className="mt-0.5 rounded-full bg-warn px-2 text-xs font-medium">suggested match</span>}
+      {!highlighted && isGrandparent && <span className="mt-0.5 rounded-full bg-brick px-2 text-xs font-medium text-white">Grandpa</span>}
     </button>
   );
 }
