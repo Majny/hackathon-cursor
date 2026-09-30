@@ -1,0 +1,110 @@
+[
+  {
+    "id": "t1",
+    "givenName": "Josef",
+    "surname": "Novák",
+    "nicknames": ["Pepa", "Pepík"],
+    "birthYear": 1948,
+    "place": "Kladno",
+    "notes": "Demo match target — grandpa's friend from the steelworks."
+  },
+  {
+    "id": "t2",
+    "givenName": "Marie",
+    "surname": "Nováková",
+    "nicknames": ["Máňa"],
+    "birthYear": 1950,
+    "place": "Kladno",
+    "notes": "Josef's sister."
+  },
+  {
+    "id": "t3",
+    "givenName": "Josef",
+    "surname": "Svoboda",
+    "nicknames": ["Pepa"],
+    "birthYear": 1932,
+    "place": "Plzeň",
+    "notes": "Same nickname, different place/year — should score lower."
+  },
+  {
+    "id": "t4",
+    "givenName": "Anna",
+    "surname": "Horáková",
+    "nicknames": [],
+    "birthYear": 1925,
+    "place": "Brno",
+    "notes": "Unrelated."
+  },
+  {
+    "id": "t5",
+    "givenName": "František",
+    "surname": "Dvořák",
+    "nicknames": ["Franta"],
+    "birthYear": 1945,
+    "place": "Praha",
+    "notes": "Unrelated."
+  },
+  {
+    "id": "t6",
+    "givenName": "Helena",
+    "surname": "Černá",
+    "nicknames": [],
+    "birthYear": 1949,
+    "place": "Kladno",
+    "notes": "Same town, different person."
+  },
+  {
+    "id": "t7",
+    "givenName": "Karel",
+    "surname": "Procházka",
+    "nicknames": [],
+    "birthYear": 1948,
+    "place": "Ostrava",
+    "notes": "Same year only."
+  },
+  {
+    "id": "t8",
+    "givenName": "Václav",
+    "surname": "Novák",
+    "nicknames": ["Vašek"],
+    "birthYear": 1940,
+    "place": "Kladno",
+    "notes": "Same surname and town."
+  },
+  {
+    "id": "t9",
+    "givenName": "Eva",
+    "surname": "Malá",
+    "nicknames": [],
+    "birthYear": 1955,
+    "place": "Liberec",
+    "notes": "Unrelated."
+  },
+  {
+    "id": "t10",
+    "givenName": "Jan",
+    "surname": "Král",
+    "nicknames": ["Honza"],
+    "birthYear": 1947,
+    "place": "Kladno",
+    "notes": "Neighbor in the demo tree."
+  },
+  {
+    "id": "t11",
+    "givenName": "Božena",
+    "surname": "Nováková",
+    "nicknames": [],
+    "birthYear": 1920,
+    "place": "Kladno",
+    "notes": "Josef's mother in the demo tree."
+  },
+  {
+    "id": "t12",
+    "givenName": "Petr",
+    "surname": "Novák",
+    "nicknames": [],
+    "birthYear": 1972,
+    "place": "Kladno",
+    "notes": "Josef's son — not the friend."
+  }
+]
