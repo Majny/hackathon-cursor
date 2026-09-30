@@ -74,7 +74,7 @@ describe("snapshots & fixtures", () => {
   it("fixtures validate via llmStructured MOCK_AI path", async () => {
     const s = await llmStructured({ task: "summary", schema: SessionSummarySchema, system: "", user: "" });
     expect(s.provider).toBe("mock");
-    expect(s.data.nextSessionOpener).toContain("pouť");
+    expect(s.data.nextSessionOpener).toContain("fair in Prague");
     const e = await llmStructured({ task: "extract", schema: ExtractionSchema, system: "", user: "" });
     expect(e.data.persons.find((p) => p.surname === "Dvořák")?.birthYear).toBe(1948);
     const c = await llmStructured({ task: "chapter", schema: ChapterSchema, system: "", user: "", writer: true });

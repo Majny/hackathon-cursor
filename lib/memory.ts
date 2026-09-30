@@ -3,16 +3,18 @@ import type { Db, MemoryContext, PersonEntity } from "./types";
 import { LIFE_TOPICS } from "./topics";
 
 export const FIRST_SESSION_OPENER =
-  "Ahoj dědo, to jsem já, Tomáš. Moc rád bych si s tebou povídal o tom, jak jsi byl malý. Kde jsi vyrůstal?";
+  "Hi Grandpa, it's me, Tom. I'd love to hear about when you were little. Where did you grow up?";
 
 const MEMORY_MAX = 1500;
-const NONE = "Žádné.";
+const NONE = "None.";
 
-function czDate(iso: string | undefined): string {
+const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+function shortDate(iso: string | undefined): string {
   if (!iso) return "";
   const d = new Date(iso);
   if (Number.isNaN(d.getTime())) return "";
-  return `${d.getDate()}. ${d.getMonth() + 1}.`;
+  return `${MONTHS[d.getMonth()]} ${d.getDate()}`;
 }
 
 function firstSentence(s: string): string {
@@ -30,11 +32,11 @@ export function buildMemorySummary(db: Db): string {
   if (!summaries.length) return NONE;
   const sessionById = new Map(db.sessions.map((s) => [s.id, s]));
   const facts = [...new Set(summaries.flatMap((s) => s.keyFacts))];
-  const factsLine = facts.length ? `Důležité: ${facts.join("; ")}.` : "";
+  const factsLine = facts.length ? `Key facts: ${facts.join("; ")}.` : "";
   const line = (i: number, text: string) => {
     const s = sessionById.get(summaries[i].sessionId);
-    const date = czDate(s?.startedAt);
-    return `Povídání ${s?.index ?? i + 1}${date ? ` (${date})` : ""}: ${text}`;
+    const date = shortDate(s?.startedAt);
+    return `Session ${s?.index ?? i + 1}${date ? ` (${date})` : ""}: ${text}`;
   };
   const full = summaries.map((s) => s.summary.trim());
   const compose = (texts: string[]) => [...texts.map((t, i) => line(i, t)), factsLine].filter(Boolean).join("\n");
@@ -48,7 +50,7 @@ export function buildMemorySummary(db: Db): string {
 }
 
 export function describePerson(p: PersonEntity): string {
-  const extras = [p.relationToGrandparent, p.place, p.birthYear ? `${p.birthYearApprox ? "asi " : ""}${p.birthYear}` : null]
+  const extras = [p.relationToGrandparent, p.place, p.birthYear ? `${p.birthYearApprox ? "born c. " : "born "}${p.birthYear}` : null]
     .map((x) => (x ?? "").toString().trim())
     .filter(Boolean);
   return extras.length ? `${p.mentionName} (${extras.join(", ")})` : p.mentionName;
@@ -75,7 +77,7 @@ export function buildMemory(db: Db): MemoryContext {
     memorySummary: buildMemorySummary(db),
     knownPeople,
     openThreads,
-    nextTopic: last?.nextTopic?.trim() || open[0]?.title || uncovered[0]?.label || "Dětství",
+    nextTopic: last?.nextTopic?.trim() || open[0]?.title || uncovered[0]?.label || "Childhood",
     uncoveredTopics: uncovered.map((t) => t.label).join(", ") || NONE,
     firstMessage: last?.nextSessionOpener?.trim() || FIRST_SESSION_OPENER,
     continuedThreadId: last ? (open[0]?.id ?? null) : null,

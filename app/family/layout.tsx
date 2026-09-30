@@ -6,10 +6,16 @@ export default function FamilyLayout({ children }: { children: React.ReactNode }
     <div className="min-h-screen bg-paper">
       <header className="sticky top-0 z-20 border-b border-line bg-paper/90 backdrop-blur">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-6 py-3">
-          <Link href="/family" className="flex items-baseline gap-2">
-            <span className="font-serif text-2xl font-semibold text-ink">Rodinná kniha</span>
-            <span className="text-base text-ink-soft">Novákovi</span>
-          </Link>
+          <div className="flex items-baseline gap-4">
+            <Link href="/" className="group flex items-baseline gap-1.5" aria-label="Heirloom home">
+              <span className="text-brick transition-transform group-hover:-rotate-12" aria-hidden>❦</span>
+              <span className="font-serif text-2xl font-semibold tracking-tight text-ink">Heirloom</span>
+            </Link>
+            <span className="hidden h-5 w-px bg-line sm:block" aria-hidden />
+            <Link href="/family" className="hidden items-baseline gap-2 sm:flex">
+              <span className="font-serif text-lg text-ink-soft hover:text-ink">The Novák family book</span>
+            </Link>
+          </div>
           <FamilyNav />
         </div>
       </header>

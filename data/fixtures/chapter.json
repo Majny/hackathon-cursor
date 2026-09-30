@@ -1,13 +1,13 @@
 {
-  "title": "Kluk od komínů Poldovky",
+  "title": "The Boy from the Poldi Chimneys",
   "paragraphs": [
-    { "text": "Narodil jsem se na Kladně a vyrůstal jsem pod komíny Poldovky. Táta František dělal v huti, a když šel na šichtu, bylo to slyšet po celé ulici.", "citations": ["s1-t01", "s1-t03"] },
-    { "text": "Maminka Anna pekla buchty s povidly. „To byla vůně, co se line až na dvůr,“ říkávám dodneška.", "citations": ["s1-t05"] },
-    { "text": "Se sestrou Věrkou jsme se doma pořád škorpili, ale když šlo do tuhého, drželi jsme spolu.", "citations": ["s1-t09"] },
-    { "text": "Nejvíc času jsem trávil s Pepou Dvořákem, bydlel o dům vedle a byl o dva roky mladší. Na plácku jsme hráli fotbal, dokud nebyla tma.", "citations": ["s1-t13", "s1-t15"] }
+    { "text": "I was born in Kladno in 1946 and grew up in a street just by the Poldi steelworks. My dad František worked at the furnace, and when he went off to his shift you could hear his boots all down the street.", "citations": ["s1-t01", "s1-t03"] },
+    { "text": "My mum Anna baked buns with plum jam. \"Oh, that smell, it drifted all the way out to the yard,\" I still say today.", "citations": ["s1-t05"] },
+    { "text": "My sister Věrka and I were always squabbling at home, but when things got tough, we stuck together.", "citations": ["s1-t09"] },
+    { "text": "I spent most of my time with Pepa Dvořák, who lived next door and was two years younger than me. We played football on the patch until it got dark.", "citations": ["s1-t13", "s1-t15"] }
   ],
   "openQuestions": [
-    "Jak dopadl útěk s Pepou na pouť do Prahy?",
-    "Do jaké školy jsi na Kladně chodil?"
+    "How did running off to the fair in Prague with Pepa end?",
+    "Which school did you go to in Kladno?"
   ]
 }

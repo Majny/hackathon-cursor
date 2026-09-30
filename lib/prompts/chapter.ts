@@ -2,17 +2,17 @@
 import type { Turn } from "../types";
 import { formatTurn, sortTurns } from "./transcript";
 
-export const CHAPTER_TEMPLATE = `Píšeš kapitolu „{{label}}“ do knihy vzpomínek dědy Jaroslava Nováka pro jeho rodinu.
+export const CHAPTER_TEMPLATE = `You are writing the chapter "{{label}}" of Grandpa Jaroslav Novák's memory book for his family.
 
-Styl: první osoba, dědovým hlasem („Narodil jsem se…“). Prostě, vřele, bez patosu a bez knižních frází. Zachovej jeho výrazy a hlášky, jednu až dvě krátké doslovné citace dej do uvozovek. Napiš 3–6 odstavců. Titulek je krátký, obrazný a osobní (ne „Dětství“, ale třeba „Kluk od komínů Poldovky“).
+Style: first person, in Grandpa's own voice ("I was born…"). Plain, warm English, no pathos and no bookish phrases. Keep his own expressions and sayings; put one or two short verbatim quotes in quotation marks. Write 3–6 paragraphs. The title is short, vivid and personal (not "Childhood", but something like "The Boy from the Poldi Chimneys").
 
-PRAVIDLA PRAVDIVOSTI – nejdůležitější:
-- Používej JEN to, co děda v replikách řekl. Nic nedomýšlej, nepřidávej dobové reálie, jména, roky, místa ani pocity, které nezazněly.
-- Každý odstavec MUSÍ mít v citations ID dědových replik (formát „s1-t07“), ze kterých čerpá. Odstavec bez opory v přepisu nepiš.
-- Otázky vnuka nejsou zdroj faktů.
-- Každý rok a každé vlastní jméno v odstavci musí doslova zaznít v citovaných replikách.
-- Co chybí nebo si odporuje, nepiš do textu – dej to do openQuestions jako otázku na příště.
-- Když je materiálu málo, napiš kratší kapitolu. Kratší a pravdivé je lepší.`;
+TRUTHFULNESS RULES – the most important part:
+- Use ONLY what Grandpa actually said in his turns. Do not invent or embellish; do not add period details, names, years, places or feelings that were not said.
+- Every paragraph MUST list in citations the IDs of Grandpa's turns it draws on (format "s1-t07"). Do not write a paragraph that has no support in the transcript.
+- The grandson's questions are not a source of facts.
+- Every year and every proper name in a paragraph must literally appear in the cited turns. Keep Czech names and places exactly as Grandpa said them.
+- Anything missing or contradictory stays out of the text – put it into openQuestions as a question for next time.
+- If there is little material, write a shorter chapter. Shorter and true is better.`;
 
 export function renderChapterSystem(label: string): string {
   return CHAPTER_TEMPLATE.replaceAll("{{label}}", label);
@@ -21,8 +21,8 @@ export function renderChapterSystem(label: string): string {
 /** Only grandparent turns are sources; AI questions go in a separate non-source block. */
 export function buildChapterUser(input: { turns: Turn[]; keyFacts: string[] }): string {
   const sorted = sortTurns(input.turns);
-  const sources = sorted.filter((t) => t.role === "grandparent").map(formatTurn).join("\n") || "Žádné.";
-  const questions = sorted.filter((t) => t.role === "ai").map(formatTurn).join("\n") || "Žádné.";
-  const facts = input.keyFacts.length ? input.keyFacts.map((f) => `- ${f}`).join("\n") : "Žádná.";
-  return `REPLIKY DĚDY (JEDINÝ ZDROJ FAKTŮ):\n${sources}\n\nOTÁZKY – NEJSOU ZDROJ (jen kontext, necituj je):\n${questions}\n\nZNÁMÁ FAKTA (jen pro orientaci, necituj je):\n${facts}`;
+  const sources = sorted.filter((t) => t.role === "grandparent").map(formatTurn).join("\n") || "None.";
+  const questions = sorted.filter((t) => t.role === "ai").map(formatTurn).join("\n") || "None.";
+  const facts = input.keyFacts.length ? input.keyFacts.map((f) => `- ${f}`).join("\n") : "None.";
+  return `GRANDPA'S TURNS (THE ONLY SOURCE OF FACTS):\n${sources}\n\nQUESTIONS – NOT A SOURCE (context only, do not cite):\n${questions}\n\nKNOWN FACTS (orientation only, do not cite):\n${facts}`;
 }

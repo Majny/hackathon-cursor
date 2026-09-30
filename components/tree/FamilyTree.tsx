@@ -60,14 +60,14 @@ export function FamilyTree({ tree, layout, confirmedByTreeId, suggestedTreeIds, 
 
       <aside className="rounded-2xl border border-line bg-card p-5 lg:w-80 lg:shrink-0">
         {!person ? (
-          <p className="text-ink-soft">Klikněte na člověka ve stromě.</p>
+          <p className="text-ink-soft">Click on someone in the tree.</p>
         ) : (
           <>
             <h2 className="text-2xl font-semibold">
               {person.givenName} {person.surname}
             </h2>
             {person.birthSurname && person.birthSurname !== person.surname && (
-              <p className="text-ink-soft">roz. {person.birthSurname}</p>
+              <p className="text-ink-soft">née {person.birthSurname}</p>
             )}
             <p className="mt-1">
               {person.birthYear ? `*${person.birthYear}` : ""}
@@ -80,14 +80,14 @@ export function FamilyTree({ tree, layout, confirmedByTreeId, suggestedTreeIds, 
             {story ? (
               <div className="mt-4 border-t border-line pt-4">
                 <div className="mb-2 inline-block rounded-full bg-moss px-3 py-0.5 text-sm font-medium text-white">
-                  Ze vzpomínek: „{story.entity.mentionName}“
+                  From the memories: “{story.entity.mentionName}”
                 </div>
                 <p className="text-ink-soft">{story.entity.relationToGrandparent}</p>
                 {story.entity.notes && <p className="mt-1">{story.entity.notes}</p>}
                 <div className="mt-3 space-y-3">
                   {story.citations.map((c) => (
                     <blockquote key={c.turnId} className="border-l-4 border-brick/40 pl-3 font-serif italic">
-                      „{c.quote}“
+                      “{c.quote}”
                       <div>
                         <Link className="text-sm not-italic text-brick underline" href={`/family/sessions/${c.turnId.split("-")[0]}#${c.turnId}`}>
                           {c.turnId}
@@ -99,8 +99,8 @@ export function FamilyTree({ tree, layout, confirmedByTreeId, suggestedTreeIds, 
               </div>
             ) : suggestedTreeIds.includes(person.id) ? (
               <p className="mt-4 text-ink-soft">
-                Možná ho děda zmínil.{" "}
-                <Link href="/family/people" className="text-brick underline">Potvrdit shodu</Link>
+                Grandpa may have mentioned them.{" "}
+                <Link href="/family/people" className="text-brick underline">Confirm the match</Link>
               </p>
             ) : null}
           </>

@@ -21,14 +21,14 @@ export interface Scored {
 export function givenScore(mentionGiven: string, sex: "M" | "F" | null, cand: TreePerson): { score: number; note: string } {
   const mg = normalize(mentionGiven);
   if (!mg) return { score: 0, note: "" };
-  if (cand.nickname && normalize(cand.nickname) === mg) return { score: 1, note: `${mentionGiven} = přezdívka` };
+  if (cand.nickname && normalize(cand.nickname) === mg) return { score: 1, note: `${mentionGiven} = nickname` };
   if (normalize(cand.givenName) === mg) return { score: 1, note: `${mentionGiven} = ${cand.givenName}` };
   const m = canonicalGiven(mentionGiven, sex);
   const c = canonicalGiven(cand.givenName, cand.sex);
   const shared = m.canon.filter((x) => c.canon.includes(x));
   if (shared.length) {
     const score = m.canon.length === 1 ? 1 : 0.9;
-    const note = m.isDiminutive ? `${mentionGiven} → ${cand.givenName} (zdrobnělina)` : `${mentionGiven} ~ ${cand.givenName}`;
+    const note = m.isDiminutive ? `${mentionGiven} → ${cand.givenName} (diminutive)` : `${mentionGiven} ~ ${cand.givenName}`;
     return { score, note };
   }
   let best = 0;
@@ -121,7 +121,7 @@ function buildReason(p: PersonEntity, cand: TreePerson, s: Scored): string {
   if (s.givenNote) parts.push(s.givenNote);
   if (p.surname) parts.push(s.breakdown.surname ? `${p.surname} = ${cand.surname}` : `${p.surname} ≠ ${cand.surname}`);
   if (p.birthYear != null && cand.birthYear != null) {
-    parts.push(`${cand.birthYear} ≈ ${p.birthYearApprox ? "asi " : ""}${p.birthYear}`);
+    parts.push(`${cand.birthYear} ≈ ${p.birthYearApprox ? "c. " : ""}${p.birthYear}`);
   }
   if (p.place && cand.birthPlace) parts.push(`${cand.birthPlace} ${s.breakdown.place ? "✓" : "✗"}`);
   return parts.join(" · ");
@@ -129,13 +129,13 @@ function buildReason(p: PersonEntity, cand: TreePerson, s: Scored): string {
 
 function whyNot(p: PersonEntity, cand: TreePerson, s: Scored): string {
   const bits: string[] = [];
-  if (s.breakdown.surname === 0) bits.push("jiné příjmení");
+  if (s.breakdown.surname === 0) bits.push("different surname");
   if (p.birthYear != null && cand.birthYear != null && p.birthYear !== cand.birthYear) {
-    bits.push(`rok o ${Math.abs(p.birthYear - cand.birthYear)} let jinde`);
+    bits.push(`born ${Math.abs(p.birthYear - cand.birthYear)} years apart`);
   }
-  if (s.breakdown.place === 0 && cand.birthPlace) bits.push(`jiné místo (${cand.birthPlace})`);
-  if (s.breakdown.given < 1) bits.push("jiné křestní jméno");
-  return `${fullName(cand)}${cand.birthYear ? ` *${cand.birthYear}` : ""} – ${bits.length ? bits.join(", ") : "slabší shoda"}`;
+  if (s.breakdown.place === 0 && cand.birthPlace) bits.push(`different place (${cand.birthPlace})`);
+  if (s.breakdown.given < 1) bits.push("different first name");
+  return `${fullName(cand)}${cand.birthYear ? ` *${cand.birthYear}` : ""} – ${bits.length ? bits.join(", ") : "weaker match"}`;
 }
 
 export function matchId(entityId: string, treePersonId: string) {

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { chapterStats, formatCzDate, numberCitations, sessionIdFromTurnId, transcriptHref } from "@/components/book/citations";
+import { chapterStats, formatDate, formatTime, nickname, numberCitations, sessionIdFromTurnId, transcriptHref } from "@/components/book/citations";
 
 describe("book citations", () => {
   it("derives session id from turn id", () => {
@@ -36,16 +36,20 @@ describe("book citations", () => {
       { ...p, verified: true, editedByFamily: false },
       { ...p, verified: false, editedByFamily: true },
     ] })).toEqual({ total: 2, unverified: 1, edited: 1 });
-    expect(formatCzDate("2026-09-30T10:00:00")).toBe("30. 9. 2026");
-    expect(formatCzDate(null)).toBe("");
+    expect(formatDate("2026-09-30T10:00:00")).toBe("30 Sep 2026");
+    expect(formatDate(null)).toBe("");
+    expect(formatTime("2026-09-30T09:05:00")).toBe("09:05");
+    expect(nickname("Jaroslav Novák")).toBe("Jarda");
+    expect(nickname("Tomáš")).toBe("Tom");
+    expect(nickname("", "Grandpa")).toBe("Grandpa");
   });
 });
 
 import { bookTitle } from "@/components/book/citations";
 describe("bookTitle", () => {
-  it("builds genitive title", () => {
-    expect(bookTitle({ fullName: "Jaroslav Novák", sex: "M" })).toBe("Vzpomínky dědy Jaroslava");
-    expect(bookTitle({ fullName: "Marta Nováková", sex: "F" })).toBe("Vzpomínky babičky Marty");
-    expect(bookTitle(null)).toBe("Vzpomínky dědy Jaroslava");
+  it("builds English possessive title", () => {
+    expect(bookTitle({ fullName: "Jaroslav Novák", sex: "M" })).toBe("Grandpa Jaroslav's Memories");
+    expect(bookTitle({ fullName: "Marta Nováková", sex: "F" })).toBe("Grandma Marta's Memories");
+    expect(bookTitle(null)).toBe("Grandpa Jaroslav's Memories");
   });
 });

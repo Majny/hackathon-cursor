@@ -44,11 +44,6 @@ function gedDate(d: Date) {
   return `${d.getDate()} ${MONTHS[d.getMonth()]} ${d.getFullYear()}`;
 }
 
-function genitive(given: string, sex: "M" | "F") {
-  if (sex === "F") return given.endsWith("a") ? given.slice(0, -1) + "y" : given;
-  return /[aeiouyáéíóúůý]$/i.test(given) ? given : given + "a";
-}
-
 function sessionNo(turnId: string) {
   const m = /^s(\d+)-/.exec(turnId);
   return m ? m[1] : "?";
@@ -63,11 +58,11 @@ export function buildGedcom(db: GedcomInput, opts: GedcomOptions = {}): string {
   const entities = new Map(db.persons.map((p) => [p.id, p]));
 
   // HEAD + SUBM
-  L.push("0 HEAD", "1 SOUR AI_ZIVOTOPISEC", "2 VERS 0.1", "2 NAME AI životopisec pro prarodiče");
+  L.push("0 HEAD", "1 SOUR HEIRLOOM", "2 VERS 0.1", "2 NAME Heirloom");
   L.push(`1 DATE ${gedDate(opts.date ?? new Date())}`, "1 SUBM @U1@", "1 GEDC", "2 VERS 5.5.1", "2 FORM LINEAGE-LINKED");
-  L.push("1 CHAR UTF-8", "1 LANG Czech");
+  L.push("1 CHAR UTF-8", "1 LANG English");
   const surnameForSubm = gp.fullName.split(" ").slice(1).join(" ") || gp.fullName;
-  L.push("0 @U1@ SUBM", `1 NAME Rodina ${clean(surnameForSubm)}ových`);
+  L.push("0 @U1@ SUBM", `1 NAME The ${clean(surnameForSubm)} family`);
 
   // Shared notes
   const notes: string[] = [];
@@ -95,17 +90,17 @@ export function buildGedcom(db: GedcomInput, opts: GedcomOptions = {}): string {
     confirmedEntityIds.add(e.id);
     if (e.givenName && e.givenName !== tp.givenName) nickByIndi.set(tp.id, e.givenName);
     const lines = [
-      `Ve vyprávění ${gp.sex === "F" ? "babičky" : "dědy"} ${genitive(gpGiven, gp.sex)}: ${e.mentionName} (${e.relationToGrandparent}).`,
+      `In ${gp.sex === "F" ? "Grandma" : "Grandpa"} ${gpGiven}'s stories: ${e.mentionName} (${e.relationToGrandparent}).`,
     ];
     if (e.notes) lines.push(e.notes);
     const cites: string[] = [];
     for (const tid of e.turnIds) {
       const t = turns.get(tid);
-      if (t) lines.push(`[${tid}] „${t.text.slice(0, 160)}“`);
-      cites.push(`2 PAGE povídání ${sessionNo(tid)}, replika ${tid}`);
+      if (t) lines.push(`[${tid}] "${t.text.slice(0, 160)}"`);
+      cites.push(`2 PAGE session ${sessionNo(tid)}, turn ${tid}`);
     }
     addNote(tp.id, lines.join("\n"));
-    sourcesByIndi.set(tp.id, cites.length ? cites : ["2 PAGE povídání"]);
+    sourcesByIndi.set(tp.id, cites.length ? cites : ["2 PAGE conversations"]);
   }
 
   // INDI
@@ -151,7 +146,7 @@ export function buildGedcom(db: GedcomInput, opts: GedcomOptions = {}): string {
         if (e.birthYear != null) L.push(`2 DATE ${e.birthYearApprox ? "ABT " : ""}${e.birthYear}`);
         if (e.place) L.push(`2 PLAC ${clean(e.place)}`);
       }
-      L.push(...noteRecord("1 NOTE", 1, `Zmíněn ve vyprávění: ${e.relationToGrandparent}. Neověřeno.`));
+      L.push(...noteRecord("1 NOTE", 1, `Mentioned in the stories: ${e.relationToGrandparent}. Unverified.`));
     }
   }
 
@@ -169,7 +164,7 @@ export function buildGedcom(db: GedcomInput, opts: GedcomOptions = {}): string {
   }
 
   L.push(...notes);
-  L.push("0 @S1@ SOUR", `1 TITL Rozhovory s ${clean(gpGiven)}em ${clean(surnameForSubm)}em (AI životopisec)`, "1 PUBL Nahráno 2026, přepsáno automaticky");
+  L.push("0 @S1@ SOUR", `1 TITL Conversations with ${clean(gpGiven)} ${clean(surnameForSubm)} (Heirloom)`, "1 PUBL Recorded 2026, transcribed automatically");
   L.push("0 TRLR");
   return "﻿" + L.join("\r\n") + "\r\n";
 }

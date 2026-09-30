@@ -1,13 +1,13 @@
 import type { LifeTopicKey } from "./types";
 
 export const LIFE_TOPICS: { key: LifeTopicKey; label: string; labelEn: string }[] = [
-  { key: "detstvi", label: "Dětství", labelEn: "Childhood" },
-  { key: "skola", label: "Škola", labelEn: "School" },
-  { key: "vojna", label: "Vojna", labelEn: "Military service" },
-  { key: "prace", label: "Práce", labelEn: "Work" },
-  { key: "laska", label: "Láska a svatba", labelEn: "Love & marriage" },
-  { key: "deti", label: "Děti a rodina", labelEn: "Children & family" },
-  { key: "moudrost", label: "Životní moudrost", labelEn: "Life wisdom" },
+  { key: "detstvi", label: "Childhood", labelEn: "Childhood" },
+  { key: "skola", label: "School", labelEn: "School" },
+  { key: "vojna", label: "Military service", labelEn: "Military service" },
+  { key: "prace", label: "Work", labelEn: "Work" },
+  { key: "laska", label: "Love", labelEn: "Love" },
+  { key: "deti", label: "Children", labelEn: "Children" },
+  { key: "moudrost", label: "Wisdom", labelEn: "Wisdom" },
 ];
 
 export const LIFE_TOPIC_KEYS: LifeTopicKey[] = LIFE_TOPICS.map((t) => t.key);

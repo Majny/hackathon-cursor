@@ -5,5 +5,5 @@ export function Card({ className = "", ...props }: HTMLAttributes<HTMLDivElement
 }
 
 export function CardTitle({ className = "", ...props }: HTMLAttributes<HTMLHeadingElement>) {
-  return <h2 className={`mb-3 text-xl font-semibold text-ink ${className}`} {...props} />;
+  return <h2 className={`mb-3 font-serif text-2xl font-semibold tracking-tight text-ink ${className}`} {...props} />;
 }

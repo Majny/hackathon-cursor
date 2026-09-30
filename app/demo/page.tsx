@@ -15,16 +15,16 @@ interface FirstMsgCheck {
 }
 
 const SNAPSHOTS: { name: SnapshotName; label: string }[] = [
-  { name: "empty", label: "Načíst: prázdné" },
-  { name: "after-s1", label: "Načíst: po povídání 1" },
-  { name: "after-s2", label: "Načíst: po povídání 2" },
+  { name: "empty", label: "Load: empty" },
+  { name: "after-s1", label: "Load: after conversation 1" },
+  { name: "after-s2", label: "Load: after conversation 2" },
 ];
 
 const LINKS: { href: string; label: string }[] = [
-  { href: "/", label: "/ Povídat (děda)" },
-  { href: "/?warm=1", label: "/?warm=1 (pre-warm)" },
-  { href: "/?en=1", label: "/?en=1 (EN titulky)" },
-  { href: "/family", label: "/family přehled" },
+  { href: "/", label: "/ Landing page" },
+  { href: "/talk", label: "/talk (Grandpa)" },
+  { href: "/talk?warm=1", label: "/talk?warm=1 (pre-warm)" },
+  { href: "/family", label: "/family overview" },
   { href: "/family/book", label: "/family/book" },
   { href: "/family/sessions/s1", label: "/family/sessions/s1" },
   { href: "/family/sessions/s2", label: "/family/sessions/s2" },
@@ -49,11 +49,11 @@ export default function DemoPage() {
   const [showPrompt, setShowPrompt] = useState(false);
 
   const addLog = (line: string) =>
-    setLog((l) => [`${new Date().toLocaleTimeString("cs-CZ")} ${line}`, ...l].slice(0, 30));
+    setLog((l) => [`${new Date().toLocaleTimeString("en-GB")} ${line}`, ...l].slice(0, 30));
 
   const refresh = useCallback(async () => {
     api.health().then((h) => { setHealth(h); setHealthErr(null); }).catch((e: Error) => setHealthErr(e.message));
-    api.memory().then(setMemory).catch((e: Error) => addLog(`Paměť: chyba – ${e.message}`));
+    api.memory().then(setMemory).catch((e: Error) => addLog(`Memory: error – ${e.message}`));
     try {
       const sessions = await api.listSessions();
       const res = await Promise.all(
@@ -65,7 +65,7 @@ export default function DemoPage() {
       );
       setChecks(res);
     } catch (e) {
-      addLog(`Sessions: chyba – ${(e as Error).message}`);
+      addLog(`Sessions: error – ${(e as Error).message}`);
     }
   }, []);
 
@@ -78,7 +78,7 @@ export default function DemoPage() {
       const r = await fn();
       addLog(`${label}: OK (${Math.round(performance.now() - t0)} ms) ${summarize(r)}`);
     } catch (e) {
-      addLog(`${label}: CHYBA – ${(e as Error).message}`);
+      addLog(`${label}: ERROR – ${(e as Error).message}`);
     } finally {
       setBusy(null);
       await refresh();
@@ -88,7 +88,7 @@ export default function DemoPage() {
   async function finalizeLast() {
     const sessions = await api.listSessions();
     const last = [...sessions].sort((a, b) => b.index - a.index)[0];
-    if (!last) throw new Error("žádná session");
+    if (!last) throw new Error("no session");
     return api.finalize(last.id);
   }
 
@@ -96,12 +96,12 @@ export default function DemoPage() {
     <main className="mx-auto max-w-5xl space-y-6 p-6">
       <header className="flex flex-wrap items-center justify-between gap-3">
         <h1 className="text-3xl font-semibold">Demo panel</h1>
-        <Button variant="secondary" onClick={() => void refresh()}>Obnovit</Button>
+        <Button variant="secondary" onClick={() => void refresh()}>Refresh</Button>
       </header>
 
       <Card>
-        <CardTitle>Stav (/api/health)</CardTitle>
-        {healthErr && <p className="text-red-700">Chyba: {healthErr}</p>}
+        <CardTitle>Status (/api/health)</CardTitle>
+        {healthErr && <p className="text-red-700">Error: {healthErr}</p>}
         {health ? (
           <div className="flex flex-wrap gap-2">
             <Flag ok={health.openai} label="OpenAI" />
@@ -110,15 +110,15 @@ export default function DemoPage() {
             <Flag ok={health.supabase} label="Supabase" />
             <Badge>store: {health.store}</Badge>
             <Badge>stateId: {health.stateId}</Badge>
-            <Badge tone={health.mockAi ? "warn" : "neutral"}>MOCK_AI: {health.mockAi ? "ano" : "ne"}</Badge>
+            <Badge tone={health.mockAi ? "warn" : "neutral"}>MOCK_AI: {health.mockAi ? "yes" : "no"}</Badge>
             <Badge>LLM: {health.llmProvider}</Badge>
             <Badge>{health.models.openai} / {health.models.openaiWriter} / {health.models.gemini}</Badge>
           </div>
-        ) : !healthErr && <p className="text-ink-soft">Načítám…</p>}
+        ) : !healthErr && <p className="text-ink-soft">Loading…</p>}
       </Card>
 
       <Card>
-        <CardTitle>Ovládání</CardTitle>
+        <CardTitle>Controls</CardTitle>
         <div className="flex flex-wrap gap-3">
           {SNAPSHOTS.map((s) => (
             <Button key={s.name} variant="secondary" disabled={!!busy} onClick={() => run(s.label, () => api.loadDemo(s.name))}>
@@ -127,25 +127,25 @@ export default function DemoPage() {
           ))}
         </div>
         <div className="mt-3 flex flex-wrap gap-3">
-          <Button disabled={!!busy} onClick={() => run("Finalize poslední session", finalizeLast)}>
-            Finalize poslední session
+          <Button disabled={!!busy} onClick={() => run("Finalize last session", finalizeLast)}>
+            Finalize last session
           </Button>
-          <Button disabled={!!busy} onClick={() => run("Vygenerovat kapitolu Dětství", () => api.generateChapter("detstvi"))}>
-            Vygenerovat kapitolu Dětství
+          <Button disabled={!!busy} onClick={() => run("Generate Childhood chapter", () => api.generateChapter("detstvi"))}>
+            Generate Childhood chapter
           </Button>
-          <Button variant="ghost" disabled={!!busy} onClick={() => run("Přepočítat shody", () => api.recomputeMatches())}>
-            Přepočítat shody
+          <Button variant="ghost" disabled={!!busy} onClick={() => run("Recompute matches", () => api.recomputeMatches())}>
+            Recompute matches
           </Button>
         </div>
-        {busy && <p className="mt-3 text-ink-soft">Probíhá: {busy}…</p>}
+        {busy && <p className="mt-3 text-ink-soft">Running: {busy}…</p>}
         {log.length > 0 && (
           <pre className="mt-3 max-h-48 overflow-auto rounded-lg bg-paper-dark p-3 text-sm whitespace-pre-wrap">{log.join("\n")}</pre>
         )}
       </Card>
 
       <Card>
-        <CardTitle>Kontrola paměti: první věta agenta == firstMessage</CardTitle>
-        {checks.length === 0 && <p className="text-ink-soft">Zatím žádná povídání.</p>}
+        <CardTitle>Memory check: agent’s first line == firstMessage</CardTitle>
+        {checks.length === 0 && <p className="text-ink-soft">No conversations yet.</p>}
         <ul className="space-y-3">
           {checks.map((c) => (
             <li key={c.session.id} className="rounded-lg border border-line p-3">
@@ -156,24 +156,24 @@ export default function DemoPage() {
                     c.ok ? "border-green-600 bg-green-100 text-green-800" : "border-red-500 bg-red-100 text-red-800"
                   }`}
                 >
-                  {c.ok ? "✓ shoda" : c.firstAi === null ? "✗ žádná AI replika" : "✗ neshoda – injekce proměnných selhala?"}
+                  {c.ok ? "✓ match" : c.firstAi === null ? "✗ no AI line" : "✗ mismatch – variable injection failed?"}
                 </span>
                 <Badge>{c.session.status}</Badge>
                 <Badge>{c.session.mode}</Badge>
-                {c.session.continuedThreadId && <Badge tone="brick">navázáno na: {c.session.continuedThreadId}</Badge>}
+                {c.session.continuedThreadId && <Badge tone="brick">picks up: {c.session.continuedThreadId}</Badge>}
               </div>
               <p className="mt-2 text-sm"><span className="text-ink-soft">firstMessage:</span> {c.session.firstMessage}</p>
-              {!c.ok && c.firstAi && <p className="mt-1 text-sm"><span className="text-ink-soft">agent řekl:</span> {c.firstAi}</p>}
+              {!c.ok && c.firstAi && <p className="mt-1 text-sm"><span className="text-ink-soft">agent said:</span> {c.firstAi}</p>}
             </li>
           ))}
         </ul>
       </Card>
 
       <Card>
-        <CardTitle>Co si AI pamatuje (MemoryContext pro další session)</CardTitle>
+        <CardTitle>What the AI remembers (MemoryContext for the next session)</CardTitle>
         {memory ? (
           <div className="space-y-4">
-            <p><span className="text-ink-soft">Příští první věta:</span> <strong>{memory.memory.firstMessage}</strong></p>
+            <p><span className="text-ink-soft">Next opening line:</span> <strong>{memory.memory.firstMessage}</strong></p>
             <div className="grid gap-4 md:grid-cols-2">
               <div>
                 <h3 className="mb-1 font-semibold">MemoryContext</h3>
@@ -185,17 +185,17 @@ export default function DemoPage() {
               </div>
             </div>
             <Button variant="ghost" onClick={() => setShowPrompt((v) => !v)}>
-              {showPrompt ? "Skrýt system prompt" : "Zobrazit system prompt"}
+              {showPrompt ? "Hide system prompt" : "Show system prompt"}
             </Button>
             {showPrompt && (
               <pre className="max-h-96 overflow-auto rounded-lg bg-paper-dark p-3 text-xs whitespace-pre-wrap">{memory.systemPrompt}</pre>
             )}
           </div>
-        ) : <p className="text-ink-soft">Načítám…</p>}
+        ) : <p className="text-ink-soft">Loading…</p>}
       </Card>
 
       <Card>
-        <CardTitle>Stránky</CardTitle>
+        <CardTitle>Pages</CardTitle>
         <ul className="grid gap-2 sm:grid-cols-2 md:grid-cols-3">
           {LINKS.map((l) => (
             <li key={l.href}>
@@ -213,8 +213,8 @@ export default function DemoPage() {
 function summarize(r: unknown): string {
   if (!r || typeof r !== "object") return "";
   const o = r as Record<string, unknown>;
-  if ("title" in o && typeof o.title === "string") return `„${o.title}“`;
-  if ("nextTopic" in o && typeof o.nextTopic === "string") return `příště: ${o.nextTopic}`;
-  if (Array.isArray(r)) return `${r.length} položek`;
+  if ("title" in o && typeof o.title === "string") return `“${o.title}”`;
+  if ("nextTopic" in o && typeof o.nextTopic === "string") return `next: ${o.nextTopic}`;
+  if (Array.isArray(r)) return `${r.length} items`;
   return "";
 }

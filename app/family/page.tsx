@@ -4,7 +4,7 @@ import { LIFE_TOPICS } from "@/lib/topics";
 import { Card, CardTitle } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
 import { GenerateChapterButton } from "@/components/book/GenerateChapterButton";
-import { bookTitle, chapterStats, formatCzDate } from "@/components/book/citations";
+import { bookTitle, chapterStats, formatDate, nickname } from "@/components/book/citations";
 
 export const dynamic = "force-dynamic";
 
@@ -18,22 +18,22 @@ export default async function FamilyOverviewPage() {
   return (
     <main className="space-y-8">
       <section>
-        <p className="text-lg text-ink-soft">Rodinný přehled</p>
-        <h1 className="font-serif text-4xl font-semibold text-ink">
+        <p className="text-sm uppercase tracking-[0.25em] text-brick">Family overview</p>
+        <h1 className="mt-1 font-serif text-4xl font-semibold tracking-tight text-ink md:text-5xl">
           {bookTitle(gp)}
         </h1>
         <p className="mt-1 text-lg text-ink-soft">
-          {gp?.fullName} · *{gp?.birthYear} {gp?.birthPlace} · povídá si s vnukem {gp?.grandchildName}
+          {gp?.fullName} · born {gp?.birthYear} in {gp?.birthPlace} · talking with his grandson {nickname(gp?.grandchildName, "Tom")}
         </p>
       </section>
 
       <div className="grid gap-6 lg:grid-cols-5">
         {/* Sessions */}
         <Card className="lg:col-span-3">
-          <CardTitle>Povídání</CardTitle>
+          <CardTitle>Conversations</CardTitle>
           {sessions.length === 0 && (
             <p className="text-ink-soft">
-              Zatím žádné povídání. <Link href="/talk" className="text-brick underline">Začít povídat</Link>
+              No conversations yet. <Link href="/talk" className="text-brick underline">Start the first one</Link>
             </p>
           )}
           <ul className="space-y-4">
@@ -48,18 +48,18 @@ export default async function FamilyOverviewPage() {
                     className="block rounded-xl border border-line bg-paper/60 p-4 transition hover:border-brick/50 hover:bg-paper"
                   >
                     <div className="flex flex-wrap items-center gap-2">
-                      <span className="font-serif text-xl font-semibold">Povídání {s.index}</span>
-                      <span className="text-ink-soft">{formatCzDate(s.startedAt)}</span>
-                      <Badge>{turns} replik</Badge>
-                      {s.mode === "text" && <Badge>psané</Badge>}
-                      {s.status !== "done" && <Badge tone="warn">{s.status === "live" ? "probíhá" : s.status === "finalizing" ? "zapisuje se" : "chyba"}</Badge>}
-                      {thread && <Badge tone="brick">↪ navázáno na: {thread.title}</Badge>}
-                      {!thread && s.continuedThreadId && <Badge tone="brick">↪ navázáno na minulé povídání</Badge>}
+                      <span className="font-serif text-xl font-semibold">Conversation {s.index}</span>
+                      <span className="text-ink-soft">{formatDate(s.startedAt)}</span>
+                      <Badge>{turns} {turns === 1 ? "line" : "lines"}</Badge>
+                      {s.mode === "text" && <Badge>typed</Badge>}
+                      {s.status !== "done" && <Badge tone="warn">{s.status === "live" ? "in progress" : s.status === "finalizing" ? "writing it down" : "error"}</Badge>}
+                      {thread && <Badge tone="brick">↪ picks up: {thread.title}</Badge>}
+                      {!thread && s.continuedThreadId && <Badge tone="brick">↪ picks up from last time</Badge>}
                     </div>
                     {summary ? (
                       <p className="mt-2 line-clamp-3 text-ink">{summary.summary}</p>
                     ) : (
-                      <p className="mt-2 text-ink-soft italic">Shrnutí zatím není.</p>
+                      <p className="mt-2 text-ink-soft italic">No summary yet.</p>
                     )}
                   </Link>
                 </li>
@@ -71,27 +71,27 @@ export default async function FamilyOverviewPage() {
         <div className="space-y-6 lg:col-span-2">
           {/* People */}
           <Card>
-            <CardTitle>Lidé z vyprávění</CardTitle>
+            <CardTitle>People in the stories</CardTitle>
             <p className="text-3xl font-semibold">{db.persons.length}</p>
-            <p className="text-ink-soft">osob · {db.places.length} míst · {db.events.length} událostí</p>
+            <p className="text-ink-soft">{db.persons.length === 1 ? "person" : "people"} · {db.places.length} places · {db.events.length} events</p>
             <div className="mt-3 flex flex-wrap gap-2">
-              {suggested > 0 && <Badge tone="warn">{suggested === 1 ? "1 návrh shody" : `${suggested} návrhy shody`}</Badge>}
-              {confirmed > 0 && <Badge tone="moss">{confirmed} potvrzeno ve stromě</Badge>}
+              {suggested > 0 && <Badge tone="warn">{suggested === 1 ? "1 suggested match" : `${suggested} suggested matches`}</Badge>}
+              {confirmed > 0 && <Badge tone="moss">{confirmed} confirmed in the tree</Badge>}
             </div>
-            <Link href="/family/people" className="mt-4 inline-block text-lg text-brick underline">Zobrazit lidi →</Link>
+            <Link href="/family/people" className="mt-4 inline-block text-lg text-brick underline">See everyone →</Link>
           </Card>
 
           {/* Tree */}
           <Card>
-            <CardTitle>Rodokmen</CardTitle>
-            <p className="text-ink-soft">{db.tree?.name ?? "Rodokmen"} · {db.tree?.persons.length ?? 0} osob</p>
+            <CardTitle>Family tree</CardTitle>
+            <p className="text-ink-soft">{db.tree?.name ?? "Family tree"} · {db.tree?.persons.length ?? 0} people</p>
             <div className="mt-4 flex flex-wrap items-center gap-4">
-              <Link href="/family/tree" className="text-lg text-brick underline">Otevřít strom →</Link>
+              <Link href="/family/tree" className="text-lg text-brick underline">Open the tree →</Link>
               <a
                 href="/api/export/gedcom"
                 className="rounded-lg border border-line bg-card px-4 py-2 text-base font-medium hover:bg-paper-dark"
               >
-                ⬇ Stáhnout GEDCOM
+                ⬇ Download GEDCOM
               </a>
             </div>
           </Card>
@@ -101,8 +101,8 @@ export default async function FamilyOverviewPage() {
       {/* Chapters */}
       <Card>
         <div className="flex flex-wrap items-baseline justify-between gap-2">
-          <CardTitle>Kapitoly knihy</CardTitle>
-          <Link href="/family/book" className="text-lg text-brick underline">Číst knihu →</Link>
+          <CardTitle>Book chapters</CardTitle>
+          <Link href="/family/book" className="text-lg text-brick underline">Read the book →</Link>
         </div>
         <ul className="grid gap-3 md:grid-cols-2">
           {LIFE_TOPICS.map((t) => {
@@ -117,13 +117,13 @@ export default async function FamilyOverviewPage() {
                       {ch.title}
                     </Link>
                   ) : (
-                    <p className="font-serif text-xl text-ink-soft italic">Zatím nenapsáno</p>
+                    <p className="font-serif text-xl text-ink-soft italic">Not written yet</p>
                   )}
                   {ch && st && (
                     <div className="mt-1 flex flex-wrap gap-2">
-                      {ch.status === "approved" ? <Badge tone="moss">✓ schváleno</Badge> : <Badge>koncept</Badge>}
-                      {st.unverified > 0 && <Badge tone="warn">{st.unverified}× neověřeno</Badge>}
-                      {st.edited > 0 && <Badge tone="brick">upraveno rodinou</Badge>}
+                      {ch.status === "approved" ? <Badge tone="moss">✓ approved</Badge> : <Badge>draft</Badge>}
+                      {st.unverified > 0 && <Badge tone="warn">{st.unverified} unverified</Badge>}
+                      {st.edited > 0 && <Badge tone="brick">edited by family</Badge>}
                     </div>
                   )}
                 </div>

@@ -41,8 +41,8 @@ async function run(provider: "openai" | "gemini"): Promise<boolean> {
   ok = check("used requested provider", timings.providers.every((p) => p.startsWith(provider)), timings.providers.join(",")) && ok;
   console.log(`  summary: ${summary.summary}`);
   console.log(`  opener: ${summary.nextSessionOpener}`);
-  const pout = summary.newOpenThreads.find((t) => /pou[tť]/i.test(t.title + t.whyUnfinished));
-  ok = check("open thread about pouť", !!pout, pout?.title) && ok;
+  const pout = summary.newOpenThreads.find((t) => /pou[tť]|fair/i.test(t.title + t.whyUnfinished));
+  ok = check("open thread about the fair", !!pout, pout?.title) && ok;
   ok = check("topicsCovered has detstvi", summary.topicsCovered.includes("detstvi"), summary.topicsCovered.join(",")) && ok;
 
   const pepa = extraction.persons.find((p) => /pep/i.test(p.mentionName + (p.givenName ?? "")));

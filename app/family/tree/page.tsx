@@ -28,16 +28,16 @@ export default async function TreePage({ searchParams }: { searchParams: Promise
     <main className="mx-auto max-w-7xl px-4 py-8">
       <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-semibold">Rodokmen</h1>
+          <h1 className="font-serif text-4xl font-semibold tracking-tight">Family tree</h1>
           <p className="text-ink-soft">
-            {tree.name}. Zeleně jsou lidé, které rodina potvrdila ze vzpomínek.
+            {tree.name}. People in green were confirmed by the family from Grandpa’s memories.
           </p>
         </div>
         <a
           href="/api/export/gedcom?includeUnmatched=0"
           className="inline-flex items-center rounded-xl bg-brick px-5 py-3 text-lg font-medium text-white shadow-sm hover:bg-brick-dark"
         >
-          Stáhnout GEDCOM (MyHeritage / Geni / FamilySearch)
+          Download GEDCOM (MyHeritage / Geni / FamilySearch)
         </a>
       </div>
       <FamilyTree
@@ -50,7 +50,7 @@ export default async function TreePage({ searchParams }: { searchParams: Promise
         initialFocus={focus && tree.persons.some((p) => p.id === focus) ? focus : null}
       />
       <p className="mt-4 text-sm text-ink-soft">
-        Standardní GEDCOM 5.5.1 (UTF-8) pro import do MyHeritage, Geni nebo FamilySearch. Vzpomínky jsou přiložené jako poznámky.
+        Standard GEDCOM 5.5.1 (UTF-8), ready to import into MyHeritage, Geni or FamilySearch. The memories are attached as notes.
       </p>
     </main>
   );

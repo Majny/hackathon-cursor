@@ -8,6 +8,7 @@ import { MemoryPeek } from "./MemoryPeek";
 import { NextTimeCard } from "./NextTimeCard";
 import { StatusOrb, type OrbState } from "./StatusOrb";
 import { TextFallback } from "./TextFallback";
+import { nickname } from "@/components/book/citations";
 import { createTurnQueue, mapRole, type TurnQueue } from "./turnQueue";
 
 const NO_AUDIO_TIMEOUT_MS = 8000;
@@ -117,7 +118,7 @@ function TalkInner({ warm }: { warm: boolean }) {
         void playTts(res.reply);
       } catch (e) {
         console.error("[talk] chat failed", e);
-        setError("Nepodařilo se odeslat. Zkus to prosím znovu.");
+        setError("Couldn’t send that. Please try again.");
       } finally {
         setChatBusy(false);
       }
@@ -151,7 +152,7 @@ function TalkInner({ warm }: { warm: boolean }) {
         if ((queueRef.current?.sent.length ?? 0) === 0) await sendChat("");
       } catch (e) {
         console.error("[talk] text fallback start failed", e);
-        setError("Nepodařilo se začít povídání. Zkus obnovit stránku.");
+        setError("Couldn’t start the conversation. Please refresh the page.");
         setPhase("idle");
       }
     },
@@ -184,12 +185,12 @@ function TalkInner({ warm }: { warm: boolean }) {
     },
     onError: (message) => {
       console.error("[talk] EL error", message);
-      if (!gotAudioRef.current) void switchToText("Hlas teď nefunguje, můžeme si psát.");
+      if (!gotAudioRef.current) void switchToText("Voice isn’t working right now — we can type instead.");
     },
     onDisconnect: (details) => {
       if (suppressDisconnectRef.current || modeRef.current !== "voice") return;
       if (details.reason === "error" && !gotAudioRef.current) {
-        void switchToText("Hlas teď nefunguje, můžeme si psát.");
+        void switchToText("Voice isn’t working right now — we can type instead.");
         return;
       }
       if (phaseRef.current === "live" || phaseRef.current === "starting") void finalize();
@@ -227,7 +228,7 @@ function TalkInner({ warm }: { warm: boolean }) {
       r = await api.startSession("voice");
     } catch (e) {
       console.error("[talk] start session failed", e);
-      setError("Nepodařilo se začít povídání. Zkus to prosím znovu.");
+      setError("Couldn’t start the conversation. Please try again.");
       setPhase("idle");
       return;
     }
@@ -235,8 +236,8 @@ function TalkInner({ warm }: { warm: boolean }) {
     queueRef.current = newQueue(r.session.id);
     setMemory(r.memory);
 
-    if (!micOk) return void switchToText("Mikrofon není dostupný, můžeme si psát.");
-    if (!r.conversationToken) return void switchToText("Hlas teď není k dispozici, můžeme si psát.");
+    if (!micOk) return void switchToText("The microphone isn’t available — we can type instead.");
+    if (!r.conversationToken) return void switchToText("Voice isn’t available right now — we can type instead.");
 
     try {
       conversationRef.current.startSession({
@@ -246,10 +247,10 @@ function TalkInner({ warm }: { warm: boolean }) {
       });
     } catch (e) {
       console.error("[talk] startSession threw", e);
-      return void switchToText("Hlas teď nefunguje, můžeme si psát.");
+      return void switchToText("Voice isn’t working right now — we can type instead.");
     }
     noAudioTimerRef.current = setTimeout(() => {
-      if (!gotAudioRef.current) void switchToText("Neslyším Tomáše, tak si zatím napíšeme.");
+      if (!gotAudioRef.current) void switchToText("I can’t hear Tom right now, so let’s type for a bit.");
     }, NO_AUDIO_TIMEOUT_MS);
   }, [switchToText]);
 
@@ -273,7 +274,7 @@ function TalkInner({ warm }: { warm: boolean }) {
       setNextTopic(m.memory.nextTopic);
       setPhase("done");
     } catch {
-      setError("Ani připravený výsledek se nepodařilo načíst.");
+      setError("Couldn’t load the prepared result either.");
     }
   }, []);
 
@@ -303,8 +304,8 @@ function TalkInner({ warm }: { warm: boolean }) {
   useEffect(() => () => clearNoAudioTimer(), []);
 
   // ---------- render ----------
-  const grandparent = memory?.grandparentName ?? "Jarda";
-  const grandchild = memory?.grandchildName ?? "Tomáš";
+  const grandparent = nickname(memory?.grandparentName, "Jarda");
+  const grandchild = nickname(memory?.grandchildName, "Tom");
   const orb: OrbState =
     phase === "starting" || conversation.status === "connecting"
       ? "connecting"
@@ -316,7 +317,7 @@ function TalkInner({ warm }: { warm: boolean }) {
 
   return (
     <main className="mx-auto flex min-h-screen max-w-3xl flex-col items-center gap-8 px-5 py-10">
-      <h1 className="text-center font-serif text-5xl text-ink">Ahoj, dědo {vocative(grandparent)}</h1>
+      <h1 className="text-center font-serif text-5xl tracking-tight text-ink">Hi, Grandpa {grandparent}</h1>
 
       {error && <p className="rounded-xl bg-warn-soft px-5 py-3 text-xl text-ink">{error}</p>}
 
@@ -326,9 +327,9 @@ function TalkInner({ warm }: { warm: boolean }) {
             onClick={() => void startVoice()}
             className="flex aspect-square w-[min(80vw,45vh)] min-w-56 items-center justify-center rounded-full bg-brick text-[40px] font-semibold text-white shadow-xl transition-transform hover:scale-[1.02] hover:bg-brick-dark active:scale-95"
           >
-            Povídat
+            Talk
           </button>
-          <p className="text-center text-2xl text-ink-soft">Zmáčkni a povídej si s {grandchild === "Tomáš" ? "Tomášem" : grandchild}.</p>
+          <p className="text-center text-2xl text-ink-soft">Press the button and have a chat with {grandchild}.</p>
         </>
       )}
 
@@ -343,14 +344,14 @@ function TalkInner({ warm }: { warm: boolean }) {
             onClick={() => void stop()}
             className="rounded-2xl border-2 border-brick bg-card px-10 py-5 text-3xl font-semibold text-brick hover:bg-paper-dark"
           >
-            Skončit
+            End
           </button>
           {mode === "voice" && (
             <button
               onClick={() => void switchToText("")}
               className="text-lg text-ink-soft underline underline-offset-4"
             >
-              Psát místo mluvení
+              Type instead
             </button>
           )}
         </>
@@ -359,18 +360,18 @@ function TalkInner({ warm }: { warm: boolean }) {
       {phase === "finalizing" && (
         <div className="flex flex-col items-center gap-4 py-10 text-center">
           <span className="h-12 w-12 animate-spin rounded-full border-4 border-line border-t-brick" />
-          <p className="text-3xl text-ink">Děkuji, dědo. Zapisuji vzpomínky…</p>
+          <p className="text-3xl text-ink">Thank you, Grandpa. Writing down your memories…</p>
         </div>
       )}
 
       {phase === "finalizeFailed" && (
         <div className="flex flex-col items-center gap-4 text-center">
-          <p className="text-2xl text-ink">Zápis trvá déle, než by měl.</p>
+          <p className="text-2xl text-ink">Writing it down is taking longer than it should.</p>
           <button
             onClick={() => void loadPrepared()}
             className="rounded-2xl bg-brick px-8 py-4 text-2xl font-medium text-white hover:bg-brick-dark"
           >
-            Načíst připravený výsledek
+            Load the prepared result
           </button>
         </div>
       )}
@@ -380,10 +381,4 @@ function TalkInner({ warm }: { warm: boolean }) {
       <MemoryPeek memory={memory} />
     </main>
   );
-}
-
-/** Minimal Czech vocative for common names ("Jaroslav" → "Jardo"). */
-function vocative(name: string): string {
-  const map: Record<string, string> = { Jaroslav: "Jardo", Jarda: "Jardo", Josef: "Pepo", Pepa: "Pepo", Jan: "Jene" };
-  return map[name] ?? name;
 }

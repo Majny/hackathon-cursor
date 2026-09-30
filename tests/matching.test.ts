@@ -66,9 +66,9 @@ describe("Pepa Dvořák", () => {
     const ms = suggestMatches([person()], T, EXCLUDE, []);
     expect(ms).toHaveLength(1);
     expect(ms[0]).toMatchObject({ treePersonId: "I6", band: "strong", status: "suggested" });
-    expect(ms[0].reason).toContain("Pepa → Josef (zdrobnělina)");
+    expect(ms[0].reason).toContain("Pepa → Josef (diminutive)");
     expect(ms[0].alsoConsidered.map((a) => a.treePersonId)).toContain("I12");
-    expect(ms[0].alsoConsidered.find((a) => a.treePersonId === "I12")!.why).toContain("jiné příjmení");
+    expect(ms[0].alsoConsidered.find((a) => a.treePersonId === "I12")!.why).toContain("different surname");
   });
 });
 

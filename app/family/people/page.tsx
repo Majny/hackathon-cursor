@@ -31,9 +31,9 @@ export default async function PeoplePage() {
     <main className="mx-auto max-w-5xl px-4 py-8">
       <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-semibold">Lidé z vyprávění</h1>
+          <h1 className="font-serif text-4xl font-semibold tracking-tight">People in the stories</h1>
           <p className="text-ink-soft">
-            Koho děda zmínil a jestli je to někdo z rodokmenu. Shodu vždy potvrzuje rodina.
+            Everyone Grandpa mentioned, and whether they’re someone in the family tree. The family always has the final say on a match.
           </p>
         </div>
         <RecomputeButton />
@@ -41,7 +41,7 @@ export default async function PeoplePage() {
 
       {matches.length === 0 ? (
         <p className="rounded-2xl border border-dashed border-line p-6 text-ink-soft">
-          Zatím žádné návrhy shod se stromem.
+          No suggested tree matches yet.
         </p>
       ) : (
         <div className="space-y-4">
@@ -63,57 +63,57 @@ export default async function PeoplePage() {
       )}
 
       <EntityTable
-        title="Lidé"
+        title="People"
         rows={db.persons}
         rowKey={(p) => p.id}
-        empty="Zatím nikdo."
+        empty="Nobody yet."
         columns={[
-          { header: "Jméno", cell: (p) => <strong>{p.mentionName}</strong> },
-          { header: "Vztah", cell: (p) => p.relationToGrandparent },
-          { header: "Rok", cell: (p) => (p.birthYear ? `${p.birthYearApprox ? "asi " : ""}${p.birthYear}` : "–") },
-          { header: "Místo", cell: (p) => p.place ?? "–" },
+          { header: "Name", cell: (p) => <strong>{p.mentionName}</strong> },
+          { header: "Relation", cell: (p) => p.relationToGrandparent },
+          { header: "Born", cell: (p) => (p.birthYear ? `${p.birthYearApprox ? "c. " : ""}${p.birthYear}` : "–") },
+          { header: "Place", cell: (p) => p.place ?? "–" },
           {
-            header: "Ve stromě",
+            header: "In the tree",
             cell: (p) => {
               const m = matchByEntity.get(p.id);
               const t = m ? treeById.get(m.treePersonId) : undefined;
               if (!m || !t) return <span className="text-ink-soft">–</span>;
-              return `${t.givenName} ${t.surname}${m.status === "suggested" ? " (návrh)" : " ✓"}`;
+              return `${t.givenName} ${t.surname}${m.status === "suggested" ? " (suggested)" : " ✓"}`;
             },
           },
-          { header: "Zdroj", cell: (p) => <TurnLinks turnIds={p.turnIds} /> },
+          { header: "Source", cell: (p) => <TurnLinks turnIds={p.turnIds} /> },
         ]}
       />
 
       <EntityTable
-        title="Místa"
+        title="Places"
         rows={db.places}
         rowKey={(p) => p.id}
-        empty="Zatím žádná místa."
+        empty="No places yet."
         columns={[
-          { header: "Místo", cell: (p) => <strong>{p.name}</strong> },
-          { header: "Souvislost", cell: (p) => p.context },
-          { header: "Zdroj", cell: (p) => <TurnLinks turnIds={p.turnIds} /> },
+          { header: "Place", cell: (p) => <strong>{p.name}</strong> },
+          { header: "Context", cell: (p) => p.context },
+          { header: "Source", cell: (p) => <TurnLinks turnIds={p.turnIds} /> },
         ]}
       />
 
       <EntityTable
-        title="Události"
+        title="Events"
         rows={events}
         rowKey={(e) => e.id}
-        empty="Zatím žádné události."
+        empty="No events yet."
         columns={[
-          { header: "Rok", cell: (e) => (e.year ? `${e.yearApprox ? "asi " : ""}${e.year}` : "–") },
-          { header: "Událost", cell: (e) => <><strong>{e.title}</strong><div className="text-ink-soft">{e.description}</div></> },
+          { header: "Year", cell: (e) => (e.year ? `${e.yearApprox ? "c. " : ""}${e.year}` : "–") },
+          { header: "Event", cell: (e) => <><strong>{e.title}</strong><div className="text-ink-soft">{e.description}</div></> },
           {
-            header: "Kdo a kde",
+            header: "Who & where",
             cell: (e) =>
               [
                 ...e.personIds.map((id) => persons.get(id)?.mentionName ?? id),
                 ...e.placeIds.map((id) => placesById.get(id)?.name ?? id),
               ].join(", ") || "–",
           },
-          { header: "Zdroj", cell: (e) => <TurnLinks turnIds={e.turnIds} /> },
+          { header: "Source", cell: (e) => <TurnLinks turnIds={e.turnIds} /> },
         ]}
       />
     </main>

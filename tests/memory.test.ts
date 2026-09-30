@@ -31,20 +31,21 @@ describe("buildMemory", () => {
     expect(m.firstMessage).toBe(FIRST_SESSION_OPENER);
     expect(m.sessionNo).toBe(1);
     expect(m.continuedThreadId).toBeNull();
-    expect(m.memorySummary).toBe("Žádné.");
+    expect(m.memorySummary).toBe("None.");
   });
 
-  it("after-s1 -> continues the pouť story", async () => {
+  it("after-s1 -> continues the fair story", async () => {
     const db = await afterS1();
     const m = buildMemory(db);
     const last = db.summaries[db.summaries.length - 1];
     expect(m.isFirstSession).toBe(false);
     expect(m.firstMessage).toBe(last.nextSessionOpener);
-    expect(m.openThreads.toLowerCase()).toContain("pouť");
-    expect(m.memorySummary).toMatch(/^Povídání 1/);
+    expect(m.openThreads.toLowerCase()).toContain("fair");
+    expect(m.memorySummary).toMatch(/^Session 1/);
     expect(m.memorySummary.length).toBeLessThanOrEqual(1500);
     expect(m.knownPeople).toContain("Pepa Dvořák");
     expect(m.continuedThreadId).toBeTruthy();
-    expect(m.uncoveredTopics).not.toContain("Dětství");
+    expect(m.uncoveredTopics).not.toContain("Childhood");
+    expect(m.uncoveredTopics).toContain("Military service");
   });
 });

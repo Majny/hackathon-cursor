@@ -2,13 +2,13 @@
   "version": 1,
   "grandparent": {
     "id": "jaroslav",
-    "displayName": "děda Jarda",
+    "displayName": "Grandpa Jarda",
     "fullName": "Jaroslav Novák",
     "birthYear": 1946,
     "birthPlace": "Kladno",
     "sex": "M",
     "treePersonId": "I1",
-    "grandchildName": "Tomáš"
+    "grandchildName": "Tom"
   },
   "sessions": [],
   "turns": [],

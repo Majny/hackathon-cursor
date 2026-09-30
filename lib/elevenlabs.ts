@@ -38,7 +38,7 @@ export async function tts(text: string): Promise<ArrayBuffer | null> {
     const stream = await client.textToSpeech.convert(voiceId, {
       text,
       modelId: "eleven_flash_v2_5",
-      languageCode: "cs",
+      languageCode: "en",
       outputFormat: "mp3_44100_128",
     });
     const buf = await new Response(stream).arrayBuffer();

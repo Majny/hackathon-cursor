@@ -54,29 +54,39 @@ export function chapterStats(ch: Pick<Chapter, "paragraphs">) {
   return { total, unverified, edited };
 }
 
-/** "2026-09-30T14:05:00Z" -> "30. 9. 2026" (fixed format, no locale dependency → no hydration mismatch). */
-export function formatCzDate(iso: string | null | undefined): string {
+const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+/** "2026-09-30T14:05:00Z" -> "30 Sep 2026" (en-GB style, fixed format, no locale dependency -> no hydration mismatch). */
+export function formatDate(iso: string | null | undefined): string {
   if (!iso) return "";
   const d = new Date(iso);
   if (Number.isNaN(d.getTime())) return "";
-  return `${d.getDate()}. ${d.getMonth() + 1}. ${d.getFullYear()}`;
+  return `${d.getDate()} ${MONTHS[d.getMonth()]} ${d.getFullYear()}`;
 }
 
-export function formatCzTime(iso: string | null | undefined): string {
+/** "14:05" (24h, en-GB). */
+export function formatTime(iso: string | null | undefined): string {
   if (!iso) return "";
   const d = new Date(iso);
   if (Number.isNaN(d.getTime())) return "";
-  return `${d.getHours()}:${String(d.getMinutes()).padStart(2, "0")}`;
+  return `${String(d.getHours()).padStart(2, "0")}:${String(d.getMinutes()).padStart(2, "0")}`;
 }
 
-/** "Jaroslav" (M) -> "Vzpomínky dědy Jaroslava"; "Marie" (F) -> "Vzpomínky babičky Marie". Naive Czech genitive. */
+/** @deprecated kept for backwards compatibility; use formatDate / formatTime. */
+export const formatCzDate = formatDate;
+export const formatCzTime = formatTime;
+
+/** "Jaroslav" (M) -> "Grandpa Jaroslav's Memories"; "Marta" (F) -> "Grandma Marta's Memories". */
 export function bookTitle(gp: { fullName?: string; sex?: "M" | "F" } | null | undefined): string {
-  const first = gp?.fullName?.split(/\s+/)[0];
-  if (!first) return "Vzpomínky dědy Jaroslava";
-  if (gp?.sex === "F") {
-    const gen = first.endsWith("a") ? `${first.slice(0, -1)}y` : first;
-    return `Vzpomínky babičky ${gen}`;
-  }
-  const gen = /[aeiouyáéíóúůý]$/i.test(first) ? first : `${first}a`;
-  return `Vzpomínky dědy ${gen}`;
+  const first = gp?.fullName?.split(/\s+/)[0] || "Jaroslav";
+  return `${gp?.sex === "F" ? "Grandma" : "Grandpa"} ${first}'s Memories`;
+}
+
+const NICKNAMES: Record<string, string> = { Jaroslav: "Jarda", Josef: "Pepa", "Tomáš": "Tom", Tomas: "Tom" };
+
+/** Friendly short name: "Jaroslav Novák" -> "Jarda", "Tomáš" -> "Tom". */
+export function nickname(name: string | null | undefined, fallback = ""): string {
+  const first = name?.trim().split(/\s+/)[0];
+  if (!first) return fallback;
+  return NICKNAMES[first] ?? first;
 }

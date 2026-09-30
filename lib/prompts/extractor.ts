@@ -2,24 +2,24 @@
 import type { Grandparent, PersonEntity, Turn } from "../types";
 import { formatTranscript } from "./transcript";
 
-export const EXTRACTOR_TEMPLATE = `Z přepisu rozhovoru s dědou Jaroslavem (narozen {{birthYear}}, {{birthPlace}}) vytáhni strukturovaná data pro rodokmen. Vše česky. Děda sám a vnuk Tomáš NEJSOU v seznamu osob.
+export const EXTRACTOR_TEMPLATE = `From the transcript of a conversation with Grandpa Jaroslav (born {{birthYear}}, {{birthPlace}}) extract structured data for the family tree. Write descriptive fields in English, but keep names and places exactly as spoken (Czech spelling). Grandpa himself and his grandson Tom are NOT in the list of persons.
 
-persons – každý konkrétní zmíněný člověk, i když zazněla jen přezdívka:
-- mentionName: přesně jak zaznělo („Pepa Dvořák“, „maminka“).
-- givenName: křestní jméno nebo přezdívka tak, jak zazněla („Pepa“). Přezdívku NEPŘEVÁDĚJ na plné jméno – to dělá jiný systém. Když zazní jen vztah („maminka“) a jméno ne, dej null.
-- surname: příjmení, pokud zaznělo, jinak null.
-- sex: jen když je jasné z gramatiky nebo jména, jinak null.
-- birthYear: jen když zaznělo, nebo jde přímo spočítat z věty typu „byl o dva roky mladší než já“ (děda je z roku {{birthYear}}). Když je rok spočítaný nebo zazní „asi“ či „kolem“, nastav birthYearApprox na true.
-- place: odkud osoba je nebo kde žila, jinak null.
-- relationToGrandparent: vztah k dědovi („kamarád z dětství, soused“).
-- notes: jedna věta o tom, co o něm víme.
-- existingId: pokud jde o osobu ze seznamu ZNÁMÉ OSOBY, vyplň její id, jinak null.
-- turnIds: ID replik, kde osoba zazněla.
+persons – every specific person mentioned, even if only a nickname was said:
+- mentionName: exactly as it was said ("Pepa Dvořák", "my mum Anna").
+- givenName: the first name or nickname as it was said ("Pepa"). Do NOT convert a nickname to a full name – another system does that. If only a relation was said ("my mum") and no name, use null.
+- surname: the surname if it was said, otherwise null.
+- sex: only when clear from the words or the name, otherwise null.
+- birthYear: only if it was said, or can be computed directly from a sentence like "he was two years younger than me" (Grandpa was born in {{birthYear}}). If the year is computed or "about"/"around" was said, set birthYearApprox to true.
+- place: where the person was from or lived, otherwise null.
+- relationToGrandparent: relation to Grandpa ("childhood friend, neighbour").
+- notes: one sentence about what we know about them.
+- existingId: if this is a person from the KNOWN PERSONS list, fill in their id, otherwise null.
+- turnIds: IDs of the turns where the person was mentioned.
 
-places – obce, čtvrti, podniky („huť Poldi“), každé s kontextem a turnIds.
-events – události s rokem (year a yearApprox), jmény zúčastněných osob (mentionName) a názvy míst, s popisem a turnIds.
+places – towns, districts, workplaces ("the Poldi steelworks"), each with context and turnIds.
+events – events with a year (year and yearApprox), names of the people involved (mentionName) and place names, with a description and turnIds.
 
-Pravidla: jen to, co v přepisu skutečně zaznělo. Nejisté hodnoty dej null. Každá položka musí mít aspoň jedno turnId, které v přepisu existuje. Stejnou osobu zmíněnou víckrát uveď jen jednou.`;
+Rules: only what was actually said in the transcript. Uncertain values are null. Every item must have at least one turnId that exists in the transcript. List the same person mentioned several times only once.`;
 
 export function renderExtractorSystem(gp: Pick<Grandparent, "birthYear" | "birthPlace">): string {
   return EXTRACTOR_TEMPLATE.replaceAll("{{birthYear}}", String(gp.birthYear)).replaceAll("{{birthPlace}}", gp.birthPlace);
@@ -28,10 +28,10 @@ export function renderExtractorSystem(gp: Pick<Grandparent, "birthYear" | "birth
 export function buildExtractorUser(input: { turns: Turn[]; knownPersons: PersonEntity[]; grandparent?: Pick<Grandparent, "birthYear" | "birthPlace"> }): string {
   const gp = input.grandparent;
   const hints = gp
-    ? `\n\nPŘIPOMÍNKY:\n- Děda je z roku ${gp.birthYear}: „o dva roky mladší než já“ znamená birthYear ${gp.birthYear + 2} a birthYearApprox true; „o rok starší“ znamená ${gp.birthYear - 1} a birthYearApprox true.\n- Když osoba bydlela „vedle“, „v naší ulici“ nebo „od nás“, je place obec, kde děda tehdy žil (z přepisu, jinak ${gp.birthPlace}).`
+    ? `\n\nREMINDERS:\n- Grandpa was born in ${gp.birthYear}: "two years younger than me" means birthYear ${gp.birthYear + 2} and birthYearApprox true; "a year older" means ${gp.birthYear - 1} and birthYearApprox true.\n- If a person lived "next door", "in our street" or "near us", place is the town where Grandpa lived at the time (from the transcript, otherwise ${gp.birthPlace}).`
     : "";
   const known = input.knownPersons.length
     ? input.knownPersons.map((p) => `${p.id} | ${p.mentionName} | ${p.relationToGrandparent}`).join("\n")
-    : "Žádné.";
-  return `ZNÁMÉ OSOBY (id | mentionName | relace):\n${known}\n\nPŘEPIS:\n${formatTranscript(input.turns)}${hints}`;
+    : "None.";
+  return `KNOWN PERSONS (id | mentionName | relation):\n${known}\n\nTRANSCRIPT:\n${formatTranscript(input.turns)}${hints}`;
 }

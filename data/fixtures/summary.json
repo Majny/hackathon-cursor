@@ -1,22 +1,22 @@
 {
-  "summary": "Děda Jaroslav vyprávěl o dětství na Kladně pod komíny Poldovky, kde jeho táta František pracoval v huti. Vzpomínal na maminku Annu a její buchty a na sestru Věrku. S kamarádem Pepou Dvořákem, který bydlel o dům vedle a byl o dva roky mladší, hrával fotbal na plácku. Začal vyprávět, jak s Pepou v roce 1958 utekli na pouť do Prahy, ale konec si nechal na příště.",
+  "summary": "Grandpa Jaroslav talked about his childhood in Kladno under the chimneys of the Poldi steelworks, where his dad František worked at the furnace. He remembered his mum Anna and her buns and his sister Věrka. With his friend Pepa Dvořák, who lived next door and was two years younger, he played football on the patch. He started telling how he and Pepa ran off to the fair in Prague in 1958, but saved the ending for next time.",
   "topicsCovered": ["detstvi"],
   "newOpenThreads": [
     {
-      "title": "Útěk s Pepou na pouť do Prahy",
-      "whyUnfinished": "Nedořekl, jak se dostali domů a jak to doma dopadlo.",
+      "title": "Running off with Pepa to the fair in Prague",
+      "whyUnfinished": "He didn't say how they got home or what happened at home.",
       "turnIds": ["s1-t17"]
     }
   ],
   "resolvedThreadIds": [],
-  "nextTopic": "Jak dopadl útěk s Pepou na pouť do Prahy",
-  "nextSessionOpener": "Ahoj dědo! Minule jsi mi začal vyprávět, jak jste s Pepou v padesátém osmém utekli na pouť do Prahy – tak jak to doma dopadlo?",
+  "nextTopic": "How running off with Pepa to the fair in Prague ended",
+  "nextSessionOpener": "Hi Grandpa! Last time you started telling me how you and Pepa ran off to the fair in Prague in fifty-eight — so how did it go when you got home?",
   "keyFacts": [
-    "Narodil se 1946 na Kladně",
-    "Táta František pracoval v huti Poldi",
-    "Maminka Anna pekla buchty",
-    "Sestra Věrka",
-    "Kamarád Pepa Dvořák bydlel o dům vedle, o dva roky mladší",
-    "V roce 1958 utekli s Pepou na pouť do Prahy"
+    "Born 1946 in Kladno",
+    "Dad František worked at the Poldi steelworks",
+    "Mum Anna baked buns",
+    "Sister Věrka",
+    "Friend Pepa Dvořák lived next door, two years younger",
+    "In 1958 he and Pepa ran off to the fair in Prague"
   ]
 }

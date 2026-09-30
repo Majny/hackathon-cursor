@@ -19,9 +19,9 @@ export function PersonCard({ person, highlighted, suggested, selected, isGrandpa
         {person.deathYear ? ` †${person.deathYear}` : ""}
         {person.birthPlace ? ` · ${person.birthPlace}` : ""}
       </span>
-      {highlighted && <span className="mt-0.5 rounded-full bg-moss px-2 text-xs font-medium text-white">ze vzpomínek</span>}
-      {!highlighted && isGrandparent && <span className="mt-0.5 rounded-full bg-brick px-2 text-xs font-medium text-white">vypravěč</span>}
-      {!highlighted && !isGrandparent && suggested && <span className="mt-0.5 rounded-full bg-warn px-2 text-xs font-medium">návrh shody</span>}
+      {highlighted && <span className="mt-0.5 rounded-full bg-moss px-2 text-xs font-medium text-white">from the memories</span>}
+      {!highlighted && isGrandparent && <span className="mt-0.5 rounded-full bg-brick px-2 text-xs font-medium text-white">storyteller</span>}
+      {!highlighted && !isGrandparent && suggested && <span className="mt-0.5 rounded-full bg-warn px-2 text-xs font-medium">suggested match</span>}
     </button>
   );
 }

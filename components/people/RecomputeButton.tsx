@@ -22,7 +22,7 @@ export function RecomputeButton() {
         }
       }}
     >
-      {busy ? "Hledám…" : "Hledat shody ve stromě"}
+      {busy ? "Searching…" : "Find matches in the tree"}
     </Button>
   );
 }

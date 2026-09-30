@@ -19,12 +19,12 @@ export interface MatchCardProps {
 }
 
 const GATE_LABELS: Record<string, string> = {
-  "surname-mismatch-cap": "jiné příjmení → max 50 %",
-  "year-gap-cap": "rok se liší o víc než 10 let → max 50 %",
-  "no-surname-cap": "příjmení nezaznělo → max 90 %",
+  "surname-mismatch-cap": "different surname → capped at 50%",
+  "year-gap-cap": "years differ by more than 10 → capped at 50%",
+  "no-surname-cap": "surname never mentioned → capped at 90%",
 };
 
-const pct = (n: number | null) => (n == null ? "–" : `${Math.round(n * 100)} %`);
+const pct = (n: number | null) => (n == null ? "–" : `${Math.round(n * 100)}%`);
 
 export function MatchCard({ match, entity, treePerson, relatives, citations, alsoNames }: MatchCardProps) {
   const router = useRouter();
@@ -38,14 +38,14 @@ export function MatchCard({ match, entity, treePerson, relatives, citations, als
       await api.matchAction(match.id, action);
       router.refresh();
     } catch (e) {
-      setError(e instanceof Error ? e.message : "Nepodařilo se uložit.");
+      setError(e instanceof Error ? e.message : "Couldn’t save that.");
     } finally {
       setBusy(null);
     }
   };
 
   const entityDesc = entity
-    ? [entity.relationToGrandparent, entity.place, entity.birthYear ? `${entity.birthYearApprox ? "asi " : ""}${entity.birthYear}` : null]
+    ? [entity.relationToGrandparent, entity.place, entity.birthYear ? `${entity.birthYearApprox ? "c. " : ""}${entity.birthYear}` : null]
         .filter(Boolean)
         .join(", ")
     : "";
@@ -53,15 +53,15 @@ export function MatchCard({ match, entity, treePerson, relatives, citations, als
   return (
     <Card className={match.status === "confirmed" ? "border-moss" : match.status === "rejected" ? "opacity-70" : "border-brick/40"}>
       <div className="mb-2 flex flex-wrap items-center gap-2">
-        {match.status === "suggested" && <Badge tone="brick">Návrh shody</Badge>}
-        {match.status === "confirmed" && <Badge tone="moss">Potvrzeno rodinou</Badge>}
-        {match.status === "rejected" && <Badge>Zamítnuto</Badge>}
-        <Badge tone={match.band === "strong" ? "moss" : "warn"}>{match.band === "strong" ? "silná shoda" : "možná shoda"}</Badge>
+        {match.status === "suggested" && <Badge tone="brick">Suggested match</Badge>}
+        {match.status === "confirmed" && <Badge tone="moss">Confirmed by the family</Badge>}
+        {match.status === "rejected" && <Badge>Rejected</Badge>}
+        <Badge tone={match.band === "strong" ? "moss" : "warn"}>{match.band === "strong" ? "strong match" : "possible match"}</Badge>
       </div>
 
       <p className="text-xl leading-relaxed">
-        <strong>{entity?.mentionName ?? match.entityId}</strong> z vyprávění
-        {entityDesc && <span className="text-ink-soft"> ({entityDesc})</span>} → ve stromě{" "}
+        <strong>{entity?.mentionName ?? match.entityId}</strong> from the stories
+        {entityDesc && <span className="text-ink-soft"> ({entityDesc})</span>} → in the tree{" "}
         <strong>
           {treePerson ? `${treePerson.givenName} ${treePerson.surname}` : match.treePersonId}
         </strong>
@@ -72,17 +72,17 @@ export function MatchCard({ match, entity, treePerson, relatives, citations, als
             {treePerson.birthPlace ? `, ${treePerson.birthPlace}` : ""})
           </span>
         )}
-        . Shoda <strong>{pct(match.score)}</strong>.
+        . Match <strong>{pct(match.score)}</strong>.
       </p>
       {relatives && <p className="mt-1 text-ink-soft">{relatives}</p>}
       <p className="mt-2 text-ink-soft">{match.reason}</p>
 
       <div className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-4">
         {([
-          ["Jméno", match.breakdown.given],
-          ["Příjmení", match.breakdown.surname],
-          ["Rok", match.breakdown.year],
-          ["Místo", match.breakdown.place],
+          ["First name", match.breakdown.given],
+          ["Surname", match.breakdown.surname],
+          ["Year", match.breakdown.year],
+          ["Place", match.breakdown.place],
         ] as const).map(([label, v]) => (
           <div key={label} className="rounded-lg border border-line bg-paper px-3 py-2">
             <div className="text-sm text-ink-soft">{label}</div>
@@ -106,7 +106,7 @@ export function MatchCard({ match, entity, treePerson, relatives, citations, als
 
       {match.alsoConsidered.length > 0 && (
         <details className="mt-3">
-          <summary className="cursor-pointer text-ink-soft">Zvažovali jsme i další ({match.alsoConsidered.length})</summary>
+          <summary className="cursor-pointer text-ink-soft">Also considered ({match.alsoConsidered.length})</summary>
           <ul className="mt-2 list-disc pl-6 text-ink-soft">
             {match.alsoConsidered.map((a) => (
               <li key={a.treePersonId}>
@@ -119,10 +119,10 @@ export function MatchCard({ match, entity, treePerson, relatives, citations, als
 
       {citations.length > 0 && (
         <div className="mt-4 space-y-2">
-          <div className="text-sm font-semibold uppercase tracking-wide text-ink-soft">Co děda řekl</div>
+          <div className="text-sm font-semibold uppercase tracking-wide text-ink-soft">What Grandpa said</div>
           {citations.map((c) => (
             <blockquote key={c.turnId} className="border-l-4 border-brick/40 pl-3 font-serif italic">
-              „{c.quote}“{" "}
+              “{c.quote}”{" "}
               <Link className="not-italic text-sm text-brick underline" href={`/family/sessions/${c.turnId.split("-")[0]}#${c.turnId}`}>
                 {c.turnId}
               </Link>
@@ -134,17 +134,17 @@ export function MatchCard({ match, entity, treePerson, relatives, citations, als
       {match.status === "suggested" && (
         <div className="mt-5 flex flex-wrap gap-3">
           <Button size="lg" onClick={() => act("confirm")} disabled={!!busy}>
-            {busy === "confirm" ? "Ukládám…" : "Ano, je to on"}
+            {busy === "confirm" ? "Saving…" : "Yes, that’s him"}
           </Button>
           <Button size="lg" variant="secondary" onClick={() => act("reject")} disabled={!!busy}>
-            {busy === "reject" ? "Ukládám…" : "Není to on"}
+            {busy === "reject" ? "Saving…" : "Not him"}
           </Button>
         </div>
       )}
       {match.status === "confirmed" && (
         <p className="mt-4">
           <Link href={`/family/tree?focus=${match.treePersonId}`} className="text-brick underline">
-            Ukázat ve stromě →
+            Show in the tree →
           </Link>
         </p>
       )}

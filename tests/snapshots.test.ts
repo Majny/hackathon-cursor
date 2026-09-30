@@ -107,7 +107,7 @@ describe.each(SNAPSHOTS)("snapshot %s", (name) => {
 });
 
 describe("demo content specifics", () => {
-  it("after-s1: pouť thread open, Pepa suggested → I6, opener about pouť", () => {
+  it("after-s1: fair thread open, Pepa suggested → I6, opener about the fair", () => {
     const db = load("after-s1");
     expect(db.turns.filter((t) => t.sessionId === "s1").length).toBeGreaterThanOrEqual(18);
     expect(db.threads.find((t) => t.id === "th-pout")?.resolvedInSession).toBeNull();
@@ -117,22 +117,22 @@ describe("demo content specifics", () => {
     expect(db.matches[0]).toMatchObject({ entityId: pepa.id, treePersonId: "I6", status: "suggested" });
     expect(db.tree.persons).toHaveLength(16);
     expect(db.tree.families).toHaveLength(8);
-    expect(buildMemory(db).firstMessage).toContain("pouť");
+    expect(buildMemory(db).firstMessage).toContain("fair in Prague");
   });
 
-  it("after-s2: pouť resolved, vojna open, chapter detstvi, match still suggested, s2 continued pouť", () => {
+  it("after-s2: fair resolved, military service open, chapter detstvi, match still suggested, s2 continued the fair", () => {
     const db = load("after-s2");
     expect(db.threads.find((t) => t.id === "th-pout")?.resolvedInSession).toBe("s2");
     expect(db.threads.find((t) => t.id === "th-vojna")?.resolvedInSession).toBeNull();
     const ch = db.chapters.find((c) => c.key === "detstvi")!;
-    expect(ch.title).toBe("Kluk od komínů Poldovky");
+    expect(ch.title).toBe("The Boy from the Poldi Chimneys");
     expect(ch.paragraphs.length).toBeGreaterThanOrEqual(4);
     expect(ch.paragraphs.every((p) => p.verified)).toBe(true);
     expect(db.matches[0].status).toBe("suggested");
     const s1 = load("after-s1");
     expect(db.sessions.find((s) => s.id === "s2")?.firstMessage).toBe(s1.summaries[0].nextSessionOpener);
     expect(db.sessions.find((s) => s.id === "s2")?.continuedThreadId).toBe("th-pout");
-    expect(buildMemory(db).firstMessage).toContain("vojn");
+    expect(buildMemory(db).firstMessage).toContain("Jihlava");
   });
 
   it("tree embedded verbatim from data/fake-tree.json", () => {

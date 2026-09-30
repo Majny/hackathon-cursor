@@ -1,4 +1,4 @@
-// Transcript formatting shared by prompts: "[s1-t07] DĚDA: …" / "[s1-t08] VNUK: …"
+// Transcript formatting shared by prompts: "[s1-t07] GRANDPA: …" / "[s1-t08] TOM: …"
 import type { Turn } from "../types";
 
 export function sortTurns(turns: Turn[]): Turn[] {
@@ -6,7 +6,7 @@ export function sortTurns(turns: Turn[]): Turn[] {
 }
 
 export function formatTurn(t: Turn): string {
-  return `[${t.id}] ${t.role === "grandparent" ? "DĚDA" : "VNUK"}: ${t.text.trim()}`;
+  return `[${t.id}] ${t.role === "grandparent" ? "GRANDPA" : "TOM"}: ${t.text.trim()}`;
 }
 
 export function formatTranscript(turns: Turn[]): string {

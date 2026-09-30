@@ -6,7 +6,7 @@ import type { Chapter, ChapterParagraph } from "@/lib/types";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { CitationChip } from "./CitationChip";
-import { chapterStats, formatCzDate, numberCitations, type NumberedCitation } from "./citations";
+import { chapterStats, formatDate, numberCitations, type NumberedCitation } from "./citations";
 
 export function ChapterView({
   chapter: initial, topicLabel, chapterNo, turnSessionMap,
@@ -27,7 +27,7 @@ export function ChapterView({
       setChapter(await api.approveChapter(chapter.id));
       router.refresh();
     } catch (e) {
-      setErr(e instanceof Error ? e.message : "Schválení selhalo");
+      setErr(e instanceof Error ? e.message : "Approval failed");
     } finally {
       setApproving(false);
     }
@@ -43,13 +43,13 @@ export function ChapterView({
     <article id={chapter.id} className="scroll-mt-24">
       <header className="mb-8 text-center">
         <p className="font-sans text-sm uppercase tracking-[0.25em] text-brick">
-          Kapitola {chapterNo} · {topicLabel}
+          Chapter {chapterNo} · {topicLabel}
         </p>
         <h2 className="mt-2 font-serif text-4xl font-semibold leading-tight text-ink">{chapter.title}</h2>
         <div className="mt-3 flex flex-wrap justify-center gap-2 font-sans">
-          {chapter.status === "approved" ? <Badge tone="moss">✓ Schváleno rodinou</Badge> : <Badge>Koncept</Badge>}
-          {stats.unverified > 0 && <Badge tone="warn">{stats.unverified}× neověřeno</Badge>}
-          {stats.edited > 0 && <Badge tone="brick">✎ upraveno rodinou</Badge>}
+          {chapter.status === "approved" ? <Badge tone="moss">✓ Approved by the family</Badge> : <Badge>Draft</Badge>}
+          {stats.unverified > 0 && <Badge tone="warn">{stats.unverified} unverified</Badge>}
+          {stats.edited > 0 && <Badge tone="brick">✎ edited by family</Badge>}
         </div>
       </header>
 
@@ -61,7 +61,7 @@ export function ChapterView({
 
       {chapter.openQuestions.length > 0 && (
         <aside className="mt-10 rounded-2xl border border-dashed border-brick/40 bg-brick/5 p-6 font-sans">
-          <h3 className="mb-3 font-serif text-2xl font-semibold text-brick-dark">Otázky na příště</h3>
+          <h3 className="mb-3 font-serif text-2xl font-semibold text-brick-dark">Questions for next time</h3>
           <ul className="space-y-2 text-lg">
             {chapter.openQuestions.map((q, i) => (
               <li key={i} className="flex gap-3">
@@ -76,15 +76,15 @@ export function ChapterView({
       <footer className="mt-8 flex flex-wrap items-center justify-center gap-3 font-sans">
         {chapter.status !== "approved" ? (
           <Button size="lg" onClick={approve} disabled={approving}>
-            {approving ? "Schvaluji…" : "✓ Schválit kapitolu"}
+            {approving ? "Approving…" : "✓ Approve chapter"}
           </Button>
         ) : (
-          <span className="text-lg text-moss">Kapitola je schválená rodinou.</span>
+          <span className="text-lg text-moss">This chapter has been approved by the family.</span>
         )}
         {err && <span className="text-red-700">{err}</span>}
       </footer>
       <p className="mt-4 text-center font-sans text-sm text-ink-soft">
-        Napsáno {formatCzDate(chapter.generatedAt)} · {chapter.model}
+        Written {formatDate(chapter.generatedAt)} · {chapter.model}
       </p>
     </article>
   );
@@ -108,7 +108,7 @@ function Paragraph({
       await onSave(p.id, draft.trim());
       setEditing(false);
     } catch (e) {
-      setErr(e instanceof Error ? e.message : "Uložení selhalo");
+      setErr(e instanceof Error ? e.message : "Saving failed");
     } finally {
       setSaving(false);
     }
@@ -132,9 +132,9 @@ function Paragraph({
             className="w-full rounded-xl border border-brick/50 bg-card p-4 font-serif text-xl leading-relaxed text-ink outline-none focus:ring-2 focus:ring-brick/40"
           />
           <div className="mt-2 flex gap-2">
-            <Button onClick={save} disabled={saving || !draft.trim()}>{saving ? "Ukládám…" : "Uložit opravu"}</Button>
+            <Button onClick={save} disabled={saving || !draft.trim()}>{saving ? "Saving…" : "Save correction"}</Button>
             <Button variant="secondary" onClick={() => { setDraft(p.text); setEditing(false); }} disabled={saving}>
-              Zrušit
+              Cancel
             </Button>
             {err && <span className="self-center text-red-700">{err}</span>}
           </div>
@@ -152,8 +152,8 @@ function Paragraph({
           <button
             type="button"
             onClick={() => { setDraft(p.text); setEditing(true); }}
-            title="Opravit odstavec"
-            aria-label="Opravit odstavec"
+            title="Correct this paragraph"
+            aria-label="Correct this paragraph"
             className="ml-2 inline-flex h-7 w-7 items-center justify-center rounded-full align-middle font-sans text-base text-ink-soft opacity-40 transition hover:bg-paper-dark hover:text-brick hover:opacity-100 group-hover:opacity-100"
           >
             ✎
@@ -163,9 +163,9 @@ function Paragraph({
 
       {(unverified || p.editedByFamily) && !editing && (
         <div className="mt-2 flex flex-wrap items-center gap-2 font-sans">
-          {unverified && <Badge tone="warn">⚠ neověřeno</Badge>}
-          {p.editedByFamily && <Badge tone="brick">✎ upraveno rodinou</Badge>}
-          {unverified && citations.length === 0 && <span className="text-sm text-ink-soft">Odstavec nemá citaci z povídání.</span>}
+          {unverified && <Badge tone="warn">⚠ unverified</Badge>}
+          {p.editedByFamily && <Badge tone="brick">✎ edited by family</Badge>}
+          {unverified && citations.length === 0 && <span className="text-sm text-ink-soft">This paragraph has no quote from the conversation.</span>}
         </div>
       )}
       {p.warnings.length > 0 && !editing && (

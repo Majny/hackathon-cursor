@@ -27,7 +27,7 @@ export function CitationChip({ c }: { c: NumberedCitation }) {
         type="button"
         onClick={() => setOpen((o) => !o)}
         aria-expanded={open}
-        title="Zobrazit, kde to děda řekl"
+        title="Show where Grandpa said this"
         className={`mx-0.5 inline-flex h-6 min-w-6 items-center justify-center rounded-full border px-1.5 font-sans text-xs font-bold leading-none transition-colors ${
           open ? "border-brick bg-brick text-white" : "border-brick/40 bg-brick/10 text-brick-dark hover:bg-brick hover:text-white"
         }`}
@@ -40,11 +40,11 @@ export function CitationChip({ c }: { c: NumberedCitation }) {
           className="absolute left-1/2 top-8 z-30 block w-[min(26rem,80vw)] -translate-x-1/2 rounded-xl border border-line bg-card p-4 text-left font-sans text-base leading-snug text-ink shadow-xl"
         >
           <span className="mb-1 block text-xs uppercase tracking-wide text-ink-soft">
-            Citace {c.n} · replika {c.turnId}
+            Source {c.n} · line {c.turnId}
           </span>
-          <span className="block font-serif text-lg italic">„{c.quote || "…"}“</span>
+          <span className="block font-serif text-lg italic">“{c.quote || "…"}”</span>
           <Link href={c.href} className="mt-3 inline-block font-medium text-brick underline">
-            Otevřít v přepisu povídání →
+            Open in the transcript →
           </Link>
         </span>
       )}

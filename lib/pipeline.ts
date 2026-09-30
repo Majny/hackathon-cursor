@@ -34,9 +34,9 @@ export async function analyzeSession(db: Db, sessionId: string): Promise<{
     const last = db.summaries[db.summaries.length - 1];
     return {
       summary: {
-        summary: "Povídání bylo krátké, děda tentokrát nic nevyprávěl.",
+        summary: "The conversation was short; Grandpa didn't tell a story this time.",
         topicsCovered: [], newOpenThreads: [], resolvedThreadIds: [],
-        nextTopic: last?.nextTopic ?? "Dětství",
+        nextTopic: last?.nextTopic ?? "Childhood",
         nextSessionOpener: last?.nextSessionOpener ?? FIRST_SESSION_OPENER,
         keyFacts: [],
       },
@@ -61,7 +61,7 @@ export async function analyzeSession(db: Db, sessionId: string): Promise<{
   };
 }
 
-/** A birth year that was never said literally (computed, e.g. "o dva roky mladší") is approximate. */
+/** A birth year that was never said literally (computed, e.g. "two years younger") is approximate. */
 export function fixApproxYears(ex: ExtractionOutput, turns: { id: string; text: string }[]): ExtractionOutput {
   const byId = new Map(turns.map((t) => [t.id, t.text]));
   return {

@@ -1,16 +1,16 @@
 export type OrbState = "connecting" | "listening" | "speaking" | "thinking" | "idle";
 
 const LABELS: Record<OrbState, string> = {
-  connecting: "Připojuji…",
-  listening: "Poslouchám",
-  speaking: "Mluví",
-  thinking: "Přemýšlím…",
+  connecting: "Connecting…",
+  listening: "Listening",
+  speaking: "Speaking",
+  thinking: "Thinking…",
   idle: "",
 };
 
 export function StatusOrb({ state, speakerName }: { state: OrbState; speakerName: string }) {
   if (state === "idle") return null;
-  const label = state === "speaking" ? `Mluví ${speakerName}` : LABELS[state];
+  const label = state === "speaking" ? `${speakerName} is speaking` : LABELS[state];
   const color =
     state === "speaking" ? "bg-brick" : state === "listening" ? "bg-moss" : "bg-warn";
   return (

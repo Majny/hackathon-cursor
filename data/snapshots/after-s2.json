@@ -2,13 +2,13 @@
   "version": 1,
   "grandparent": {
     "id": "jaroslav",
-    "displayName": "děda Jarda",
+    "displayName": "Grandpa Jarda",
     "fullName": "Jaroslav Novák",
     "birthYear": 1946,
     "birthPlace": "Kladno",
     "sex": "M",
     "treePersonId": "I1",
-    "grandchildName": "Tomáš"
+    "grandchildName": "Tom"
   },
   "sessions": [
     {
@@ -20,7 +20,7 @@
       "mode": "voice",
       "status": "done",
       "elConversationId": null,
-      "firstMessage": "Ahoj dědo, to jsem já, Tomáš. Moc rád bych si s tebou povídal o tom, jak jsi byl malý. Kde jsi vyrůstal?",
+      "firstMessage": "Hi Grandpa, it's me, Tom. I'd love to hear about when you were little. Where did you grow up?",
       "continuedThreadId": null
     },
     {
@@ -32,7 +32,7 @@
       "mode": "voice",
       "status": "done",
       "elConversationId": null,
-      "firstMessage": "Ahoj dědo! Minule jsi mi začal vyprávět, jak jste s Pepou v padesátém osmém utekli na pouť do Prahy – tak jak to doma dopadlo?",
+      "firstMessage": "Hi Grandpa! Last time you started telling me how you and Pepa ran off to the fair in Prague in fifty-eight — so how did it go when you got home?",
       "continuedThreadId": "th-pout"
     }
   ],
@@ -43,7 +43,7 @@
       "idx": 1,
       "clientSeq": 1,
       "role": "ai",
-      "text": "Ahoj dědo, to jsem já, Tomáš. Moc rád bych si s tebou povídal o tom, jak jsi byl malý. Kde jsi vyrůstal?",
+      "text": "Hi Grandpa, it's me, Tom. I'd love to hear about when you were little. Where did you grow up?",
       "at": "2026-09-29T16:00:00.000Z"
     },
     {
@@ -52,7 +52,7 @@
       "idx": 2,
       "clientSeq": 2,
       "role": "grandparent",
-      "text": "No to ti povím, Tomáši. Narodil jsem se v roce 1946 tady na Kladně. Z okna jsme koukali rovnou na komíny Poldovky, to byla huť, víš. Ty komíny kouřily ve dne v noci a prádlo na šňůře bylo vždycky trochu šedivý.",
+      "text": "Well, I'll tell you, Tom. I was born in 1946, right here in Kladno. From our window we looked straight at the chimneys of the Poldi steelworks. Those chimneys smoked day and night, and the washing on the line was always a bit grey.",
       "at": "2026-09-29T16:00:25.000Z"
     },
     {
@@ -61,7 +61,7 @@
       "idx": 3,
       "clientSeq": 3,
       "role": "ai",
-      "text": "To musel být pohled! A kdo s tebou tenkrát bydlel doma?",
+      "text": "That must have been quite a view! And who lived at home with you back then?",
       "at": "2026-09-29T16:00:50.000Z"
     },
     {
@@ -70,7 +70,7 @@
       "idx": 4,
       "clientSeq": 4,
       "role": "grandparent",
-      "text": "Maminka Anna, táta František a moje mladší sestra Věrka. Ta byla o čtyři roky mladší, pořád se mi věšela na kalhoty. A maminka, ta pekla nejlepší buchty na celým Kladně, s mákem a s povidlama.",
+      "text": "My mum Anna, my dad František and my little sister Věrka. She was four years younger, always hanging on to my trousers. And Mum, she baked the best buns in all of Kladno, with poppy seeds and with plum jam.",
       "at": "2026-09-29T16:01:15.000Z"
     },
     {
@@ -79,7 +79,7 @@
       "idx": 5,
       "clientSeq": 5,
       "role": "ai",
-      "text": "Buchty s mákem, to zní dobře. Kdy je maminka pekla?",
+      "text": "Poppy seed buns, that sounds lovely. When did your mum bake them?",
       "at": "2026-09-29T16:01:40.000Z"
     },
     {
@@ -88,7 +88,7 @@
       "idx": 6,
       "clientSeq": 6,
       "role": "grandparent",
-      "text": "Každou sobotu. Celej barák voněl. A my s Věrkou jsme vždycky čekali u trouby, kdo dostane tu první, ještě horkou. Maminka nás plácla vařečkou přes prsty, ale nakonec nám dala obě.",
+      "text": "Every Saturday. The whole house smelled of them. Věrka and I always waited by the oven to see who'd get the first one, still hot. Mum would smack our fingers with the wooden spoon, but in the end she gave us one each.",
       "at": "2026-09-29T16:02:05.000Z"
     },
     {
@@ -97,7 +97,7 @@
       "idx": 7,
       "clientSeq": 7,
       "role": "ai",
-      "text": "A co táta? Čím byl?",
+      "text": "And what about your dad? What did he do?",
       "at": "2026-09-29T16:02:30.000Z"
     },
     {
@@ -106,7 +106,7 @@
       "idx": 8,
       "clientSeq": 8,
       "role": "grandparent",
-      "text": "Táta František dělal v Poldovce u pece, hutník to byl. Chodil na šichty, i na noční. Když přišel domů, byl celej černej od sazí a maminka mu ohřívala vodu v neckách. Moc nemluvil, ale když mluvil, tak jsme poslouchali.",
+      "text": "My dad František worked at the furnace in the Poldi steelworks, a steelworker he was. He worked shifts, nights too. When he came home he was black with soot and Mum heated water for him in the washtub. He didn't talk much, but when he did, we listened.",
       "at": "2026-09-29T16:02:55.000Z"
     },
     {
@@ -115,7 +115,7 @@
       "idx": 9,
       "clientSeq": 9,
       "role": "ai",
-      "text": "To zní jako přísný, ale hodný táta. Byl jsi na něj pyšný?",
+      "text": "He sounds strict but kind. Were you proud of him?",
       "at": "2026-09-29T16:03:20.000Z"
     },
     {
@@ -124,7 +124,7 @@
       "idx": 10,
       "clientSeq": 10,
       "role": "grandparent",
-      "text": "No to víš, že jo. Říkal jsem klukům, že můj táta dělá ocel na celou republiku. A pak jsem tam taky skončil, ale to je jiná kapitola.",
+      "text": "Well, of course I was. I told the boys my dad makes steel for the whole country. And later I ended up there too, but that's another chapter.",
       "at": "2026-09-29T16:03:45.000Z"
     },
     {
@@ -133,7 +133,7 @@
       "idx": 11,
       "clientSeq": 11,
       "role": "ai",
-      "text": "Tak to si nechám na jindy. A s kým jsi jako kluk nejvíc lítal venku?",
+      "text": "Then I'll save that one for another day. And who did you run around with most as a boy?",
       "at": "2026-09-29T16:04:10.000Z"
     },
     {
@@ -142,7 +142,7 @@
       "idx": 12,
       "clientSeq": 12,
       "role": "grandparent",
-      "text": "S Pepou Dvořákem. Pepa Dvořák, ten bydlel o dům vedle, byl o dva roky mladší než já. Ale šikovnej kluk, to zase jo.",
+      "text": "With Pepa Dvořák. Pepa Dvořák lived in the house next door, he was two years younger than me. But a clever lad, I'll give him that.",
       "at": "2026-09-29T16:04:35.000Z"
     },
     {
@@ -151,7 +151,7 @@
       "idx": 13,
       "clientSeq": 13,
       "role": "ai",
-      "text": "Co jste spolu s Pepou nejradši dělali?",
+      "text": "What did you and Pepa like doing most?",
       "at": "2026-09-29T16:05:00.000Z"
     },
     {
@@ -160,7 +160,7 @@
       "idx": 14,
       "clientSeq": 14,
       "role": "grandparent",
-      "text": "Fotbal! Na plácku za barákem, branky jsme měli ze dvou kamenů a z kabátů. Hráli jsme do tmy, dokud maminka nezavolala z okna. Pepa chytal, já kopal. Jednou jsem mu napálil míč do nosu, tekla mu krev a stejně chytal dál.",
+      "text": "Football! On the patch of ground behind our building, we made the goals out of two stones and our coats. We played till dark, until Mum called from the window. Pepa was in goal, I did the kicking. Once I smashed the ball right into his nose, it was bleeding and he still stayed in goal.",
       "at": "2026-09-29T16:05:25.000Z"
     },
     {
@@ -169,7 +169,7 @@
       "idx": 15,
       "clientSeq": 15,
       "role": "ai",
-      "text": "Tvrdej brankář! A dělali jste spolu i nějaké lumpárny?",
+      "text": "A tough goalkeeper! And did the two of you get up to any mischief?",
       "at": "2026-09-29T16:05:50.000Z"
     },
     {
@@ -178,7 +178,7 @@
       "idx": 16,
       "clientSeq": 16,
       "role": "grandparent",
-      "text": "Jéje, lumpáren bylo. Lezli jsme přes plot k sousedům na třešně, to bylo normální. Ale největší průšvih… to bylo, jak jsme s Pepou v padesátým osmým utekli na pouť do Prahy.",
+      "text": "Oh, there was plenty of mischief. We climbed over the fence into the neighbours' garden for cherries, that was normal. But the biggest trouble… that was when Pepa and I ran off to the fair in Prague in fifty-eight.",
       "at": "2026-09-29T16:06:15.000Z"
     },
     {
@@ -187,7 +187,7 @@
       "idx": 17,
       "clientSeq": 17,
       "role": "ai",
-      "text": "Na pouť do Prahy? Sami? Jak jste se tam dostali?",
+      "text": "To the fair in Prague? On your own? How did you get there?",
       "at": "2026-09-29T16:06:40.000Z"
     },
     {
@@ -196,7 +196,7 @@
       "idx": 18,
       "clientSeq": 18,
       "role": "grandparent",
-      "text": "No to je dlouhý povídání… Sebrali jsme se bez ptaní, nikomu jsme nic neřekli. Ale víš co, Tomáši, už mě z toho povídání bolí v krku. No, to ti řeknu příště.",
+      "text": "Oh, that's a long story… We just took off without asking, didn't tell a soul. But you know what, Tom, my throat's getting sore from all this talking. Well, I'll tell you next time.",
       "at": "2026-09-29T16:07:05.000Z"
     },
     {
@@ -205,7 +205,7 @@
       "idx": 19,
       "clientSeq": 19,
       "role": "ai",
-      "text": "Dobře, dědo, nechám si to na příště a budu se moc těšit. Děkuju ti za dnešek.",
+      "text": "All right, Grandpa, I'll save it for next time and I'm really looking forward to it. Thank you for today.",
       "at": "2026-09-29T16:07:30.000Z"
     },
     {
@@ -214,7 +214,7 @@
       "idx": 20,
       "clientSeq": 20,
       "role": "grandparent",
-      "text": "Já taky děkuju. Pozdravuj doma a přijď zas.",
+      "text": "Thank you too. Say hello to everyone at home and come again.",
       "at": "2026-09-29T16:07:55.000Z"
     },
     {
@@ -223,7 +223,7 @@
       "idx": 1,
       "clientSeq": 1,
       "role": "ai",
-      "text": "Ahoj dědo! Minule jsi mi začal vyprávět, jak jste s Pepou v padesátém osmém utekli na pouť do Prahy – tak jak to doma dopadlo?",
+      "text": "Hi Grandpa! Last time you started telling me how you and Pepa ran off to the fair in Prague in fifty-eight — so how did it go when you got home?",
       "at": "2026-09-30T10:00:00.000Z"
     },
     {
@@ -232,7 +232,7 @@
       "idx": 2,
       "clientSeq": 2,
       "role": "grandparent",
-      "text": "Jo, ta pouť. Tak to bylo v osmapadesátým, v roce 1958, v létě. Mně bylo dvanáct a Pepovi deset. Od kluků jsme slyšeli, že v Praze je pouť s kolotočema a střelnicí, tak jsme se sebrali a jeli.",
+      "text": "Ah yes, the fair. So that was in fifty-eight, in 1958, in the summer. I was twelve and Pepa was ten. We'd heard from the other boys that there was a fair in Prague with merry-go-rounds and a shooting gallery, so we just up and went.",
       "at": "2026-09-30T10:00:25.000Z"
     },
     {
@@ -241,7 +241,7 @@
       "idx": 3,
       "clientSeq": 3,
       "role": "ai",
-      "text": "Dvanáct a deset let a sami do Prahy! Jak jste se tam dostali?",
+      "text": "Twelve and ten, and all alone to Prague! How did you get there?",
       "at": "2026-09-30T10:00:50.000Z"
     },
     {
@@ -250,7 +250,7 @@
       "idx": 4,
       "clientSeq": 4,
       "role": "grandparent",
-      "text": "Kus cesty jsme jeli tramvají, na černo samozřejmě, a pak pěšky. Peníze jsme neměli žádný, ani korunu. Tak jsme na tý pouti jen koukali na kolotoče a Pepa vyškemral od jedný paní kousek perníku.",
+      "text": "Part of the way we rode the tram, without a ticket of course, and then we walked. We had no money at all, not a single crown. So at the fair we just stood and watched the merry-go-rounds, and Pepa begged a piece of gingerbread off some lady.",
       "at": "2026-09-30T10:01:15.000Z"
     },
     {
@@ -259,7 +259,7 @@
       "idx": 5,
       "clientSeq": 5,
       "role": "ai",
-      "text": "A kdy jste se vrátili domů?",
+      "text": "And when did you get back home?",
       "at": "2026-09-30T10:01:40.000Z"
     },
     {
@@ -268,7 +268,7 @@
       "idx": 6,
       "clientSeq": 6,
       "role": "grandparent",
-      "text": "V noci, bylo už po jedenáctý. Maminka brečela na schodech a táta stál ve dveřích s řemenem. Dostal jsem pořádně, tejden jsem si nesed. Ale zasloužil jsem si to.",
+      "text": "In the middle of the night, it was past eleven. Mum was crying on the stairs and Dad stood in the doorway with his belt. I got a proper hiding, I couldn't sit down for a week. But I deserved it.",
       "at": "2026-09-30T10:02:05.000Z"
     },
     {
@@ -277,7 +277,7 @@
       "idx": 7,
       "clientSeq": 7,
       "role": "ai",
-      "text": "Au. A co Pepa, jak dopadl on?",
+      "text": "Ouch. And what about Pepa, how did it go for him?",
       "at": "2026-09-30T10:02:30.000Z"
     },
     {
@@ -286,7 +286,7 @@
       "idx": 8,
       "clientSeq": 8,
       "role": "grandparent",
-      "text": "Pepa dostal zaracha na celý prázdniny. Nesměl ven ani na plácek. Tak jsem za ním chodil pod okno a povídali jsme si přes záclonu.",
+      "text": "Pepa was grounded for the whole summer holidays. He wasn't even allowed out to the football patch. So I used to go under his window and we talked through the curtain.",
       "at": "2026-09-30T10:02:55.000Z"
     },
     {
@@ -295,7 +295,7 @@
       "idx": 9,
       "clientSeq": 9,
       "role": "ai",
-      "text": "To je krásné přátelství. Zůstali jste kamarádi i potom?",
+      "text": "That's a real friendship. Did you stay friends after that?",
       "at": "2026-09-30T10:03:20.000Z"
     },
     {
@@ -304,7 +304,7 @@
       "idx": 10,
       "clientSeq": 10,
       "role": "grandparent",
-      "text": "No jasně. A víš, co je nejlepší? Pepa si pak vzal naši Věrku. Takže z kamaráda se mi stal švagr. Na svatbě jsme tu pouť vzpomínali a táta se už jen smál.",
+      "text": "Of course we did. And you know the best part? Pepa later married our Věrka. So my friend became my brother-in-law. At the wedding we remembered that fair and Dad just laughed.",
       "at": "2026-09-30T10:03:45.000Z"
     },
     {
@@ -313,7 +313,7 @@
       "idx": 11,
       "clientSeq": 11,
       "role": "ai",
-      "text": "To je nádherná tečka za tím příběhem! Dědo, a co bylo dál, když jsi vyrostl?",
+      "text": "What a wonderful ending to that story! Grandpa, and what came next, when you grew up?",
       "at": "2026-09-30T10:04:10.000Z"
     },
     {
@@ -322,7 +322,7 @@
       "idx": 12,
       "clientSeq": 12,
       "role": "grandparent",
-      "text": "Pak jsem se vyučil a v roce 1965 mě vzali na vojnu. Do Jihlavy. Dva roky, to byla jiná škola, to ti povím.",
+      "text": "Then I finished my apprenticeship and in 1965 they called me up for military service. To Jihlava. Two years, that was a different kind of school, I tell you.",
       "at": "2026-09-30T10:04:35.000Z"
     },
     {
@@ -331,7 +331,7 @@
       "idx": 13,
       "clientSeq": 13,
       "role": "ai",
-      "text": "Vojna v Jihlavě! Jaký byl ten první den?",
+      "text": "Military service in Jihlava! What was the first day like?",
       "at": "2026-09-30T10:05:00.000Z"
     },
     {
@@ -340,7 +340,7 @@
       "idx": 14,
       "clientSeq": 14,
       "role": "grandparent",
-      "text": "První den nás ostříhali dohola a dali nám mundúr o dvě čísla větší. Ale víš co, o vojně ti řeknu příště pořádně, to je na dlouho.",
+      "text": "The first day they shaved our heads and gave us uniforms two sizes too big. But you know what, I'll tell you properly about the army next time, that's a long one.",
       "at": "2026-09-30T10:05:25.000Z"
     },
     {
@@ -349,7 +349,7 @@
       "idx": 15,
       "clientSeq": 15,
       "role": "ai",
-      "text": "Budu se těšit, dědo. Příště mi povíš o vojně v Jihlavě. Děkuju ti.",
+      "text": "I'll look forward to it, Grandpa. Next time you'll tell me about your service in Jihlava. Thank you.",
       "at": "2026-09-30T10:05:50.000Z"
     },
     {
@@ -358,21 +358,21 @@
       "idx": 16,
       "clientSeq": 16,
       "role": "grandparent",
-      "text": "Tak ahoj, Tomáši. A pozdravuj mámu.",
+      "text": "Bye then, Tom. And say hello to your mum.",
       "at": "2026-09-30T10:06:15.000Z"
     }
   ],
   "summaries": [
     {
       "sessionId": "s1",
-      "summary": "Děda vyprávěl o dětství na Kladně pod komíny Poldovky: maminka Anna a její sobotní buchty, táta František hutník v Poldovce, mladší sestra Věrka a kamarád Pepa Dvořák od vedle, se kterým hrál fotbal na plácku. Začal příběh o útěku s Pepou na pouť do Prahy v roce 1958, ale nedořekl ho.",
+      "summary": "Grandpa talked about his childhood in Kladno under the chimneys of the Poldi steelworks: his mum Anna and her Saturday poppy seed buns, his dad František, a steelworker at the Poldi furnace, his little sister Věrka, and his friend Pepa Dvořák from next door, with whom he played football on the patch behind the building. He started the story of running off with Pepa to the fair in Prague in 1958, but didn't finish it.",
       "topicsCovered": [
         "detstvi"
       ],
       "newOpenThreads": [
         {
-          "title": "Útěk s Pepou na pouť do Prahy",
-          "whyUnfinished": "Děda začal vyprávět, jak s Pepou v roce 1958 utekli na pouť do Prahy, ale nedořekl, jak se tam dostali a jak to doma dopadlo.",
+          "title": "Running off with Pepa to the fair in Prague",
+          "whyUnfinished": "Grandpa started telling how he and Pepa ran off to the fair in Prague in 1958, but didn't say how they got there or what happened when they got home.",
           "turnIds": [
             "s1-t16",
             "s1-t18"
@@ -380,27 +380,27 @@
         }
       ],
       "resolvedThreadIds": [],
-      "nextTopic": "Útěk s Pepou na pouť do Prahy (1958) – jak to doma dopadlo",
-      "nextSessionOpener": "Ahoj dědo! Minule jsi mi začal vyprávět, jak jste s Pepou v padesátém osmém utekli na pouť do Prahy – tak jak to doma dopadlo?",
+      "nextTopic": "Running off with Pepa to the fair in Prague (1958) – what happened at home",
+      "nextSessionOpener": "Hi Grandpa! Last time you started telling me how you and Pepa ran off to the fair in Prague in fifty-eight — so how did it go when you got home?",
       "keyFacts": [
-        "Narodil se v roce 1946 na Kladně, z okna viděl komíny Poldovky",
-        "Maminka Anna pekla každou sobotu buchty s mákem a s povidly",
-        "Táta František byl hutník v Poldovce",
-        "Mladší sestra Věrka (o čtyři roky mladší)",
-        "Kamarád Pepa Dvořák bydlel o dům vedle, byl o dva roky mladší"
+        "Born in 1946 in Kladno, could see the Poldi steelworks chimneys from the window",
+        "Mum Anna baked poppy seed and plum jam buns every Saturday",
+        "Dad František was a steelworker at the Poldi furnace",
+        "Little sister Věrka (four years younger)",
+        "Friend Pepa Dvořák lived next door, two years younger"
       ]
     },
     {
       "sessionId": "s2",
-      "summary": "Děda dovyprávěl útěk na pouť do Prahy v roce 1958: s Pepou jeli kus tramvají na černo, pak šli pěšky, bez peněz, vrátili se v noci. Táta ho čekal ve dveřích s řemenem, Pepa dostal zaracha na celé prázdniny. Pepa si později vzal dědovu sestru Věrku. Pak děda přešel k vojně v Jihlavě od roku 1965, kterou slíbil dovyprávět.",
+      "summary": "Grandpa finished the story of running off to the fair in Prague in 1958: he and Pepa rode part of the way by tram without tickets, then walked, with no money, and came back in the middle of the night. His dad was waiting in the doorway with a belt, and Pepa was grounded for the whole summer holidays. Pepa later married Grandpa's sister Věrka. Then Grandpa moved on to his military service in Jihlava from 1965, which he promised to tell properly next time.",
       "topicsCovered": [
         "detstvi",
         "vojna"
       ],
       "newOpenThreads": [
         {
-          "title": "Vojna v Jihlavě",
-          "whyUnfinished": "Děda začal o prvním dni na vojně v Jihlavě (1965) a zbytek slíbil příště.",
+          "title": "Military service in Jihlava",
+          "whyUnfinished": "Grandpa started on his first day of military service in Jihlava (1965) and promised the rest for next time.",
           "turnIds": [
             "s2-t12",
             "s2-t14"
@@ -410,21 +410,21 @@
       "resolvedThreadIds": [
         "th-pout"
       ],
-      "nextTopic": "Vojna v Jihlavě (1965–1967)",
-      "nextSessionOpener": "Ahoj dědo! Minule jsi mi slíbil, že mi povíš o vojně v Jihlavě – jaký byl ten první den, když vás ostříhali dohola?",
+      "nextTopic": "Military service in Jihlava (1965–1967)",
+      "nextSessionOpener": "Hi Grandpa! Last time you promised to tell me about your military service in Jihlava — what was that first day like, when they shaved your heads?",
       "keyFacts": [
-        "Útěk na pouť do Prahy v létě 1958 – tramvají a pěšky, bez peněz, návrat v noci",
-        "Táta ho potrestal řemenem, Pepa dostal zaracha na celé prázdniny",
-        "Pepa Dvořák si později vzal dědovu sestru Věrku – stal se jeho švagrem",
-        "Na vojnu nastoupil v roce 1965 do Jihlavy"
+        "Ran off to the fair in Prague in summer 1958 – by tram and on foot, no money, home in the middle of the night",
+        "Dad punished him with a belt, Pepa was grounded for the whole summer holidays",
+        "Pepa Dvořák later married Grandpa's sister Věrka – became his brother-in-law",
+        "Called up for military service in 1965, in Jihlava"
       ]
     }
   ],
   "threads": [
     {
       "id": "th-pout",
-      "title": "Útěk s Pepou na pouť do Prahy",
-      "whyUnfinished": "Děda začal vyprávět, jak s Pepou v roce 1958 utekli na pouť do Prahy, ale nedořekl, jak se tam dostali a jak to doma dopadlo.",
+      "title": "Running off with Pepa to the fair in Prague",
+      "whyUnfinished": "Grandpa started telling how he and Pepa ran off to the fair in Prague in 1958, but didn't say how they got there or what happened when they got home.",
       "turnIds": [
         "s1-t16",
         "s1-t18"
@@ -435,8 +435,8 @@
     },
     {
       "id": "th-vojna",
-      "title": "Vojna v Jihlavě",
-      "whyUnfinished": "Děda začal o prvním dni na vojně v Jihlavě (1965) a zbytek slíbil příště.",
+      "title": "Military service in Jihlava",
+      "whyUnfinished": "Grandpa started on his first day of military service in Jihlava (1965) and promised the rest for next time.",
       "turnIds": [
         "s2-t12",
         "s2-t14"
@@ -450,15 +450,15 @@
     {
       "id": "ch-detstvi",
       "key": "detstvi",
-      "title": "Kluk od komínů Poldovky",
+      "title": "The Boy from the Poldi Chimneys",
       "paragraphs": [
         {
           "id": "ch-detstvi-p1",
-          "text": "Narodil jsem se v roce 1946 na Kladně. Z okna jsme koukali rovnou na komíny Poldovky, které kouřily ve dne v noci, a prádlo na šňůře bylo vždycky trochu šedivé.",
+          "text": "I was born in 1946 in Kladno. From our window we looked straight at the chimneys of the Poldi steelworks, which smoked day and night, and the washing on the line was always a bit grey.",
           "citations": [
             {
               "turnId": "s1-t02",
-              "quote": "No to ti povím, Tomáši. Narodil jsem se v roce 1946 tady na Kladně. Z okna jsme koukali rovnou na komíny Poldovky, to byla huť, víš. Ty komíny kouřily ve dne v "
+              "quote": "Well, I'll tell you, Tom. I was born in 1946, right here in Kladno. From our window we looked straight at the chimneys of the Poldi steelworks. Those chimneys s"
             }
           ],
           "verified": true,
@@ -467,15 +467,15 @@
         },
         {
           "id": "ch-detstvi-p2",
-          "text": "Doma nás bylo čtyři: maminka Anna, táta František, já a moje o čtyři roky mladší sestra Věrka. Maminka pekla každou sobotu buchty s mákem a s povidly a my s Věrkou jsme čekali u trouby, kdo dostane tu první, ještě horkou.",
+          "text": "There were four of us at home: my mum Anna, my dad František, me and my little sister Věrka, four years younger. Every Saturday my mum baked buns with poppy seeds and plum jam, and Věrka and I waited by the oven to see who would get the first one, \"still hot\".",
           "citations": [
             {
               "turnId": "s1-t04",
-              "quote": "Maminka Anna, táta František a moje mladší sestra Věrka. Ta byla o čtyři roky mladší, pořád se mi věšela na kalhoty. A maminka, ta pekla nejlepší buchty na celý"
+              "quote": "My mum Anna, my dad František and my little sister Věrka. She was four years younger, always hanging on to my trousers. And Mum, she baked the best buns in all "
             },
             {
               "turnId": "s1-t06",
-              "quote": "Každou sobotu. Celej barák voněl. A my s Věrkou jsme vždycky čekali u trouby, kdo dostane tu první, ještě horkou. Maminka nás plácla vařečkou přes prsty, ale na"
+              "quote": "Every Saturday. The whole house smelled of them. Věrka and I always waited by the oven to see who'd get the first one, still hot. Mum would smack our fingers wi"
             }
           ],
           "verified": true,
@@ -484,15 +484,15 @@
         },
         {
           "id": "ch-detstvi-p3",
-          "text": "Táta dělal v Poldovce u pece, byl hutník. Chodil na šichty i na noční a domů přicházel černý od sazí. Moc nemluvil, ale když promluvil, poslouchali jsme. Klukům jsem se chlubil, že můj táta dělá ocel na celou republiku.",
+          "text": "My dad worked at the furnace in the Poldi steelworks, he was a steelworker. He worked shifts, nights too, and came home black with soot. He didn't talk much, but when he did, we listened. I used to tell the boys that my dad makes steel \"for the whole country\".",
           "citations": [
             {
               "turnId": "s1-t08",
-              "quote": "Táta František dělal v Poldovce u pece, hutník to byl. Chodil na šichty, i na noční. Když přišel domů, byl celej černej od sazí a maminka mu ohřívala vodu v nec"
+              "quote": "My dad František worked at the furnace in the Poldi steelworks, a steelworker he was. He worked shifts, nights too. When he came home he was black with soot and"
             },
             {
               "turnId": "s1-t10",
-              "quote": "No to víš, že jo. Říkal jsem klukům, že můj táta dělá ocel na celou republiku. A pak jsem tam taky skončil, ale to je jiná kapitola."
+              "quote": "Well, of course I was. I told the boys my dad makes steel for the whole country. And later I ended up there too, but that's another chapter."
             }
           ],
           "verified": true,
@@ -501,15 +501,15 @@
         },
         {
           "id": "ch-detstvi-p4",
-          "text": "Nejvíc jsem lítal s Pepou Dvořákem, který bydlel o dům vedle a byl o dva roky mladší. Na plácku za barákem jsme hráli fotbal do tmy, branky jsme měli z kamenů a z kabátů, Pepa chytal a já kopal.",
+          "text": "Most of all I ran around with Pepa Dvořák, who lived in the house next door and was two years younger than me. We played football till dark on the patch behind our building, with goals made of two stones and our coats. Pepa was in goal and I did the kicking.",
           "citations": [
             {
               "turnId": "s1-t12",
-              "quote": "S Pepou Dvořákem. Pepa Dvořák, ten bydlel o dům vedle, byl o dva roky mladší než já. Ale šikovnej kluk, to zase jo."
+              "quote": "With Pepa Dvořák. Pepa Dvořák lived in the house next door, he was two years younger than me. But a clever lad, I'll give him that."
             },
             {
               "turnId": "s1-t14",
-              "quote": "Fotbal! Na plácku za barákem, branky jsme měli ze dvou kamenů a z kabátů. Hráli jsme do tmy, dokud maminka nezavolala z okna. Pepa chytal, já kopal. Jednou jsem"
+              "quote": "Football! On the patch of ground behind our building, we made the goals out of two stones and our coats. We played till dark, until Mum called from the window. "
             }
           ],
           "verified": true,
@@ -518,35 +518,35 @@
         },
         {
           "id": "ch-detstvi-p5",
-          "text": "Největší průšvih přišel v roce 1958, kdy jsme s Pepou bez ptaní utekli na pouť do Prahy. Kus cesty jsme jeli tramvají na černo, pak šli pěšky, a peníze jsme neměli žádné. Domů jsme se vrátili v noci, táta na mě čekal ve dveřích s řemenem a Pepa dostal zaracha na celé prázdniny. Nakonec si Pepa vzal naši Věrku a z kamaráda se mi stal švagr.",
+          "text": "The biggest trouble came in 1958, when Pepa and I ran off to the fair in Prague without asking. Part of the way we rode the tram without a ticket, then we walked, and we had no money at all. We got home in the middle of the night, my dad was waiting in the doorway with his belt, and Pepa was grounded for the whole summer holidays. In the end Pepa married our Věrka, and my friend became my brother-in-law.",
           "citations": [
             {
               "turnId": "s1-t16",
-              "quote": "Jéje, lumpáren bylo. Lezli jsme přes plot k sousedům na třešně, to bylo normální. Ale největší průšvih… to bylo, jak jsme s Pepou v padesátým osmým utekli na po"
+              "quote": "Oh, there was plenty of mischief. We climbed over the fence into the neighbours' garden for cherries, that was normal. But the biggest trouble… that was when Pe"
             },
             {
               "turnId": "s1-t18",
-              "quote": "No to je dlouhý povídání… Sebrali jsme se bez ptaní, nikomu jsme nic neřekli. Ale víš co, Tomáši, už mě z toho povídání bolí v krku. No, to ti řeknu příště."
+              "quote": "Oh, that's a long story… We just took off without asking, didn't tell a soul. But you know what, Tom, my throat's getting sore from all this talking. Well, I'll"
             },
             {
               "turnId": "s2-t02",
-              "quote": "Jo, ta pouť. Tak to bylo v osmapadesátým, v roce 1958, v létě. Mně bylo dvanáct a Pepovi deset. Od kluků jsme slyšeli, že v Praze je pouť s kolotočema a střelni"
+              "quote": "Ah yes, the fair. So that was in fifty-eight, in 1958, in the summer. I was twelve and Pepa was ten. We'd heard from the other boys that there was a fair in Pra"
             },
             {
               "turnId": "s2-t04",
-              "quote": "Kus cesty jsme jeli tramvají, na černo samozřejmě, a pak pěšky. Peníze jsme neměli žádný, ani korunu. Tak jsme na tý pouti jen koukali na kolotoče a Pepa vyškem"
+              "quote": "Part of the way we rode the tram, without a ticket of course, and then we walked. We had no money at all, not a single crown. So at the fair we just stood and w"
             },
             {
               "turnId": "s2-t06",
-              "quote": "V noci, bylo už po jedenáctý. Maminka brečela na schodech a táta stál ve dveřích s řemenem. Dostal jsem pořádně, tejden jsem si nesed. Ale zasloužil jsem si to."
+              "quote": "In the middle of the night, it was past eleven. Mum was crying on the stairs and Dad stood in the doorway with his belt. I got a proper hiding, I couldn't sit d"
             },
             {
               "turnId": "s2-t08",
-              "quote": "Pepa dostal zaracha na celý prázdniny. Nesměl ven ani na plácek. Tak jsem za ním chodil pod okno a povídali jsme si přes záclonu."
+              "quote": "Pepa was grounded for the whole summer holidays. He wasn't even allowed out to the football patch. So I used to go under his window and we talked through the cu"
             },
             {
               "turnId": "s2-t10",
-              "quote": "No jasně. A víš, co je nejlepší? Pepa si pak vzal naši Věrku. Takže z kamaráda se mi stal švagr. Na svatbě jsme tu pouť vzpomínali a táta se už jen smál."
+              "quote": "Of course we did. And you know the best part? Pepa later married our Věrka. So my friend became my brother-in-law. At the wedding we remembered that fair and Da"
             }
           ],
           "verified": true,
@@ -555,13 +555,13 @@
         }
       ],
       "openQuestions": [
-        "Co jste na té pouti v Praze viděli nejdřív?",
-        "Co říkala maminka Anna, když jste se v noci vrátili?",
-        "Kde přesně na Kladně stál váš dům a plácek?"
+        "What was the first thing you saw at the fair in Prague?",
+        "What did your mum Anna say when you came home in the middle of the night?",
+        "Where exactly in Kladno was your house and the football patch?"
       ],
       "status": "draft",
       "generatedAt": "2026-09-30T10:07:25.000Z",
-      "model": "demo-snapshot (ručně ověřeno)"
+      "model": "demo-snapshot (hand-verified)"
     }
   ],
   "persons": [
@@ -574,8 +574,8 @@
       "birthYear": 1948,
       "birthYearApprox": true,
       "place": "Kladno",
-      "relationToGrandparent": "kamarád z dětství, později švagr (manžel sestry Věrky)",
-      "notes": "Bydlel o dům vedle, o dva roky mladší. Na plácku chytal v bráně. V roce 1958 spolu utekli na pouť do Prahy, dostal zaracha. Později si vzal Věrku.",
+      "relationToGrandparent": "childhood friend, later brother-in-law (married sister Věrka)",
+      "notes": "Lived next door, two years younger. Played in goal on the football patch. In 1958 they ran off together to the fair in Prague; he was grounded. Later married Věrka.",
       "turnIds": [
         "s1-t12",
         "s1-t14",
@@ -588,15 +588,15 @@
     },
     {
       "id": "p-anna",
-      "mentionName": "maminka Anna",
+      "mentionName": "mum Anna",
       "givenName": "Anna",
       "surname": null,
       "sex": "F",
       "birthYear": null,
       "birthYearApprox": false,
       "place": "Kladno",
-      "relationToGrandparent": "maminka",
-      "notes": "Každou sobotu pekla buchty s mákem a s povidly.",
+      "relationToGrandparent": "mother",
+      "notes": "Baked poppy seed and plum jam buns every Saturday.",
       "turnIds": [
         "s1-t04",
         "s1-t06",
@@ -605,15 +605,15 @@
     },
     {
       "id": "p-frantisek",
-      "mentionName": "táta František",
+      "mentionName": "dad František",
       "givenName": "František",
       "surname": null,
       "sex": "M",
       "birthYear": null,
       "birthYearApprox": false,
       "place": "Kladno",
-      "relationToGrandparent": "táta",
-      "notes": "Hutník v Poldovce u pece, chodil na šichty i na noční.",
+      "relationToGrandparent": "father",
+      "notes": "Steelworker at the Poldi furnace, worked shifts including nights.",
       "turnIds": [
         "s1-t04",
         "s1-t08",
@@ -624,15 +624,15 @@
     },
     {
       "id": "p-vera",
-      "mentionName": "sestra Věrka",
+      "mentionName": "sister Věrka",
       "givenName": "Věrka",
       "surname": null,
       "sex": "F",
       "birthYear": 1950,
       "birthYearApprox": true,
       "place": "Kladno",
-      "relationToGrandparent": "mladší sestra, manželka Pepy",
-      "notes": "O čtyři roky mladší než děda.",
+      "relationToGrandparent": "younger sister, Pepa's wife",
+      "notes": "Four years younger than Grandpa.",
       "turnIds": [
         "s1-t04",
         "s1-t06",
@@ -644,7 +644,7 @@
     {
       "id": "pl-kladno",
       "name": "Kladno",
-      "context": "Rodné město, dětství pod komíny Poldovky",
+      "context": "Home town, childhood under the Poldi chimneys",
       "turnIds": [
         "s1-t02",
         "s1-t04"
@@ -652,8 +652,8 @@
     },
     {
       "id": "pl-poldovka",
-      "name": "Poldovka (huť Poldi, Kladno)",
-      "context": "Huť, kde dělal táta František u pece",
+      "name": "Poldi steelworks (Kladno)",
+      "context": "Steelworks where his dad František worked at the furnace",
       "turnIds": [
         "s1-t02",
         "s1-t08"
@@ -661,8 +661,8 @@
     },
     {
       "id": "pl-praha",
-      "name": "Praha",
-      "context": "Cíl útěku na pouť s Pepou v roce 1958",
+      "name": "Prague",
+      "context": "Where he and Pepa ran off to the fair in 1958",
       "turnIds": [
         "s1-t16",
         "s2-t02",
@@ -672,7 +672,7 @@
     {
       "id": "pl-jihlava",
       "name": "Jihlava",
-      "context": "Vojna od roku 1965",
+      "context": "Military service from 1965",
       "turnIds": [
         "s2-t12",
         "s2-t14"
@@ -682,10 +682,10 @@
   "events": [
     {
       "id": "ev-narozeni",
-      "title": "Narození dědy Jaroslava",
+      "title": "Grandpa Jaroslav is born",
       "year": 1946,
       "yearApprox": false,
-      "description": "Děda se narodil na Kladně.",
+      "description": "Grandpa was born in Kladno.",
       "personIds": [],
       "placeIds": [
         "pl-kladno"
@@ -696,10 +696,10 @@
     },
     {
       "id": "ev-pout",
-      "title": "Útěk s Pepou na pouť do Prahy",
+      "title": "Running off with Pepa to the fair in Prague",
       "year": 1958,
       "yearApprox": false,
-      "description": "V létě 1958 utekli s Pepou na pouť do Prahy: kus tramvají na černo, pak pěšky, bez peněz. Vrátili se v noci, táta čekal s řemenem, Pepa dostal zaracha na celé prázdniny.",
+      "description": "In summer 1958 he and Pepa ran off to the fair in Prague: part of the way by tram without tickets, then on foot, with no money. They came back in the middle of the night, Dad was waiting with a belt, and Pepa was grounded for the whole summer holidays.",
       "personIds": [
         "p-pepa"
       ],
@@ -717,10 +717,10 @@
     },
     {
       "id": "ev-svatba-vera",
-      "title": "Pepa si vzal sestru Věrku",
+      "title": "Pepa marries sister Věrka",
       "year": null,
       "yearApprox": false,
-      "description": "Z kamaráda Pepy se stal dědův švagr.",
+      "description": "His friend Pepa became Grandpa's brother-in-law.",
       "personIds": [
         "p-pepa",
         "p-vera"
@@ -732,10 +732,10 @@
     },
     {
       "id": "ev-vojna",
-      "title": "Nástup na vojnu do Jihlavy",
+      "title": "Called up for military service in Jihlava",
       "year": 1965,
       "yearApprox": false,
-      "description": "Po vyučení narukoval na dva roky do Jihlavy; první den ostříhání dohola.",
+      "description": "After his apprenticeship he was called up for two years in Jihlava; on the first day they shaved their heads.",
       "personIds": [],
       "placeIds": [
         "pl-jihlava"
@@ -1060,17 +1060,22 @@
       },
       "gates": [],
       "band": "strong",
-      "reason": "Pepa → Josef (zdrobnělina) · Dvořák = Dvořák · 1948 ≈ asi 1948 · Kladno ✓",
+      "reason": "Pepa → Josef (diminutive) · Dvořák = Dvořák · 1948 ≈ c. 1948 · Kladno ✓",
       "alsoConsidered": [
         {
           "treePersonId": "I13",
           "score": 0.5,
-          "why": "Josef Horák *1946 – jiné příjmení, rok o 2 let jinde, jiné místo (Rakovník)"
+          "why": "Josef Horák *1946 – different surname, born 2 years apart, different place (Rakovník)"
         },
         {
           "treePersonId": "I12",
           "score": 0.45,
-          "why": "Josef Novák *1924 – jiné příjmení, rok o 24 let jinde"
+          "why": "Josef Novák *1924 – different surname, born 24 years apart"
+        },
+        {
+          "treePersonId": "I7",
+          "score": 0.4,
+          "why": "Petr Dvořák *1974 – born 26 years apart, different first name"
         }
       ],
       "status": "suggested"

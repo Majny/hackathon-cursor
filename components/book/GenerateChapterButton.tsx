@@ -16,7 +16,7 @@ export function GenerateChapterButton({ topic, label, regenerate = false }: { to
       await api.generateChapter(topic);
       router.refresh();
     } catch (e) {
-      setErr(e instanceof Error ? e.message : "Nepodařilo se");
+      setErr(e instanceof Error ? e.message : "Something went wrong");
     } finally {
       setBusy(false);
     }
@@ -24,7 +24,7 @@ export function GenerateChapterButton({ topic, label, regenerate = false }: { to
   return (
     <span className="inline-flex flex-col items-end gap-1">
       <Button variant={regenerate ? "ghost" : "secondary"} onClick={run} disabled={busy}>
-        {busy ? "Píšu kapitolu…" : label ?? (regenerate ? "Přepsat" : "Napsat kapitolu")}
+        {busy ? "Writing chapter…" : label ?? (regenerate ? "Rewrite" : "Write chapter")}
       </Button>
       {err && <span className="text-sm text-red-700">{err}</span>}
     </span>

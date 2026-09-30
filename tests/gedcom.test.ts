@@ -6,10 +6,10 @@ import { buildGedcom, noteLines, type GedcomInput } from "@/lib/gedcom";
 
 const pepa: PersonEntity = {
   id: "pepa", mentionName: "Pepa Dvořák", givenName: "Pepa", surname: "Dvořák", sex: "M", birthYear: 1948,
-  birthYearApprox: true, place: "Kladno", relationToGrandparent: "kamarád ze sousedství", notes: "Bydlel o dům vedle.",
+  birthYearApprox: true, place: "Kladno", relationToGrandparent: "childhood friend, neighbour", notes: "Lived next door.",
   turnIds: ["s1-t07"],
 };
-const anna: PersonEntity = { ...pepa, id: "anna", mentionName: "teta Anča", givenName: "Anča", surname: null, sex: "F", birthYear: 1930, relationToGrandparent: "teta", turnIds: [] };
+const anna: PersonEntity = { ...pepa, id: "anna", mentionName: "teta Anča", givenName: "Anča", surname: null, sex: "F", birthYear: 1930, relationToGrandparent: "aunt", turnIds: [] };
 const turn: Turn = { id: "s1-t07", sessionId: "s1", idx: 7, clientSeq: 7, role: "grandparent", text: "Pepa Dvořák, ten bydlel o dům vedle, byl o dva roky mladší než já. E-mail pepa@kladno.cz", at: "2026-09-30T10:00:00Z" };
 const longText = ("Dlouhý odstavec o dětství v Kladně, kde se všichni znali a chodili spolu do huti. ").repeat(12).trim();
 const chapter: Chapter = {
@@ -26,7 +26,7 @@ const confirmed: Match = {
 };
 const base: GedcomInput = {
   tree: tree as FamilyTree, matches: [], persons: [pepa, anna], turns: [turn], chapters: [chapter],
-  grandparent: { id: "jaroslav", displayName: "děda Jarda", fullName: "Jaroslav Novák", birthYear: 1946, birthPlace: "Kladno", sex: "M", treePersonId: "I1", grandchildName: "Tomáš" },
+  grandparent: { id: "jaroslav", displayName: "Grandpa Jarda", fullName: "Jaroslav Novák", birthYear: 1946, birthPlace: "Kladno", sex: "M", treePersonId: "I1", grandchildName: "Tom" },
 };
 
 const lines = (g: string) => g.replace(/^﻿/, "").split("\r\n").filter((l, i, a) => !(i === a.length - 1 && l === ""));
@@ -83,15 +83,15 @@ describe("buildGedcom", () => {
     const i6 = L.slice(L.indexOf("0 @I6@ INDI"), L.indexOf("0 @I7@ INDI"));
     expect(i6).toContain("2 NICK Pepa");
     expect(i6).toContain("1 SOUR @S1@");
-    expect(i6).toContain("2 PAGE povídání 1, replika s1-t07");
-    expect(g).toContain("Ve vyprávění dědy Jaroslava: Pepa Dvořák");
+    expect(i6).toContain("2 PAGE session 1, turn s1-t07");
+    expect(g).toContain("In Grandpa Jaroslav's stories: Pepa Dvořák");
     expect(g).toContain("pepa@@kladno.cz");
     expect(L).toContain("2 TYPE maiden");
   });
 
   it("includeUnmatched adds X records", () => {
     expect(L).toContain("0 @X1@ INDI");
-    expect(g).toContain("Zmíněn ve vyprávění: teta. Neověřeno.");
+    expect(g).toContain("Mentioned in the stories: aunt. Unverified.");
     expect(L).toContain("2 DATE ABT 1930");
   });
 

@@ -24,25 +24,26 @@ describe("grandchild prompt", () => {
     expect(Object.keys(vars).sort()).toEqual([...GRANDCHILD_VARIABLES].sort());
     const rendered = renderGrandchildPrompt(mem);
     expect(rendered).not.toContain("{{");
-    expect(rendered).toContain("Tomáš");
+    expect(rendered).toContain("You are Tom,");
+    expect(rendered).toContain(`"Grandpa"`);
   });
 });
 
 describe("pipeline prompts", () => {
   const turns: Turn[] = [
-    { id: "s1-t01", sessionId: "s1", idx: 1, clientSeq: 1, role: "grandparent", text: "Na Kladně.", at: "" },
-    { id: "s1-t02", sessionId: "s1", idx: 2, clientSeq: 2, role: "ai", text: "A kdo tam byl?", at: "" },
+    { id: "s1-t01", sessionId: "s1", idx: 1, clientSeq: 1, role: "grandparent", text: "In Kladno.", at: "" },
+    { id: "s1-t02", sessionId: "s1", idx: 2, clientSeq: 2, role: "ai", text: "And who was there?", at: "" },
   ];
   it("transcript format", () => {
-    expect(formatTranscript(turns)).toBe("[s1-t01] DĚDA: Na Kladně.\n[s1-t02] VNUK: A kdo tam byl?");
+    expect(formatTranscript(turns)).toBe("[s1-t01] GRANDPA: In Kladno.\n[s1-t02] TOM: And who was there?");
   });
   it("chapter user separates questions", () => {
     const u = buildChapterUser({ turns, keyFacts: [] });
-    const [src, rest] = u.split("OTÁZKY – NEJSOU ZDROJ");
-    expect(src).toContain("[s1-t01] DĚDA");
+    const [src, rest] = u.split("QUESTIONS – NOT A SOURCE");
+    expect(src).toContain("[s1-t01] GRANDPA");
     expect(src).not.toContain("s1-t02");
-    expect(rest).toContain("[s1-t02] VNUK");
-    expect(renderChapterSystem("Dětství")).toContain("„Dětství“");
+    expect(rest).toContain("[s1-t02] TOM");
+    expect(renderChapterSystem("Childhood")).toContain(`"Childhood"`);
     expect(renderExtractorSystem({ birthYear: 1946, birthPlace: "Kladno" })).not.toContain("{{");
   });
 });

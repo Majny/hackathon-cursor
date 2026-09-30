@@ -17,10 +17,10 @@ describe("turn queue", () => {
         inFlight--;
       },
     });
-    q.enqueue("ai", "Ahoj dědo");
-    q.enqueue("grandparent", "Ahoj Tomáši");
-    q.enqueue("ai", "Kde jsi vyrůstal?");
-    q.enqueue("grandparent", "Na Kladně.");
+    q.enqueue("ai", "Hi Grandpa");
+    q.enqueue("grandparent", "Hi Tom");
+    q.enqueue("ai", "Where did you grow up?");
+    q.enqueue("grandparent", "In Kladno.");
     await q.flush();
     expect(maxInFlight).toBe(1);
     expect(received.map((t) => t.clientSeq)).toEqual([1, 2, 3, 4]);
@@ -30,9 +30,9 @@ describe("turn queue", () => {
   it("dedupes repeated deliveries by key, but not identical text", async () => {
     const received: QueuedTurn[] = [];
     const q = createTurnQueue({ send: async (t) => void received.push(t) });
-    expect(q.enqueue("grandparent", "Ano.", 10)).toBe(1);
-    expect(q.enqueue("grandparent", "Ano.", 10)).toBeNull();
-    expect(q.enqueue("grandparent", "Ano.", 11)).toBe(2);
+    expect(q.enqueue("grandparent", "Yes.", 10)).toBe(1);
+    expect(q.enqueue("grandparent", "Yes.", 10)).toBeNull();
+    expect(q.enqueue("grandparent", "Yes.", 11)).toBe(2);
     expect(q.enqueue("ai", "   ")).toBeNull();
     await q.flush();
     expect(received.map((t) => t.clientSeq)).toEqual([1, 2]);

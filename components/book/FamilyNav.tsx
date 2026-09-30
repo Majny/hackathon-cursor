@@ -3,10 +3,10 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const LINKS = [
-  { href: "/family", label: "Přehled", exact: true },
-  { href: "/family/book", label: "Kniha" },
-  { href: "/family/people", label: "Lidé" },
-  { href: "/family/tree", label: "Strom" },
+  { href: "/family", label: "Overview", exact: true },
+  { href: "/family/book", label: "Book" },
+  { href: "/family/people", label: "People" },
+  { href: "/family/tree", label: "Tree" },
 ];
 
 export function FamilyNav() {
@@ -31,7 +31,7 @@ export function FamilyNav() {
         href="/talk"
         className="ml-2 rounded-full border border-brick/40 px-4 py-1.5 text-lg font-medium text-brick hover:bg-brick hover:text-white"
       >
-        Povídat →
+        Talk →
       </Link>
     </nav>
   );

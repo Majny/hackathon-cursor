@@ -28,6 +28,9 @@ function wordInTokens(word: string, toks: string[]): boolean {
   return toks.some((t) => t === w || commonPrefix(t, w) >= Math.max(3, Math.min(t.length, w.length) - 2));
 }
 
+/** English words that are capitalized but are not names. */
+const NOT_NAMES = new Set(["I", "OK"]);
+
 /** Capitalized words that are not at the start of a sentence (or quoted speech). */
 export function properNames(text: string): string[] {
   const out: string[] = [];
@@ -35,10 +38,10 @@ export function properNames(text: string): string[] {
   let m: RegExpExecArray | null;
   while ((m = re.exec(text))) {
     const w = m[0];
-    if (!/^\p{Lu}/u.test(w)) continue;
+    if (!/^\p{Lu}/u.test(w) || NOT_NAMES.has(w)) continue;
     const before = text.slice(0, m.index).replace(/\s+$/, "");
     const prev = before.slice(-1);
-    const sentenceStart = before === "" || /[.!?…:„“"‚'«»(–-]/.test(prev);
+    const sentenceStart = before === "" || /[.!?…:„“"‚‘'«»(–—-]/.test(prev);
     if (sentenceStart) continue;
     out.push(w);
   }
@@ -47,15 +50,15 @@ export function properNames(text: string): string[] {
 
 export function validateParagraph(text: string, citations: Citation[], turnsById: Map<string, Turn>): { verified: boolean; warnings: string[] } {
   const warnings: string[] = [];
-  if (!citations.length) warnings.push("Odstavec nemá žádnou platnou citaci dědových slov.");
+  if (!citations.length) warnings.push("This paragraph has no valid citation of Grandpa's words.");
   const cited = citations.map((c) => turnsById.get(c.turnId)?.text ?? "").join(" \n ");
   const citedToks = tokens(cited);
   for (const y of new Set(text.match(YEAR_RE) ?? [])) {
-    if (!cited.includes(y)) warnings.push(`Rok ${y} nezazněl v citovaných replikách.`);
+    if (!cited.includes(y)) warnings.push(`The year ${y} does not appear in the cited turns.`);
   }
   if (citations.length) {
     for (const name of properNames(text)) {
-      if (!wordInTokens(name, citedToks)) warnings.push(`Jméno „${name}“ nezaznělo v citovaných replikách.`);
+      if (!wordInTokens(name, citedToks)) warnings.push(`The name "${name}" does not appear in the cited turns.`);
     }
   }
   return { verified: warnings.length === 0, warnings };
@@ -78,7 +81,7 @@ export function validateCitations(chapter: ChapterOutput, turns: Turn[]): Chapte
 /** LLM call only (no store writes) – used by generateChapter and the smoke script. */
 export async function draftChapter(db: Db, key: LifeTopicKey): Promise<{ chapter: Chapter; ms: number; provider: string }> {
   const turns = db.turns;
-  if (!turns.some((t) => t.role === "grandparent")) throw new Error("Zatím není z čeho psát – děda ještě nic nevyprávěl.");
+  if (!turns.some((t) => t.role === "grandparent")) throw new Error("Nothing to write from yet – Grandpa hasn't told any stories.");
   const keyFacts = [...new Set(db.summaries.flatMap((s) => s.keyFacts))];
   const { data, model, ms, provider } = await llmStructured({
     task: "chapter",
@@ -105,7 +108,7 @@ export async function generateChapter(key: LifeTopicKey): Promise<Chapter> {
     for (const q of chapter.openQuestions) {
       if (existingTitles.has(q.toLowerCase())) continue;
       const th: OpenThread = {
-        id: newId("th"), title: q, whyUnfinished: "Otázka z kapitoly – v rozhovoru zatím nezaznělo.",
+        id: newId("th"), title: q, whyUnfinished: "Question from the chapter – not covered in the conversations yet.",
         turnIds: [], createdInSession: lastSessionId(db), resolvedInSession: null, source: "chapter",
       };
       db.threads.push(th);
