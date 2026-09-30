@@ -58,7 +58,7 @@ export function FamilyTree({ tree, layout, confirmedByTreeId, suggestedTreeIds, 
         </div>
       </div>
 
-      <aside className="rounded-2xl border border-line bg-card p-5 lg:w-80 lg:shrink-0">
+      <aside className="rounded-2xl border border-line bg-card p-5 lg:w-72 lg:shrink-0 lg:self-start lg:sticky lg:top-24">
         {!person ? (
           <p className="text-[1.1rem] text-ink-soft">Tap a name in the tree to see who they are.</p>
         ) : (
@@ -75,25 +75,32 @@ export function FamilyTree({ tree, layout, confirmedByTreeId, suggestedTreeIds, 
               {person.deathYear ? ` · †${person.deathYear}` : ""}
             </p>
             {person.occupation && <p className="text-ink-soft">{person.occupation}</p>}
-            {relatives[person.id] && <p className="mt-2 text-sm text-ink-soft">{relatives[person.id]}</p>}
+            
 
             {story ? (
               <div className="mt-4 border-t border-line pt-4">
-                <p className="mb-2 font-semibold text-moss">From Grandpa’s own words</p>
-                <p className="text-ink-soft">{story.entity.relationToGrandparent}</p>
-                {story.entity.notes && <p className="mt-1">{story.entity.notes}</p>}
-                <div className="mt-3 space-y-3">
-                  {story.citations.map((c) => (
-                    <blockquote key={c.turnId} className="border-l-4 border-brick/40 pl-3 font-serif italic">
-                      “{c.quote}”
-                      <div>
-                        <Link className="text-sm not-italic text-brick underline" href={`/family/conversations/${c.turnId.split("-")[0]}#${c.turnId}`}>
-                          Read it in the call
-                        </Link>
-                      </div>
-                    </blockquote>
-                  ))}
+                <p className="mb-2 font-semibold text-moss">In Grandpa’s words</p>
+                {story.citations.slice(0, 1).map((c) => (
+                  <blockquote key={c.turnId} className="border-l-4 border-brick/40 pl-3 font-serif text-[1.1rem] italic">
+                    “{c.quote.length > 110 ? c.quote.slice(0, 110).replace(/\s+\S*$/, "") + "…" : c.quote}”
+                  </blockquote>
+                ))}
+                <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-sm">
+                  {story.citations[0] && (
+                    <Link className="text-brick underline" href={`/family/conversations/${story.citations[0].turnId.split("-")[0]}#${story.citations[0].turnId}`}>
+                      Hear it in the call
+                    </Link>
+                  )}
+                  <Link className="text-brick underline" href={`/family/people/${story.entity.id}`}>
+                    All about {story.entity.givenName ?? person.givenName}
+                  </Link>
                 </div>
+                {suggestedTreeIds.includes(person.id) && (
+                  <p className="mt-3 rounded-lg bg-amber-50 px-3 py-2 text-sm text-ink">
+                    Is this the {story.entity.mentionName} Grandpa talks about?{" "}
+                    <Link href={`/family/people/${story.entity.id}`} className="font-semibold text-brick underline">Confirm</Link>
+                  </p>
+                )}
               </div>
             ) : suggestedTreeIds.includes(person.id) ? (
               <p className="mt-4 text-ink-soft">
