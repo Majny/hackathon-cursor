@@ -747,8 +747,8 @@
     }
   ],
   "tree": {
-    "name": "Rodokmen Novákových – ukázkový import z MyHeritage",
-    "source": "Ukázkový import z MyHeritage (smyšlená data pro demo)",
+    "name": "The Novák family tree — sample MyHeritage import",
+    "source": "Sample MyHeritage import (fictional demo data)",
     "persons": [
       {
         "id": "I1",
@@ -760,7 +760,7 @@
         "birthYear": 1946,
         "birthPlace": "Kladno",
         "deathYear": null,
-        "occupation": "hutník",
+        "occupation": "steelworker",
         "generation": 1
       },
       {
@@ -825,7 +825,7 @@
         "birthYear": 1948,
         "birthPlace": "Kladno",
         "deathYear": null,
-        "occupation": "zámečník",
+        "occupation": "locksmith",
         "generation": 1
       },
       {

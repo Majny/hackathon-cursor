@@ -72,7 +72,7 @@ function Transcript() {
       <AnimatePresence mode="wait">
         <motion.div
           key={idx}
-          initial={{ opacity: 0, y: 14, scale: 0.97 }}
+          initial={{ opacity: 1, y: 14, scale: 0.97 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: -10, scale: 0.98 }}
           transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
@@ -96,7 +96,8 @@ export function Hero() {
     reduce
       ? {}
       : {
-          initial: { opacity: 0, y: 30 },
+          // Hero stays visible even if the entrance animation never runs (e.g. throttled tab on a projector).
+          initial: { opacity: 1, y: 30 },
           animate: { opacity: 1, y: 0 },
           transition: { duration: 0.9, delay: d, ease: [0.22, 1, 0.36, 1] as const },
         };
@@ -148,7 +149,7 @@ export function Hero() {
         </div>
 
         <motion.div
-          initial={reduce ? false : { opacity: 0, scale: 0.92 }}
+          initial={reduce ? false : { opacity: 1, scale: 0.92 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.2, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
           className="relative"
