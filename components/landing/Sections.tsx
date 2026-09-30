@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Reveal } from "./Reveal";
-import CallButton from "@/components/phone/CallButton";
+import { WhatsAppCall } from "./WhatsAppCall";
 import { SectionLabel } from "./SectionLabel";
 
 export function Nav() {
@@ -17,15 +17,15 @@ export function Nav() {
         </Link>
         <div className="hidden items-center gap-7 text-[0.85rem] text-ink-soft md:flex">
           <a href="#how" className="transition hover:text-ink">How it works</a>
-          <a href="#call" className="transition hover:text-ink">Call</a>
-          <Link href="/family" className="transition hover:text-ink">Family</Link>
-          <Link href="/family/book" className="transition hover:text-ink">The book</Link>
+          <a href="#call" className="transition hover:text-ink">The call</a>
+          <Link href="/family/stories" className="transition hover:text-ink">Stories</Link>
+          <Link href="/family/conversations" className="transition hover:text-ink">Conversations</Link>
         </div>
         <Link
-          href="/talk"
+          href="/family"
           className="rounded-full bg-ink px-4 py-2 text-[0.8rem] font-semibold text-paper transition hover:bg-brick-dark"
         >
-          Talk to Tom →
+          Family archive →
         </Link>
       </nav>
     </header>
@@ -85,23 +85,45 @@ export function CallSection() {
           <div className="pointer-events-none absolute -right-24 -top-24 h-80 w-80 rounded-full bg-[radial-gradient(circle,rgba(180,83,42,0.22),transparent_65%)]" />
           <div className="relative grid items-center gap-10 md:grid-cols-[1.2fr_1fr]">
             <div>
-              <SectionLabel num="04">The phone call</SectionLabel>
+              <SectionLabel num="04">The call</SectionLabel>
               <h2 className="font-(family-name:--font-display) text-[2.4rem] leading-[1.05] tracking-[-0.015em] text-ink sm:text-[3rem]">
-                No app. No screen. <span className="italic text-brick">Tom simply calls.</span>
+                Nothing to press. <span className="italic text-brick">Tom calls on WhatsApp.</span>
               </h2>
               <p className="mt-5 max-w-lg text-[1.02rem] leading-relaxed text-ink-soft">
-                Works on any phone — no app, no screen. Tom simply calls. Grandpa picks up the landline he&apos;s had for
-                forty years, and the story continues where it left off.
+                At the time Grandpa likes, his phone rings. It&apos;s Tom, on the WhatsApp he already uses for the
+                grandkids&apos; photos. He picks up, and the story continues exactly where it stopped last time.
               </p>
-              <ul className="mt-6 space-y-2 text-[0.9rem] text-ink">
-                <li>☎️ &nbsp;Landline or mobile, any handset</li>
-                <li>🕰️ &nbsp;A gentle 15-minute chat, at the time grandpa likes</li>
-                <li>🧠 &nbsp;Remembers every previous call</li>
-              </ul>
+              <ol className="mt-7 space-y-4">
+                {[
+                  ["Tom calls", "Our backend places a WhatsApp voice call. No app to install, no link to click."],
+                  ["Grandpa talks", "A gentle 10–15 minute chat. Tom remembers every earlier call and asks about the unfinished story."],
+                  ["The family reads", "Minutes later the transcript, new stories, people and places appear in the family archive."],
+                ].map(([t, b], i) => (
+                  <li key={t} className="flex gap-4">
+                    <span className="font-(family-name:--font-display) grid h-9 w-9 shrink-0 place-items-center rounded-full border border-brick/30 bg-card text-[1rem] italic text-brick">
+                      {i + 1}
+                    </span>
+                    <div>
+                      <div className="font-semibold text-ink">{t}</div>
+                      <p className="text-[0.9rem] leading-relaxed text-ink-soft">{b}</p>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <Link href="/family" className="group inline-flex min-h-12 items-center gap-2 rounded-full bg-ink px-6 py-3 text-[0.92rem] font-semibold text-paper transition hover:-translate-y-0.5 hover:bg-brick-dark">
+                  Open the family archive <span className="transition group-hover:translate-x-1">→</span>
+                </Link>
+                <Link href="/talk" className="inline-flex min-h-12 items-center rounded-full border border-ink/15 bg-card px-6 py-3 text-[0.92rem] font-semibold text-ink transition hover:-translate-y-0.5 hover:border-brick/50 hover:text-brick">
+                  Try Tom in your browser
+                </Link>
+              </div>
             </div>
-            <div className="rounded-[1.5rem] border border-line bg-card/85 p-6 shadow-[0_30px_60px_-35px_rgba(59,42,30,0.6)] backdrop-blur">
-              <div className="mb-4 text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-ink-soft">Try it live</div>
-              <div id="landing-call-slot"><CallButton /></div>
+            <div className="py-4">
+              <WhatsAppCall />
+              <p className="mt-6 text-center text-[0.78rem] text-ink-soft">
+                What Grandpa sees. The call is placed automatically by the backend.
+              </p>
             </div>
           </div>
         </div>
@@ -138,14 +160,14 @@ export function Trust() {
       <Reveal delay={0.2}>
         <div className="mt-20 flex flex-col items-center text-center">
           <p className="font-(family-name:--font-display) max-w-2xl text-[1.9rem] leading-snug text-ink sm:text-[2.3rem]">
-            Call grandpa today. <span className="italic text-brick">Keep him forever.</span>
+            Let Tom call Grandpa. <span className="italic text-brick">Keep him forever.</span>
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <Link href="/talk" className="group inline-flex items-center gap-2 rounded-full bg-ink px-6 py-3.5 text-[0.95rem] font-semibold text-paper transition hover:-translate-y-0.5 hover:bg-brick-dark">
-              Talk to Tom <span className="transition group-hover:translate-x-1">→</span>
+            <Link href="/family" className="group inline-flex min-h-12 items-center gap-2 rounded-full bg-ink px-6 py-3.5 text-[0.95rem] font-semibold text-paper transition hover:-translate-y-0.5 hover:bg-brick-dark">
+              Open the family archive <span className="transition group-hover:translate-x-1">→</span>
             </Link>
-            <Link href="/family/book" className="inline-flex items-center gap-2 rounded-full border border-ink/15 bg-card px-6 py-3.5 text-[0.95rem] font-semibold text-ink transition hover:-translate-y-0.5 hover:border-brick/50 hover:text-brick">
-              Read the family book
+            <Link href="/talk" className="inline-flex min-h-12 items-center gap-2 rounded-full border border-ink/15 bg-card px-6 py-3.5 text-[0.95rem] font-semibold text-ink transition hover:-translate-y-0.5 hover:border-brick/50 hover:text-brick">
+              Try Tom in your browser
             </Link>
           </div>
         </div>

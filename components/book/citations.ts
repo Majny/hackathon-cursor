@@ -4,7 +4,7 @@ import type { Chapter, Citation } from "@/lib/types";
 export interface NumberedCitation extends Citation {
   n: number;          // 1-based number, stable per turnId within a chapter
   sessionId: string;
-  href: string;       // /family/sessions/<sessionId>#<turnId>
+  href: string;       // /family/conversations/<sessionId>#<turnId>
 }
 
 /** "s1-t07" -> "s1". Returns null for ids that don't follow `${sessionId}-tNN`. */
@@ -15,7 +15,7 @@ export function sessionIdFromTurnId(turnId: string): string | null {
 
 export function transcriptHref(turnId: string, sessionId?: string | null): string {
   const sid = sessionId ?? sessionIdFromTurnId(turnId) ?? "";
-  return `/family/sessions/${encodeURIComponent(sid)}#${encodeURIComponent(turnId)}`;
+  return `/family/conversations/${encodeURIComponent(sid)}#${encodeURIComponent(turnId)}`;
 }
 
 /**

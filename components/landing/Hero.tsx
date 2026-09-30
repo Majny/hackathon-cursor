@@ -112,7 +112,7 @@ export function Hero() {
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-moss opacity-60" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-moss" />
             </span>
-            Voice AI biographer for grandparents
+            Tom calls Grandpa on WhatsApp
           </motion.div>
 
           <motion.h1
@@ -125,26 +125,26 @@ export function Hero() {
           </motion.h1>
 
           <motion.p {...rise(0.18)} className="mt-7 max-w-xl text-[1.12rem] leading-relaxed text-ink-soft">
-            Grandpa just talks. Heirloom listens, remembers, and writes his life story — linked to your family tree.
+            Tom, a warm AI grandson, calls Grandpa on WhatsApp and asks about his life. The family gets a living archive of his stories, people and places, every line linked to his own words.
           </motion.p>
 
           <motion.div {...rise(0.28)} className="mt-9 flex flex-wrap items-center gap-3">
             <Link
-              href="/talk"
-              className="group inline-flex items-center gap-2 rounded-full bg-ink px-6 py-3.5 text-[0.95rem] font-semibold text-paper shadow-[0_14px_30px_-12px_rgba(59,42,30,0.6)] transition hover:-translate-y-0.5 hover:bg-brick-dark"
+              href="/family"
+              className="group inline-flex min-h-12 items-center gap-2 rounded-full bg-ink px-6 py-3.5 text-[0.95rem] font-semibold text-paper shadow-[0_14px_30px_-12px_rgba(59,42,30,0.6)] transition hover:-translate-y-0.5 hover:bg-brick-dark focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-brick"
             >
-              Talk to Tom
+              Open the family archive
               <span className="transition group-hover:translate-x-1">→</span>
             </Link>
-            <a
-              href="#call"
-              className="inline-flex items-center gap-2 rounded-full border border-ink/15 bg-card px-6 py-3.5 text-[0.95rem] font-semibold text-ink transition hover:-translate-y-0.5 hover:border-brick/50 hover:text-brick"
+            <Link
+              href="/talk"
+              className="inline-flex min-h-12 items-center gap-2 rounded-full border border-ink/15 bg-card px-6 py-3.5 text-[0.95rem] font-semibold text-ink transition hover:-translate-y-0.5 hover:border-brick/50 hover:text-brick focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-brick"
             >
-              📞 Call Grandpa
-            </a>
+              Try Tom in your browser
+            </Link>
           </motion.div>
           <motion.p {...rise(0.36)} className="mt-4 text-[0.78rem] text-ink-soft/80">
-            no app · no typing · just a conversation
+            no app to install · no buttons · Grandpa just picks up
           </motion.p>
         </div>
 

@@ -1,25 +1,58 @@
+import type { Metadata } from "next";
 import Link from "next/link";
-import { FamilyNav } from "@/components/book/FamilyNav";
+import { Fraunces, Inter } from "next/font/google";
+import { getDb } from "@/lib/store";
+import { buildSearchIndex, routes, type SearchDoc } from "@/lib/archive";
+import { FamilyHeader } from "@/components/archive/shell/FamilyHeader";
 
-export default function FamilyLayout({ children }: { children: React.ReactNode }) {
+const display = Fraunces({ subsets: ["latin", "latin-ext"], style: ["normal", "italic"], variable: "--font-display" });
+const body = Inter({ subsets: ["latin", "latin-ext"], variable: "--font-body" });
+
+export const metadata: Metadata = {
+  title: "Family archive · Heirloom",
+  description: "Everything Grandpa told Tom on WhatsApp: stories, people, places and a life timeline, each linked to his own words.",
+};
+
+export const dynamic = "force-dynamic";
+
+export default async function FamilyLayout({ children }: { children: React.ReactNode }) {
+  let docs: SearchDoc[] = [];
+  let familyName = "Novák";
+  try {
+    const db = await getDb();
+    docs = buildSearchIndex(db);
+    familyName = db.grandparent?.fullName?.split(/\s+/).pop() || familyName;
+  } catch {
+    /* the archive still renders; search is just empty */
+  }
+
   return (
-    <div className="min-h-screen bg-paper">
-      <header className="sticky top-0 z-20 border-b border-line bg-paper/90 backdrop-blur">
-        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-6 py-3">
-          <div className="flex items-baseline gap-4">
-            <Link href="/" className="group flex items-baseline gap-1.5" aria-label="Heirloom home">
-              <span className="text-brick transition-transform group-hover:-rotate-12" aria-hidden>❦</span>
-              <span className="font-serif text-2xl font-semibold tracking-tight text-ink">Heirloom</span>
-            </Link>
-            <span className="hidden h-5 w-px bg-line sm:block" aria-hidden />
-            <Link href="/family" className="hidden items-baseline gap-2 sm:flex">
-              <span className="font-serif text-lg text-ink-soft hover:text-ink">The Novák family book</span>
-            </Link>
+    <div
+      className={`${display.variable} ${body.variable} min-h-screen bg-paper font-(family-name:--font-body) text-ink selection:bg-brick/20`}
+    >
+      <a
+        href="#main"
+        className="sr-only z-50 rounded-full bg-ink px-4 py-2 text-paper focus:not-sr-only focus:fixed focus:top-3 focus:left-3"
+      >
+        Skip to content
+      </a>
+      <FamilyHeader familyName={familyName} docs={docs} />
+      <div id="main" className="mx-auto max-w-6xl px-5 py-8 sm:px-8 sm:py-10">
+        {children}
+      </div>
+      <footer className="mt-10 border-t border-line">
+        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-5 py-6 text-sm text-ink-soft sm:px-8">
+          <p>
+            <span className="text-brick" aria-hidden>❦</span> Heirloom · Grandpa talks to Tom on WhatsApp. Nothing here is
+            invented: every sentence links back to his own words.
+          </p>
+          <div className="flex flex-wrap gap-4">
+            <Link href={routes.tree()} className="hover:text-brick">Family tree</Link>
+            <a href={routes.gedcom()} className="hover:text-brick">Export GEDCOM</a>
+            <Link href="/" className="hover:text-brick">About Heirloom</Link>
           </div>
-          <FamilyNav />
         </div>
-      </header>
-      <div className="mx-auto max-w-6xl px-6 py-8">{children}</div>
+      </footer>
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { routes } from "@/lib/archive";
 
 export interface Column<T> { header: string; cell: (row: T) => ReactNode; className?: string }
 
@@ -43,7 +44,7 @@ export function TurnLinks({ turnIds }: { turnIds: string[] }) {
   return (
     <span className="flex flex-wrap gap-1">
       {turnIds.map((t) => (
-        <Link key={t} href={`/family/sessions/${t.split("-")[0]}#${t}`} className="text-sm text-brick underline">
+        <Link key={t} href={routes.turn(t.replace(/-t\d+$/, ""), t)} className="text-sm text-brick underline">
           {t}
         </Link>
       ))}

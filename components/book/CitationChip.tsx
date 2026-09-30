@@ -1,11 +1,20 @@
 "use client";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
-import type { NumberedCitation } from "./citations";
+import { useEffect, useId, useRef, useState } from "react";
 
-export function CitationChip({ c }: { c: NumberedCitation }) {
+/** Minimal shape shared by NumberedCitation (citations.ts) and CitedParagraph.numbered (lib/archive). */
+export interface ChipCitation {
+  n: number;
+  turnId: string;
+  quote: string;
+  href: string;
+  source?: string;
+}
+
+export function CitationChip({ c, speaker = "Grandpa" }: { c: ChipCitation; speaker?: string }) {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLSpanElement>(null);
+  const popId = useId();
 
   useEffect(() => {
     if (!open) return;
@@ -27,8 +36,9 @@ export function CitationChip({ c }: { c: NumberedCitation }) {
         type="button"
         onClick={() => setOpen((o) => !o)}
         aria-expanded={open}
-        title="Show where Grandpa said this"
-        className={`mx-0.5 inline-flex h-6 min-w-6 items-center justify-center rounded-full border px-1.5 font-sans text-xs font-bold leading-none transition-colors ${
+        aria-controls={popId}
+        aria-label={`Source ${c.n}: show where ${speaker} said this`}
+        className={`mx-0.5 inline-flex h-7 min-w-7 items-center justify-center rounded-full border px-1.5 font-sans text-xs font-bold leading-none transition-colors focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-brick ${
           open ? "border-brick bg-brick text-white" : "border-brick/40 bg-brick/10 text-brick-dark hover:bg-brick hover:text-white"
         }`}
       >
@@ -36,15 +46,23 @@ export function CitationChip({ c }: { c: NumberedCitation }) {
       </button>
       {open && (
         <span
+          id={popId}
           role="dialog"
-          className="absolute left-1/2 top-8 z-30 block w-[min(26rem,80vw)] -translate-x-1/2 rounded-xl border border-line bg-card p-4 text-left font-sans text-base leading-snug text-ink shadow-xl"
+          className="absolute left-1/2 top-9 z-30 block w-[min(26rem,80vw)] -translate-x-1/2 rounded-2xl border border-line bg-card p-5 text-left font-sans text-base leading-snug text-ink shadow-[0_18px_40px_-12px_rgba(59,42,30,0.35)]"
         >
-          <span className="mb-1 block text-xs uppercase tracking-wide text-ink-soft">
-            Source {c.n} · line {c.turnId}
+          <span className="mb-2 block text-xs font-semibold uppercase tracking-[0.18em] text-brick">
+            Source {c.n}
           </span>
-          <span className="block font-serif text-lg italic">“{c.quote || "…"}”</span>
-          <Link href={c.href} className="mt-3 inline-block font-medium text-brick underline">
-            Open in the transcript →
+          <span className="block font-(family-name:--font-display) text-lg italic leading-relaxed">“{c.quote || "…"}”</span>
+          <span className="mt-2 block text-sm text-ink-soft">
+            {speaker}
+            {c.source ? ` · ${c.source}` : ""}
+          </span>
+          <Link
+            href={c.href}
+            className="mt-3 inline-flex min-h-11 items-center font-medium text-brick underline underline-offset-4 hover:text-brick-dark"
+          >
+            Hear it in the conversation →
           </Link>
         </span>
       )}

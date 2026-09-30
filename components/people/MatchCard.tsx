@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { api } from "@/lib/api-client";
+import { routes } from "@/lib/archive";
 import type { Citation, Match, PersonEntity, TreePerson } from "@/lib/types";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
@@ -60,7 +61,14 @@ export function MatchCard({ match, entity, treePerson, relatives, citations, als
       </div>
 
       <p className="text-xl leading-relaxed">
-        <strong>{entity?.mentionName ?? match.entityId}</strong> from the stories
+        {entity ? (
+          <Link href={routes.person(entity.id)} className="font-semibold text-brick-dark underline-offset-4 hover:underline">
+            {entity.mentionName}
+          </Link>
+        ) : (
+          <strong>{match.entityId}</strong>
+        )}{" "}
+        from the stories
         {entityDesc && <span className="text-ink-soft"> ({entityDesc})</span>} → in the tree{" "}
         <strong>
           {treePerson ? `${treePerson.givenName} ${treePerson.surname}` : match.treePersonId}
@@ -123,7 +131,7 @@ export function MatchCard({ match, entity, treePerson, relatives, citations, als
           {citations.map((c) => (
             <blockquote key={c.turnId} className="border-l-4 border-brick/40 pl-3 font-serif italic">
               “{c.quote}”{" "}
-              <Link className="not-italic text-sm text-brick underline" href={`/family/sessions/${c.turnId.split("-")[0]}#${c.turnId}`}>
+              <Link className="not-italic text-sm text-brick underline" href={routes.turn(c.turnId.replace(/-t\d+$/, ""), c.turnId)}>
                 {c.turnId}
               </Link>
             </blockquote>
@@ -143,7 +151,7 @@ export function MatchCard({ match, entity, treePerson, relatives, citations, als
       )}
       {match.status === "confirmed" && (
         <p className="mt-4">
-          <Link href={`/family/tree?focus=${match.treePersonId}`} className="text-brick underline">
+          <Link href={routes.tree(match.treePersonId)} className="text-brick underline">
             Show in the tree →
           </Link>
         </p>

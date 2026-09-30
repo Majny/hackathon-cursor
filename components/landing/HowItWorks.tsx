@@ -8,7 +8,7 @@ import { SectionLabel } from "./SectionLabel";
 type StepKey = "talk" | "remember" | "write" | "connect";
 
 const STEPS: { key: StepKey; num: string; title: string; blurb: string }[] = [
-  { key: "talk", num: "01", title: "Talk", blurb: "Tom, a warm AI grandson, asks gentle questions by voice. Grandpa just answers." },
+  { key: "talk", num: "01", title: "Talk", blurb: "Tom, a warm AI grandson, calls Grandpa on WhatsApp and asks gentle questions. Grandpa just answers." },
   { key: "remember", num: "02", title: "Remember", blurb: "Every session is summarised. Next time Tom picks up exactly where grandpa left off." },
   { key: "write", num: "03", title: "Write", blurb: "Stories become book chapters. Every sentence is cited back to grandpa’s own words." },
   { key: "connect", num: "04", title: "Connect", blurb: "People from the stories are matched to your family tree and exported as GEDCOM." },
