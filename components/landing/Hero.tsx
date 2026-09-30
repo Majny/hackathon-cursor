@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { WhatsAppCall } from "./WhatsAppCall";
+import { WhatsAppSoon } from "./WhatsAppSoon";
 
 export const primaryCta =
   "inline-flex min-h-12 items-center rounded-full bg-ink px-6 py-3 text-[0.95rem] font-semibold text-paper transition-colors hover:bg-brick-dark focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-brick";
@@ -24,6 +25,7 @@ export function Hero() {
             Try Tom in your browser
           </Link>
         </div>
+        <WhatsAppSoon />
       </div>
       <WhatsAppCall />
     </section>
